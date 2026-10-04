@@ -1,0 +1,130 @@
+# Content manifest for the static writing pages.
+# One block per entry. The fetch script reads this flat subset only:
+# top level list items with plain "key: value" lines. Values that contain
+# a colon followed by a space are double quoted.
+
+- slug: el-proceso-de-desdomesticacion
+  title: El Proceso de Desdomesticacion
+  date: Jan 2026
+  kind: local
+  source: media/writings/el-proceso-de-desdomesticacion.html
+  warning: false
+  listed: true
+  notes:
+
+- slug: unalovebomber
+  title: Unalovebomber
+  date: Apr 2024
+  kind: local
+  source: media/writings/unalovebomber.html
+  warning: false
+  listed: true
+  notes:
+
+- slug: rapunzel
+  title: Rapunzel's Letter
+  date: Mar 2023
+  kind: pastebin
+  source: LPip28ez
+  warning: false
+  listed: true
+  notes:
+
+- slug: el-fantasma-del-palacio-sarmiento
+  title: El Fantasma del Palacio Sarmiento
+  date: Mar 2023
+  kind: gdoc
+  source: 2PACX-1vQZMXk6EbZbl9--2TUODe76lAmFti2dBg1nzW0ng7Rdp8B07mNmEFSFtFnr_JpuBTZFGXPd7Qun6PdU
+  warning: false
+  listed: true
+  notes:
+
+- slug: hija-de-la-plata
+  title: Hija de la Plata
+  date: Dec 2022
+  kind: gdoc
+  source: 2PACX-1vQmMpJfRxN5sqKwXnbIbZHA3_MD1if9AnoT65D53543gvvglPrrCefQgsXf_FqHtyGFrRb0HMvShi0W
+  warning: false
+  listed: true
+  notes:
+
+- slug: el-chico-de-las-cuentitas
+  title: El Chico de Las Cuentitas
+  date: May 2024
+  kind: gdoc
+  source: 2PACX-1vRjW2tyiy1DmjQ-LWN8wyRLYRCy0LPtMNxM5IbdmEs2n_BdD1_Pezg9vUAsNS-AHGedyaxXeqCWW7ta
+  warning: false
+  listed: true
+  notes:
+
+- slug: el-amanecer-de-los-numeros
+  title: El Amanecer de los Números
+  date: Jul 2024
+  kind: gdoc
+  source: 2PACX-1vT9nPeNwtEnpfUACMwiaeDe7NW3y1qrTU-aMJ0NNKdiQgT4oOGPRi3iCH-4GbFF-AYCz7iDln2II4h2
+  warning: false
+  listed: true
+  notes:
+
+- slug: el-barco-de-paraguayo-recorte
+  title: El Barco de Paraguayo · Recorte del Diario La Nación
+  date:
+  kind: external
+  source: https://www.lanacion.com.ar/seguridad/la-hidrovia-el-gran-canal-de-entrada-a-la-argentina-de-la-marihuana-paraguaya-nid1952896/
+  warning: false
+  listed: true
+  notes: Leé el recorte original en La Nación.
+
+- slug: malbec
+  title: Tenés que comprar Malbec, siempre Malbec
+  date: Jul 2024
+  kind: gdoc
+  source: 2PACX-1vTkgsUtHvYfbMHzwPsl3l_HsVo8AikHHfu_tENc0akOshMQ6RxjaSTwSZ9noeVEZQTo0HHATq-Md7jQ
+  warning: true
+  listed: true
+  notes:
+
+- slug: sanguche-de-mila
+  title: Mi honor por un sanguche de milanesa
+  date: Mar 2021
+  kind: gdoc
+  source: 2PACX-1vTBEtVg1TAs7IFvRoqK3dRB2czmCmYFjsxU2Xrlw55iDp0JgdXAUD6pcQX9LuESJYA4OSOYoudXV3MT
+  warning: false
+  listed: true
+  notes:
+
+- slug: una-remera-con-olor-a-hombre
+  title: Una remera con olor a hombre
+  date: Mar 2021
+  kind: gdoc
+  source: 2PACX-1vS4Jt4SAoH45kv5eLjECMv4DdAB-6uZvFod28Nhn0nYcSlrqvw4e3eFNaVc1u9xm7RYo9Ft3QWzBwpS
+  warning: false
+  listed: true
+  notes:
+
+- slug: penisneid
+  title: "Mujer Enmasculada: Kuñahapi'a y el Penisneid"
+  date: Mar 2021
+  kind: gdoc
+  source: 2PACX-1vRuyCMOrjtywXNZeVMB5ZUJV7Ou52DuoUvtQMVQqDYgqFH-c5fwJy0luMuq_c_cmCyF_U6BgTS9tM2w
+  warning: false
+  listed: false
+  notes:
+
+- slug: perro
+  title: Perro
+  date:
+  kind: gdoc
+  source: 2PACX-1vTs9988ImR87RIJlfJmRcfENWR3JFfkBXaD1A0NEY55IWsgAy7P5oL1GSzCBTxZch8wRQ5bNhbWc3Ax
+  warning: false
+  listed: false
+  notes:
+
+- slug: la-capital-nacional-de-la-moladora
+  title: La Capital Nacional de la Moladora
+  date:
+  kind: local
+  source: media/writings/la-capital-nacional-de-la-moladora.html
+  warning: false
+  listed: false
+  notes:

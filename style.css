@@ -177,6 +177,10 @@ body.about {
     background-image: url("./media/wallpaper/matrix_room_hd.jpeg");
 }
 
+body.writing {
+    background-image: url("./media/wallpaper/moon_and_star.jpg");
+}
+
 /* ---------- Layout ---------- */
 .container {
     width: min(92%, 900px);
@@ -348,6 +352,58 @@ button:focus-visible {
     border-top: 1px solid var(--color-line-soft);
     padding-top: 16px;
     margin-top: 20px;
+}
+
+/* ---------- Collapsible intros ---------- */
+/* The long author intros stay in the page, folded away by default
+   so the real content (stories, posts) comes first. */
+.intro-collapse {
+    margin: 4px 0 18px;
+    border-top: 1px solid var(--color-line-soft);
+    padding-top: 12px;
+}
+
+.intro-collapse summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+    list-style: none;
+}
+
+.intro-collapse summary::-webkit-details-marker {
+    display: none;
+}
+
+.intro-collapse summary::before {
+    content: "+";
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.intro-collapse[open] summary::before {
+    content: "−";
+}
+
+.intro-collapse summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+.intro-collapse p:first-of-type {
+    margin-top: 12px;
+}
+
+.intro-collapse p:last-child {
+    margin-bottom: 0;
 }
 
 /* ---------- Section kickers ---------- */

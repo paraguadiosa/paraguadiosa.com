@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+# Refreshes version.json and stages it before every commit.
+# Link into place with:
+#   ln -s ../../.githooks/pre-commit .git/hooks/pre-commit
+set -eu
+
+ROOT="$(git rev-parse --show-toplevel)"
+"$ROOT/gen-version.sh"
+git add "$ROOT/version.json"

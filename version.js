@@ -1,20 +1,34 @@
 // version.js
+// Fills the "Last updated / Version" line from version.json, which
+// gen-version.sh regenerates from git. The line stays hidden until real
+// data loads, so the page never shows stale or fake values.
+(function () {
+    var meta = document.getElementById('site-meta');
+    var updated = document.getElementById('last-updated');
+    var version = document.getElementById('version');
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    // Function to get the current date and time
-    function getCurrentDateTime(format = 'day-month-year') {
-        return '04.09.26';
+    if (!meta || !updated || !version) {
+        return;
     }
 
-
-    // Function to get the version of the website
-    function getVersion() {
-        return "4.3.0";
+    function fill(data) {
+        if (!data || !data.updated || !data.version) {
+            return;
+        }
+        updated.textContent = data.updated;
+        version.textContent = data.version;
+        meta.hidden = false;
     }
 
-    // Update the 'last-updated' span with the current date and time
-    document.getElementById('last-updated').textContent = getCurrentDateTime();
-
-    // Update the 'version' span with the version of the website
-    document.getElementById('version').textContent = getVersion();
-});
+    fetch('./version.json', { cache: 'no-store' })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('version.json not available');
+            }
+            return response.json();
+        })
+        .then(fill)
+        .catch(function () {
+            // Keep the line hidden rather than show stale values.
+        });
+})();

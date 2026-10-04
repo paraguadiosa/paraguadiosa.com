@@ -1,0 +1,941 @@
+/* ===========================================
+   Astrocronopio - Evelyn Coronel
+   Shared stylesheet (espresso identity pass)
+   -------------------------------------------
+   Dark is the default and the star: layered
+   vignette, faint film grain, glass overlay
+   cards. Light mode is a warm paper daylight
+   version of the same system.
+
+   Identity v2: the base and surface palettes
+   moved from cool near-black to warm espresso
+   ink, with amber-tinted shadows and warm
+   paper in light mode. The two-tone accent
+   system is unchanged in spirit: lavender on
+   the personal side (body.home, default),
+   amber on the professional side (body.about).
+
+   Display voice moved from Iowan-lead to
+   Palatino-lead; Georgia still carries prose;
+   ui-monospace still carries dates, kickers,
+   nav and the footer.
+   =========================================== */
+
+/* ---------- Design tokens ---------- */
+:root {
+    color-scheme: dark;
+
+    --color-text: #ece4d1;
+    --color-text-soft: #cfc4ab;
+    --color-text-faint: #a99e86;
+    --color-surface: rgba(29, 22, 14, 0.82);
+    --color-surface-hover: rgba(255, 250, 240, 0.06);
+    --color-line: rgba(255, 249, 238, 0.12);
+    --color-line-soft: rgba(255, 249, 238, 0.07);
+    --color-inset: rgba(255, 249, 238, 0.05);
+    --color-rose: #e2b09c;
+    --color-rose-soft: rgba(226, 176, 156, 0.42);
+    --color-edge: rgba(255, 250, 240, 0.07);
+    --shadow-card: 0 24px 60px -24px rgba(96, 48, 12, 0.5),
+                   0 8px 28px -14px rgba(64, 30, 8, 0.5);
+
+    /* Cinematic page scrim, kept behind every card. */
+    --page-bg: #17120b;
+    --glow-top: rgba(212, 146, 66, 0.28);
+    --scrim-soft: rgba(12, 8, 3, 0.4);
+    --scrim-deep: rgba(10, 6, 2, 0.68);
+
+    /* Personal side accent (lavender). */
+    --accent: #a997e7;
+    --accent-soft: rgba(169, 151, 231, 0.35);
+
+    /* Display serif is the literary voice; Georgia carries prose;
+       ui-monospace handles dates, kickers and labels. */
+    --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, 'Courier New', monospace;
+
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --space-card: clamp(20px, 4vw, 36px);
+}
+
+/* Professional side accent (amber). */
+body.about {
+    --accent: #f0a657;
+    --accent-soft: rgba(240, 166, 87, 0.35);
+}
+
+/* ---------- Light theme ---------- */
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    --color-text: #2b2117;
+    --color-text-soft: #55452f;
+    --color-text-faint: #6a5c43;
+    --color-surface: rgba(255, 251, 242, 0.9);
+    --color-surface-hover: rgba(60, 40, 18, 0.06);
+    --color-line: rgba(50, 36, 20, 0.16);
+    --color-line-soft: rgba(50, 36, 20, 0.1);
+    --color-inset: rgba(50, 36, 20, 0.055);
+    --color-rose: #86492f;
+    --color-rose-soft: rgba(134, 73, 47, 0.4);
+    --color-edge: rgba(255, 255, 255, 0.65);
+    --shadow-card: 0 24px 60px -28px rgba(96, 62, 26, 0.38),
+                   0 8px 24px -16px rgba(84, 52, 22, 0.28);
+
+    /* Daylight haze over the artwork. */
+    --page-bg: #e8dfc9;
+    --glow-top: rgba(255, 246, 219, 0.6);
+    --scrim-soft: rgba(250, 244, 227, 0.55);
+    --scrim-deep: rgba(247, 240, 222, 0.76);
+
+    --accent: #5a4396;
+    --accent-soft: rgba(90, 67, 150, 0.28);
+}
+
+[data-theme="light"] body.about {
+    --accent: #8a4708;
+    --accent-soft: rgba(138, 71, 8, 0.3);
+}
+
+/* ---------- Reset & Base ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: var(--page-bg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    font-family: var(--font-serif);
+    line-height: 1.75;
+    color: var(--color-text);
+    min-height: 100vh;
+}
+
+/* Layered vignette: a soft warm lamplight falls onto the artwork and
+   the edges deepen to near-black, keeping every card calm. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(130% 85% at 50% 0%, var(--glow-top) 0%, transparent 46%),
+        radial-gradient(120% 92% at 50% 12%, transparent 44%, var(--scrim-deep) 100%);
+}
+
+/* A whisper of film grain. Deliberately faint: texture, not static. */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.12;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='160'%20height='160'%3E%3Cfilter%20id='g'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23g)'%20opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Daylight mode: the grain steps back, the haze warms up. */
+[data-theme="light"] body {
+    background-color: var(--page-bg);
+}
+
+[data-theme="light"] body::before {
+    background:
+        radial-gradient(130% 85% at 50% 0%, var(--glow-top) 0%, transparent 48%),
+        radial-gradient(120% 92% at 50% 12%, transparent 40%, var(--scrim-deep) 100%);
+}
+
+[data-theme="light"] body::after {
+    opacity: 0;
+}
+
+::selection {
+    background: var(--accent-soft);
+    color: var(--color-text);
+}
+
+/* Per-page artwork. */
+body.home {
+    background-image: url("./media/wallpaper/totoro-scene-hd.jpg");
+}
+
+body.about {
+    background-image: url("./media/wallpaper/matrix_room_hd.jpeg");
+}
+
+/* ---------- Layout ---------- */
+.container {
+    width: min(92%, 900px);
+    margin-inline: auto;
+    padding-block: clamp(20px, 5vh, 64px) 16px;
+}
+
+.overlay {
+    background-color: var(--color-surface);
+    -webkit-backdrop-filter: blur(18px) saturate(1.25);
+    backdrop-filter: blur(18px) saturate(1.25);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card), inset 0 1px 0 var(--color-edge);
+    padding: var(--space-card);
+    padding-bottom: calc(var(--space-card) - 8px);
+    margin-bottom: 24px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ---------- Navigation ---------- */
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    border-bottom: 1px solid var(--color-line);
+    padding-bottom: 16px;
+    margin-bottom: 26px;
+}
+
+.site-brand h2 {
+    font-family: var(--font-display);
+    font-size: 1.26em;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    margin-bottom: 3px;
+}
+
+.page-tagline {
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+    color: var(--accent);
+    opacity: 0.92;
+    text-wrap: balance;
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--accent);
+    padding-block: 8px;
+}
+
+/* Hairline that draws in from the left on hover and stays for .active. */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 4px;
+    height: 1px;
+    background: currentColor;
+    transition: right 0.25s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    right: 0;
+}
+
+.theme-toggle {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    padding: 10px 16px;
+    min-height: 40px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover {
+    color: var(--color-text);
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.24;
+    margin-bottom: 12px;
+    text-wrap: balance;
+}
+
+h2 {
+    font-size: 1.34em;
+}
+
+h3 {
+    font-size: 1.06em;
+}
+
+p {
+    margin-bottom: 16px;
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+    text-wrap: pretty;
+}
+
+/* ---------- Links ---------- */
+a {
+    color: var(--accent);
+    transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.85;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ---------- Intro / Disclaimer ---------- */
+.intro {
+    color: var(--color-rose);
+    font-style: italic;
+    font-size: 1.05em;
+    line-height: 1.7;
+    max-width: 62ch;
+}
+
+/* The "last updated / version" line is metadata, not prose:
+   mono, quiet, separated by a hairline. */
+.intro:has(span) {
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    border-top: 1px solid var(--color-line-soft);
+    padding-top: 16px;
+    margin-top: 20px;
+}
+
+/* ---------- Section kickers ---------- */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 2px 0 18px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent-soft), var(--color-line-soft));
+}
+
+/* The big literary title on the writings card. */
+.overlay > header > h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5em, 1.32em + 1.1vw, 1.95em);
+    line-height: 1.14;
+    letter-spacing: -0.016em;
+    margin-bottom: 0.9em;
+}
+
+/* ---------- Blog / Writing entries ---------- */
+.writing-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.writing-list > li:not(.writing-divider) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 18px;
+    padding: 14px var(--space-card);
+    margin-inline: calc(-1 * var(--space-card));
+    border-bottom: 1px solid var(--color-line-soft);
+    transition: background-color 0.22s ease;
+}
+
+.writing-list > li:not(.writing-divider):hover {
+    background-color: var(--color-surface-hover);
+}
+
+.writing-list > li:not(.writing-divider):last-child {
+    border-bottom: none;
+}
+
+.writing-link {
+    color: var(--color-text);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+    line-height: 1.5;
+    margin-right: auto;
+    min-width: 0;
+    transition: color 0.2s ease;
+}
+
+.writing-link:hover {
+    color: var(--accent);
+    opacity: 1;
+}
+
+.writing-date {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    white-space: nowrap;
+}
+
+.writing-warning {
+    color: var(--color-rose);
+    letter-spacing: 0.14em;
+}
+
+.writing-warning::before {
+    content: "·";
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+/* Divider between new & old writings. */
+.writing-divider {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px var(--space-card) 12px;
+    margin-inline: calc(-1 * var(--space-card));
+}
+
+.writing-divider::before,
+.writing-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent-soft), var(--color-line-soft));
+}
+
+.writing-divider::after {
+    background: linear-gradient(to left, var(--accent-soft), var(--color-line-soft));
+}
+
+.writing-divider span {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-text-faint);
+    text-align: center;
+}
+
+/* ---------- External / Persona links ---------- */
+.link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link-list li {
+    margin-bottom: 12px;
+}
+
+.link-list li:last-child {
+    margin-bottom: 0;
+}
+
+.link-list a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.02em;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+}
+
+/* Underline draws in from the left on hover. */
+.link-list a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.link-list a:hover {
+    color: var(--accent);
+    opacity: 1;
+}
+
+.link-list a:hover::after {
+    transform: scaleX(1);
+}
+
+/* CV link inside prose. */
+.cv-link {
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-soft);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.cv-link:hover {
+    color: var(--accent);
+    opacity: 1;
+    text-decoration-color: var(--accent);
+}
+
+/* ---------- Writing pages ---------- */
+h1.writing-title,
+h2.writing-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.45em, 1.28em + 1.1vw, 1.9em);
+    line-height: 1.18;
+    letter-spacing: -0.014em;
+    margin-bottom: 20px;
+}
+
+.writing-body {
+    font-size: 1.05em;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.writing-body p {
+    margin-bottom: 1.6em;
+    text-indent: 0;
+}
+
+.writing-body ul,
+.writing-body ol {
+    margin: 0 0 1.6em;
+    padding-left: 1.5em;
+}
+
+.writing-body li {
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+    line-height: 1.8;
+    margin-bottom: 0.65em;
+}
+
+.writing-body li:last-child {
+    margin-bottom: 0;
+}
+
+.writing-body li ul,
+.writing-body li ol {
+    margin: 0.45em 0 0.15em;
+}
+
+.writing-body h3 {
+    color: var(--accent);
+    font-size: 1.12em;
+    margin: 32px 0 14px;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 7px;
+}
+
+.writing-ascii {
+    text-align: center;
+    padding: 40px 0 10px;
+    font-size: 0.82em;
+    line-height: 1.4;
+    color: var(--color-text-faint);
+    white-space: pre;
+    font-family: var(--font-mono);
+}
+
+/* ---------- Blog post pages ---------- */
+.blog-back {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-color: var(--accent-soft);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+    margin-bottom: 2px;
+    transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
+}
+
+.blog-back:hover {
+    color: var(--accent);
+    opacity: 1;
+    text-decoration-color: var(--accent);
+}
+
+.writing-meta {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    margin-bottom: 28px;
+}
+
+.writing-code {
+    background: var(--color-inset);
+    border: 1px solid var(--color-line);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 16px 18px;
+    margin: 0 0 1.7em;
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    line-height: 1.65;
+    overflow-x: auto;
+    white-space: pre;
+    color: var(--color-text);
+    tab-size: 4;
+}
+
+.writing-figure {
+    margin: 28px 0;
+    text-align: center;
+}
+
+.writing-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+}
+
+.writing-figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text-faint);
+    margin-top: 12px;
+}
+
+/* Wide diagrams: on small screens keep text readable by letting the
+   figure scroll horizontally instead of shrinking to an unreadable size. */
+@media (max-width: 900px) {
+    .writing-figure {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .writing-image[src$=".svg"] {
+        min-width: 1400px;
+        max-width: none;
+    }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2px 0;
+    padding: 26px 0 30px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    text-shadow: 0 1px 12px rgba(20, 12, 5, 0.85);
+    text-align: center;
+}
+
+[data-theme="light"] .site-footer {
+    text-shadow: 0 1px 10px rgba(255, 255, 255, 0.6);
+}
+
+.site-footer span {
+    margin: 0 10px;
+}
+
+/* ---------- Media Queries ---------- */
+@media only screen and (max-width: 600px) {
+    body {
+        background-attachment: scroll;
+    }
+
+    .nav-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .nav-links {
+        gap: 14px 20px;
+    }
+
+    .nav-links a {
+        padding-block: 12px;
+    }
+
+    .theme-toggle {
+        min-height: 44px;
+        padding: 10px 18px;
+    }
+
+    .writing-list > li:not(.writing-divider) {
+        padding-block: 12px;
+    }
+
+    .writing-link {
+        display: inline-block;
+        padding-block: 10px;
+    }
+
+    .link-list a {
+        display: inline-block;
+        padding-block: 12px;
+    }
+
+    .cv-link {
+        display: inline-block;
+        padding-block: 12px;
+    }
+
+    .blog-back {
+        padding-block: 12px;
+    }
+
+    .writing-date {
+        font-size: 0.75rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    :root {
+        --space-card: 18px;
+    }
+
+    .writing-list > li:not(.writing-divider) {
+        gap: 2px 12px;
+    }
+
+    .page-tagline {
+        font-size: 0.76em;
+    }
+
+    .section-title {
+        letter-spacing: 0.14em;
+    }
+
+    .writing-divider {
+        gap: 10px;
+    }
+
+    .writing-divider span {
+        letter-spacing: 0.12em;
+        line-height: 1.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none;
+    }
+}
+
+
+/* ===========================================
+   Blog timeline (one-month log)
+   Day-by-day log for media/blog/one-month-of-learning.html.
+   Each week is its own .timeline block; the rail is a
+   pseudo-element, so it never collides with the h3 week
+   headers above or below the block.
+   =========================================== */
+
+/* Week block: gutter on the left reserves room for the rail. */
+.timeline {
+    position: relative;
+    margin: 14px 0 36px;
+    padding-left: 40px;
+    border-left: none;
+}
+
+/* The vertical rail, faded at both ends. */
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 10px;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(to bottom,
+            var(--accent-soft) 0%,
+            var(--color-line) 22%,
+            var(--color-line) 78%,
+            var(--accent-soft) 100%);
+}
+
+/* Each entry is a frosted panel sitting to the right of the rail. */
+.timeline .tl-entry {
+    position: relative;
+    margin: 0 0 28px;
+    padding: 20px 24px 18px;
+    overflow-wrap: break-word;
+    background-color: var(--color-inset);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.timeline .tl-entry:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-soft);
+}
+
+/* Marker dot centred on the rail, aligned to the date badge line. */
+.timeline .tl-entry::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -35px;
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    transition: transform 0.2s ease;
+}
+
+.timeline .tl-entry:hover::before {
+    transform: scale(1.2);
+}
+
+/* The date as a compact badge pill. */
+.timeline .tl-date {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 10px;
+    padding: 4px 12px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background-color: var(--accent-soft);
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+}
+
+/* Project names inside an entry get a quiet accent underline. */
+.timeline .tl-entry strong {
+    color: var(--color-text);
+    font-weight: bold;
+    border-bottom: 1px solid var(--accent-soft);
+}
+
+/* Inline code tokens inside entries read as small chips. */
+.timeline code {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    padding: 0.1em 0.5em;
+    background-color: var(--color-surface-hover);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-sm);
+}
+
+.timeline .tl-entry p:last-child {
+    margin-bottom: 0;
+}
+
+/* Narrow screens: compress the rail gutter, keep the badges on top. */
+@media only screen and (max-width: 600px) {
+    .timeline {
+        margin: 10px 0 30px;
+        padding-left: 30px;
+    }
+
+    .timeline::before {
+        left: 7px;
+    }
+
+    .timeline .tl-entry {
+        margin: 0 0 22px;
+        padding: 16px 16px 14px;
+    }
+
+    .timeline .tl-entry::before {
+        top: 21px;
+        left: -28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline .tl-entry,
+    .timeline .tl-entry::before {
+        transition: none;
+    }
+
+    .timeline .tl-entry:hover,
+    .timeline .tl-entry:hover::before {
+        transform: none;
+    }
+}

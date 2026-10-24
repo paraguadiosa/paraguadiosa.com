@@ -121,6 +121,9 @@ assert.match(simple, /from "\.\.\/vendor\/foliate\/vendor\/zip\.js"/, "simple.js
 assert.match(simple, /attachShadow\(\{ mode: "open" \}\)/, "simple.js does not isolate the book styles");
 assert.match(script, /await import\("\.\/simple\.js"\)/, "reader.js never loads the fallback");
 assert.match(script, /FALLBACK_MS/, "reader.js has no fallback timer");
+assert.match(script, /IS_IOS/, "reader.js does not detect iOS");
+assert.match(script, /FORCE_SIMPLE = PARAMS\.has\("simple"\) \|\| IS_IOS/, "iOS does not start on the iframe-free renderer");
+assert.match(script, /await import\("\.\.\/vendor\/foliate\/view\.js"\)/, "the engine is not loaded lazily");
 assert.match(read("tarot/leer/reader.css"), /\.reader-simple/, "no styles for the fallback surface");
 ok("the iframe-free renderer is wired as a fallback");
 

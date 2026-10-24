@@ -3,8 +3,6 @@
 // vendored foliate-js and keeps the reading position in localStorage.
 // Static site: no backend, no tracking, nothing leaves the device.
 
-import "../vendor/foliate/view.js";
-
 const BOOK_PATH = "../data/rider-waite-es.epub";
 const STORE_KEY = "tarot-reader-cfi";
 const PAGE_KEY = "tarot-reader-page";
@@ -18,8 +16,16 @@ const FALLBACK_MS = 5000;
 // preview (port 8766), opt-in everywhere else with ?probe=1.
 const PARAMS = new URLSearchParams(location.search);
 const PROBE = location.port === "8766" || PARAMS.has("probe");
-// ?simple=1 forces the iframe-free renderer, which is what iOS ends up using.
-const FORCE_SIMPLE = PARAMS.has("simple");
+
+// iOS never renders the paginator's iframe: Safari turns that navigation into a
+// download of the spine document, so there is nothing to wait for and no MIME to
+// fix. Measured on iOS 18.7: open() resolves, the first document is handed over
+// as a text/html blob, and no load event ever fires. On iOS the reader starts on
+// the iframe-free renderer and never creates the iframe at all.
+const IS_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+// ?simple=1 forces that renderer anywhere, for testing.
+const FORCE_SIMPLE = PARAMS.has("simple") || IS_IOS;
 
 function report(step, extra = {}) {
     if (!PROBE) return;
@@ -156,8 +162,7 @@ async function startSimple() {
 async function start() {
     if (FORCE_SIMPLE) {
         try {
-            report("start-simple-forced");
-            status.textContent = "Abriendo el libro…";
+            report(IS_IOS ? "start-ios" : "start-simple-forced");
             await startSimple();
             return;
         } catch (error) {
@@ -167,6 +172,9 @@ async function start() {
     }
     try {
         report("start");
+        // Only the paginator path needs the engine: on iOS it would be 232 KB of
+        // vendored code to build an iframe that cannot render.
+        await import("../vendor/foliate/view.js");
         await view.open(new URL(BOOK_PATH, import.meta.url).href);
         report("opened", {
             sections: String(view.book?.sections?.length ?? 0),

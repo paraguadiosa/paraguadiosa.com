@@ -170,5 +170,37 @@ assert.ok(fallbackState.chars > 500, `the fallback rendered ${fallbackState.char
 assert.ok(fallbackState.controlsEnabled, "controls stayed disabled after the fallback");
 console.log(`ok 11 - falls back to the iframe-free renderer (${fallbackState.chars} chars, controls on)`);
 
+// 12. With an iPhone user agent the reader must go straight to the iframe-free
+//     renderer: no iframe, no download, no five second wait.
+const iphone = await browser.newPage({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
+        + "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.7 Mobile/15E148 Safari/604.1",
+});
+const started = Date.now();
+await iphone.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await iphone.waitForFunction(() => {
+    const host = document.querySelector(".reader-simple");
+    return host && (host.shadowRoot?.textContent ?? "").trim().length > 100;
+}, { timeout: 15000 });
+const iphoneElapsed = Date.now() - started;
+const iphoneState = await iphone.evaluate(() => {
+    const host = document.querySelector(".reader-simple");
+    const imgs = host ? Array.from(host.shadowRoot?.querySelectorAll("img") ?? []) : [];
+    return {
+        chars: (host?.shadowRoot?.textContent ?? "").trim().length,
+        images: imgs.length,
+        imagesLoaded: imgs.filter((i) => i.complete && i.naturalWidth > 0).length,
+        openedByPaginator: !!document.querySelector("foliate-view")?.book,
+    };
+});
+assert.ok(!iphoneState.openedByPaginator, "the paginator opened the book on an iPhone UA");
+assert.ok(iphoneState.chars > 100, `the iPhone path rendered ${iphoneState.chars} chars`);
+assert.ok(iphoneElapsed < 12000, `the iPhone path took ${iphoneElapsed} ms to show text`);
+console.log(`ok 12 - iPhone UA skips the iframe (${iphoneState.chars} chars, `
+    + `${iphoneState.imagesLoaded}/${iphoneState.images} images, ${iphoneElapsed} ms)`);
+
 await browser.close();
-console.log(`\n11 checks passed (cover section: ${cover.length} chars)`);
+console.log(`\n12 checks passed (cover section: ${cover.length} chars)`);

@@ -179,6 +179,9 @@ body.about {
 
 body.writing {
     background-image: url("./media/wallpaper/moon_and_star.jpg");
+    /* Same art as WebP: 380 KB instead of 655 KB. A browser without WebP
+       support drops this line and keeps the JPEG above. */
+    background-image: url("./media/wallpaper/moon_and_star.webp");
 }
 
 /* ---------- Layout ---------- */

@@ -146,5 +146,29 @@ assert.ok(enabledAfter, "the controls never became usable after loading");
 assert.equal(earlyErrors.length, 0, `errors while the book was loading: ${earlyErrors.join(" | ")}`);
 console.log("ok 10 - taps before the book is open are ignored and leave no error");
 
+// 11. When the paginator's iframe never renders a document (what iOS does), the
+//     reader must fall back to the iframe-free renderer on its own. Simulated by
+//     breaking createObjectURL, which is how the paginator feeds its iframe.
+const blind = await browser.newPage({ viewport: { width: 390, height: 844 } });
+await blind.addInitScript(() => {
+    window.URL.createObjectURL = () => "blob:broken-on-purpose";
+});
+await blind.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await blind.waitForTimeout(14000);
+const fallbackState = await blind.evaluate(() => {
+    const host = document.querySelector(".reader-simple");
+    const text = host?.shadowRoot?.textContent ?? "";
+    return {
+        hasSimple: !!host,
+        chars: text.trim().length,
+        viewHidden: document.querySelector("foliate-view")?.hidden ?? null,
+        controlsEnabled: !document.querySelector("#reader-next")?.disabled,
+    };
+});
+assert.ok(fallbackState.hasSimple, "the iframe-free renderer never started");
+assert.ok(fallbackState.chars > 500, `the fallback rendered ${fallbackState.chars} chars`);
+assert.ok(fallbackState.controlsEnabled, "controls stayed disabled after the fallback");
+console.log(`ok 11 - falls back to the iframe-free renderer (${fallbackState.chars} chars, controls on)`);
+
 await browser.close();
-console.log(`\n10 checks passed (cover section: ${cover.length} chars)`);
+console.log(`\n11 checks passed (cover section: ${cover.length} chars)`);

@@ -28,6 +28,7 @@ const VENDOR = [
 ];
 
 const EPUB = "tarot/data/rider-waite-es.epub";
+const SIMPLE = "tarot/leer/simple.js";
 const PAGE = "tarot/leer/index.html";
 const SCRIPT = "tarot/leer/reader.js";
 
@@ -38,7 +39,7 @@ const ok = (label) => {
 };
 
 // 1. The reader page and its assets exist.
-for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", EPUB, ...VENDOR]) {
+for (const file of [PAGE, SCRIPT, SIMPLE, "tarot/leer/reader.css", EPUB, ...VENDOR]) {
     assert.ok(existsSync(rel(file)), `missing ${file}`);
     ok(`${file} exists`);
 }
@@ -114,13 +115,22 @@ assert.match(script, /setControls\(true\)/, "the controls are never enabled afte
 assert.match(page, /id="reader-next"[^>]*disabled/, "the next button starts enabled in the markup");
 ok("navigation is disabled until the book is open");
 
-// 8. The spread page links to the reader.
+// 8. The iframe-free renderer exists and is reachable from the reader.
+const simple = read(SIMPLE);
+assert.match(simple, /from "\.\.\/vendor\/foliate\/vendor\/zip\.js"/, "simple.js does not reuse the vendored zip reader");
+assert.match(simple, /attachShadow\(\{ mode: "open" \}\)/, "simple.js does not isolate the book styles");
+assert.match(script, /await import\("\.\/simple\.js"\)/, "reader.js never loads the fallback");
+assert.match(script, /FALLBACK_MS/, "reader.js has no fallback timer");
+assert.match(read("tarot/leer/reader.css"), /\.reader-simple/, "no styles for the fallback surface");
+ok("the iframe-free renderer is wired as a fallback");
+
+// 9. The spread page links to the reader.
 const spread = read("tarot/index.html");
 assert.match(spread, /href="\.\/leer\/index\.html"/, "tarot page does not link to the reader");
 ok("tarot page links to the reader");
 
-// 9. House style: no em dashes in the new files.
-for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
+// 10. House style: no em dashes in the new files.
+for (const file of [PAGE, SCRIPT, SIMPLE, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
     const text = read(file);
     assert.ok(!text.includes("\u2014"), `${file} contains an em dash`);
 }

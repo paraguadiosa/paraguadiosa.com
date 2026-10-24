@@ -62,6 +62,12 @@ and needs no backend. The spread page links to it.
     node tools/verify-reader-browser.mjs   # browser: renders, paginates, restores
     python3 tools/verify-reader-webkit.py  # WebKit (Safari engine): opens, no download
 
+Two renderers live behind that page. The default is foliate's paginator, which puts each
+spine document in an iframe. iOS Safari turns that iframe navigation into a download of the
+`.xhtml`, so when no document loads within five seconds the reader switches to
+`tarot/leer/simple.js`: same EPUB, read with the same zip reader, each document cloned into a
+shadow root, native scrolling, no iframe. `?simple=1` forces that renderer for testing.
+
 The browser check expects a static server on `http://127.0.0.1:8765`
 (`python3 -m http.server 8765`) and playwright installed outside the repo. It is
 not part of `npm test` on purpose: the repo has no runtime dependencies. The

@@ -67,6 +67,13 @@ foliate-view {
     height: 100%;
 }
 
+/* Iframe-free renderer (iOS): fills the same box, scrolls natively. */
+.reader-simple {
+    position: absolute;
+    inset: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
 .reader-status {
     position: absolute;
     inset: 0;

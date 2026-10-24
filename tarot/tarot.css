@@ -170,14 +170,16 @@ body.tarot {
     margin-bottom: 16px;
 }
 
+/* Three equal columns, always. With one card drawn the single block keeps the
+   width of one column instead of stretching to the whole container, so a
+   one-card reading is the same size as a three-card reading. */
 .tarot-cards {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
 }
 
 .tarot-card {
-    flex: 1 1 240px;
     min-width: 0;
     padding: 18px;
     background-color: var(--color-inset);
@@ -279,8 +281,8 @@ body.tarot {
 
 /* ---------- Narrow screens ---------- */
 @media only screen and (max-width: 600px) {
-    .tarot-card {
-        flex: 1 1 100%;
+    .tarot-cards {
+        grid-template-columns: 1fr;
     }
 
     .tarot-draw,

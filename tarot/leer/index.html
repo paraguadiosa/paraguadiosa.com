@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>El libro del tarot · paraguadiosa</title>
+    <meta name="description" content="El tarot Rider-Waite, carta por carta, para leer en el navegador.">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="./reader.css">
+    <script src="../../theme.js"></script>
+</head>
+<body class="reader-page">
+    <header class="reader-bar">
+        <a class="reader-back" href="../index.html">&#8249; Tirada</a>
+        <span class="reader-title">El libro del tarot</span>
+        <span class="reader-pct" id="reader-pct">0%</span>
+    </header>
+
+    <main class="reader-main">
+        <foliate-view id="reader-view"></foliate-view>
+        <p class="reader-status" id="reader-status">Abriendo el libro&hellip;</p>
+    </main>
+
+    <footer class="reader-controls">
+        <button class="reader-step" id="reader-prev" type="button" aria-label="Pagina anterior">&#8249;</button>
+        <div class="reader-progress" role="progressbar" aria-label="Progreso de lectura"
+             aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="reader-progress">
+            <div class="reader-progress-fill" id="reader-progress-fill"></div>
+        </div>
+        <button class="reader-step" id="reader-next" type="button" aria-label="Pagina siguiente">&#8250;</button>
+    </footer>
+
+    <noscript>
+        <p class="reader-status">El lector corre en el navegador: activá JavaScript para leer.</p>
+    </noscript>
+
+    <script type="module" src="./reader.js"></script>
+</body>
+</html>

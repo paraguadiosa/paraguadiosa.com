@@ -24,6 +24,31 @@ Dry run to see what would change without touching files:
 
     python3 scripts/fetch_writings.py --dry-run
 
+## Tarot
+
+`tarot/index.html` is a static one-card or three-card draw that runs entirely in
+the browser. The draw uses a JavaScript port of the TempleOS RNG (same seed, same
+cards as Mazo), and the reading is composed word for word from the card notes
+written by the author. No model, no backend, no third party API.
+
+The generated data lives in the repo:
+
+- `tarot/data/cards.json`: the 78 notes the page reads.
+- `tarot/cards/`: the card images, normalized to 480 x 848 so a spread renders level.
+
+Rebuild them from the source of truth (`/home/eve/repos/tarot-rider-waite`):
+
+    python3 scripts/build_tarot.py          # idempotent, one line summary
+    python3 scripts/build_tarot.py --check  # fail when the outputs are stale
+
+Run the RNG vectors and the page and data checks, all in one command:
+
+    npm test
+
+Full gate for the tarot page:
+
+    python3 scripts/build_tarot.py --check && npm test
+
 ## Where the text comes from
 
 The texts were migrated out of Google Docs on 2026-10-04: the old site served redirect

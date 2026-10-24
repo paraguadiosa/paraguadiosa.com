@@ -1,0 +1,302 @@
+/* tarot.css
+   Rules the tarot draw needs, on top of style.css.
+   No colour literals here: every colour comes from the design tokens. */
+
+body.tarot {
+    background-image: url("../media/wallpaper/moon_and_star.jpg");
+}
+
+.tarot-title {
+    font-size: clamp(1.45em, 1.28em + 1.1vw, 1.9em);
+    line-height: 1.18;
+    letter-spacing: -0.014em;
+    margin-bottom: 20px;
+}
+
+/* ---------- The draw form ---------- */
+.tarot-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.tarot-spread {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tarot-legend {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.tarot-choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tarot-choice {
+    position: relative;
+}
+
+.tarot-choice input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tarot-choice-label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tarot-choice-label:hover {
+    border-color: var(--accent);
+}
+
+.tarot-choice input:checked + .tarot-choice-label {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.tarot-choice input:focus-visible + .tarot-choice-label {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.tarot-question {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tarot-question-label {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tarot-question-hint {
+    font-size: 0.85rem;
+    color: var(--color-text-faint);
+}
+
+.tarot-question input {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-inset);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+}
+
+.tarot-question input::placeholder {
+    color: var(--color-text-faint);
+}
+
+.tarot-question input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-color: var(--accent);
+}
+
+.tarot-draw {
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 12px 26px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tarot-draw:hover {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--color-text);
+}
+
+.tarot-error {
+    color: var(--color-rose);
+    font-style: italic;
+    margin-top: 18px;
+}
+
+/* ---------- The reading ---------- */
+.tarot-reading {
+    margin-top: 26px;
+}
+
+.tarot-asked {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-rose);
+    margin-bottom: 16px;
+}
+
+.tarot-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.tarot-card {
+    flex: 1 1 240px;
+    min-width: 0;
+    padding: 18px;
+    background-color: var(--color-inset);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-lg);
+}
+
+.tarot-position {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.tarot-card-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    margin-bottom: 14px;
+}
+
+.tarot-card-name {
+    font-size: 1.12em;
+    margin-bottom: 4px;
+}
+
+.tarot-orientation {
+    font-style: italic;
+    color: var(--color-rose);
+    margin-bottom: 12px;
+}
+
+.tarot-note {
+    font-size: 0.98em;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 14px;
+}
+
+.tarot-keywords {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-faint);
+    margin-bottom: 0;
+}
+
+.tarot-reading-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--color-line-soft);
+}
+
+.tarot-seed {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    word-break: break-all;
+}
+
+.tarot-seed-hint {
+    font-size: 0.9rem;
+    color: var(--color-text-faint);
+}
+
+.tarot-copy {
+    min-height: 44px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.tarot-copy:hover {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--color-text);
+}
+
+/* ---------- Narrow screens ---------- */
+@media only screen and (max-width: 600px) {
+    .tarot-card {
+        flex: 1 1 100%;
+    }
+
+    .tarot-draw,
+    .tarot-copy {
+        align-self: stretch;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .tarot-choice {
+        flex: 1 1 100%;
+    }
+
+    .tarot-choice-label {
+        width: 100%;
+        justify-content: center;
+    }
+}

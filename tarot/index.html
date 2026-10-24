@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarot | Paraguadiosa</title>
+    <meta name="description" content="Tirada de tarot en el dispositivo, con las notas de la autora.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./tarot.css">
+    <script src="../theme.js"></script>
+</head>
+
+<body class="tarot">
+    <div class="container">
+        <div class="overlay">
+            <header>
+                <div class="nav-header">
+                    <div class="site-brand">
+                        <h2>Paraguadiosa</h2>
+                        <span class="page-tagline">Tarot · tirada en el dispositivo</span>
+                    </div>
+                    <nav class="nav-links">
+                        <a href="../index.html" class="active">Personal</a>
+                        <a href="https://evecoronel.com">Professional</a>
+                        <button class="theme-toggle" type="button" hidden>Light</button>
+                    </nav>
+                </div>
+            </header>
+
+            <h1 class="tarot-title">Tarot</h1>
+            <p class="intro">
+                Las cartas se mezclan y se eligen acá, en tu dispositivo, y la lectura sale de
+                las notas que escribió la autora para cada carta. No hay ningún modelo, ni
+                servidor, ni API detrás de este tiro.
+            </p>
+
+            <form id="tarot-form" class="tarot-form" novalidate>
+                <fieldset class="tarot-spread">
+                    <legend class="tarot-legend">Tirada</legend>
+                    <div class="tarot-choices">
+                        <label class="tarot-choice">
+                            <input type="radio" name="spread" value="one">
+                            <span class="tarot-choice-label">Una carta</span>
+                        </label>
+                        <label class="tarot-choice">
+                            <input type="radio" name="spread" value="three" checked>
+                            <span class="tarot-choice-label">Tres cartas</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <label class="tarot-question" for="tarot-question">
+                    <span class="tarot-question-label">Tu pregunta (opcional)</span>
+                    <span class="tarot-question-hint">No se guarda ni se envía a ningún lado.</span>
+                    <input id="tarot-question" name="question" type="text"
+                           maxlength="280" autocomplete="off" enterkeyhint="done">
+                </label>
+
+                <button id="tarot-draw" class="tarot-draw" type="submit">Tirar las cartas</button>
+            </form>
+
+            <noscript>
+                <p class="intro">Este tiro corre en el navegador: activá JavaScript para jugar.</p>
+            </noscript>
+
+            <p id="tarot-error" class="tarot-error" hidden></p>
+
+            <section id="tarot-reading" class="tarot-reading" hidden aria-live="polite">
+                <p id="tarot-asked" class="tarot-asked" hidden></p>
+                <div id="tarot-cards" class="tarot-cards"></div>
+                <footer class="tarot-reading-footer">
+                    <p class="tarot-seed">Semilla: <span id="tarot-seed-value"></span></p>
+                    <p class="tarot-seed-hint">Abrí el enlace para repetir el mismo tiro.</p>
+                    <button id="tarot-copy" class="tarot-copy" type="button">Copiar enlace</button>
+                </footer>
+            </section>
+        </div>
+
+        <footer class="site-footer">
+            <span>paraguadiosa</span>
+            <span>&middot;</span>
+            <span>tarot</span>
+        </footer>
+    </div>
+
+    <script type="module">
+        import {
+            SPREADS,
+            draw,
+            newSeed,
+            composeReading,
+            validSeed,
+        } from "./tarot.js";
+
+        const form = document.getElementById("tarot-form");
+        const questionInput = document.getElementById("tarot-question");
+        const readingSection = document.getElementById("tarot-reading");
+        const askedEl = document.getElementById("tarot-asked");
+        const cardsEl = document.getElementById("tarot-cards");
+        const seedValueEl = document.getElementById("tarot-seed-value");
+        const copyButton = document.getElementById("tarot-copy");
+        const errorEl = document.getElementById("tarot-error");
+
+        let cardsData = null;
+        let currentSeed = null;
+        let currentSpread = "three";
+
+        function spreadValue() {
+            const checked = form.querySelector('input[name="spread"]:checked');
+            return checked ? checked.value : "three";
+        }
+
+        function setSpreadValue(value) {
+            const input = form.querySelector('input[name="spread"][value="' + value + '"]');
+            if (input) {
+                input.checked = true;
+            }
+        }
+
+        function showError(message) {
+            errorEl.textContent = message;
+            errorEl.hidden = false;
+        }
+
+        function renderReading(seed, spread, drawn, question) {
+            const positions = SPREADS[spread];
+            const composed = composeReading(cardsData, drawn);
+
+            readingSection.hidden = false;
+            askedEl.hidden = !question;
+            askedEl.textContent = question ? "Tu pregunta: " + question : "";
+
+            cardsEl.replaceChildren();
+            composed.forEach((entry, index) => {
+                const card = document.createElement("article");
+                card.className = "tarot-card";
+
+                const position = document.createElement("p");
+                position.className = "tarot-position";
+                position.textContent = positions[index];
+
+                const image = document.createElement("img");
+                image.className = "tarot-card-image";
+                image.src = "./" + entry.image;
+                image.alt = entry.name;
+                image.loading = "lazy";
+                image.decoding = "async";
+
+                const name = document.createElement("h3");
+                name.className = "tarot-card-name";
+                name.textContent = entry.name;
+
+                const orientation = document.createElement("p");
+                orientation.className = "tarot-orientation";
+                orientation.textContent = entry.orientation;
+
+                const note = document.createElement("p");
+                note.className = "tarot-note";
+                note.textContent = entry.text;
+
+                const keywords = document.createElement("p");
+                keywords.className = "tarot-keywords";
+                keywords.textContent = "Palabras clave: " + entry.keywords.join(" · ");
+
+                card.append(position, image, name, orientation, note, keywords);
+                cardsEl.append(card);
+            });
+
+            seedValueEl.textContent = String(seed);
+        }
+
+        function syncAddressBar() {
+            const url = new URL(window.location.href);
+            url.search = "";
+            url.searchParams.set("seed", String(currentSeed));
+            url.searchParams.set("spread", currentSpread);
+            window.history.replaceState(null, "", url);
+        }
+
+        function runDraw() {
+            if (!cardsData) {
+                showError("Las notas de las cartas todavía no se cargaron.");
+                return;
+            }
+            const spread = spreadValue();
+            const question = questionInput.value.trim();
+            const seed = newSeed();
+            const drawn = draw(seed, SPREADS[spread].length);
+            currentSeed = seed;
+            currentSpread = spread;
+            renderReading(seed, spread, drawn, question);
+            syncAddressBar();
+        }
+
+        async function copyLink() {
+            if (currentSeed === null) {
+                return;
+            }
+            const url = new URL(window.location.href);
+            url.search = "";
+            url.searchParams.set("seed", String(currentSeed));
+            url.searchParams.set("spread", currentSpread);
+            const text = url.href;
+            try {
+                await navigator.clipboard.writeText(text);
+                copyButton.textContent = "Enlace copiado";
+            } catch (error) {
+                // Clipboard API can be unavailable on plain HTTP pages.
+                const helper = document.createElement("textarea");
+                helper.value = text;
+                helper.setAttribute("readonly", "");
+                helper.style.position = "fixed";
+                helper.style.opacity = "0";
+                document.body.append(helper);
+                helper.select();
+                document.execCommand("copy");
+                helper.remove();
+                copyButton.textContent = "Enlace copiado";
+            }
+            window.setTimeout(() => {
+                copyButton.textContent = "Copiar enlace";
+            }, 2000);
+        }
+
+        async function init() {
+            try {
+                const response = await fetch("./data/cards.json");
+                if (!response.ok) {
+                    throw new Error("status " + response.status);
+                }
+                cardsData = await response.json();
+            } catch (error) {
+                showError("No se pudieron cargar las notas de las cartas.");
+                return;
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const spreadParam = params.get("spread");
+            if (spreadParam === "one" || spreadParam === "three") {
+                setSpreadValue(spreadParam);
+                currentSpread = spreadParam;
+            }
+
+            const seedParam = params.get("seed");
+            if (seedParam !== null && seedParam !== "" && validSeed(seedParam)) {
+                const seed = Number(seedParam);
+                const spread = spreadValue();
+                const drawn = draw(seed, SPREADS[spread].length);
+                currentSeed = seed;
+                currentSpread = spread;
+                renderReading(seed, spread, drawn, "");
+            }
+        }
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            runDraw();
+        });
+
+        copyButton.addEventListener("click", copyLink);
+
+        init();
+    </script>
+</body>
+</html>

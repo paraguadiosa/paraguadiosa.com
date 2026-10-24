@@ -1,0 +1,1168 @@
+[
+  {
+    "id": "major-00",
+    "name": "El Loco",
+    "keywords": [
+      "comienzo",
+      "salto",
+      "libertad",
+      "inocencia",
+      "riesgo",
+      "viaje"
+    ],
+    "upright": "Un joven camina al borde de un precipicio con la cabeza alta, un atadito al hombro y una rosa en la mano; un perro le ladra a los talones y él no mira el abismo. Es el principio del mazo entero: el que se larga sin mapa. La carta no dice si el salto va a salir bien, dice que hay un salto disponible. Cuando sale, es el permiso para empezar de cero, para hacer algo por primera vez y para no pedir autorización.",
+    "reversed": "El mismo borde, pero con los ojos cerrados. Puede ser imprudencia, la caída que no se midió, o lo contrario: estar parado en el borde hace años sin animarse. También aparece cuando alguien se ríe de todo para no hacerse cargo de nada.",
+    "image": "cards/major-00.jpg"
+  },
+  {
+    "id": "major-01",
+    "name": "El Mago",
+    "keywords": [
+      "voluntad",
+      "herramientas",
+      "iniciativa",
+      "habilidad",
+      "concentración",
+      "poder"
+    ],
+    "upright": "Un hombre de pie frente a una mesa con los cuatro palos del mazo encima: basto, copa, espada y oro. Levanta una vara hacia el cielo y señala la tierra con la otra mano; arriba y abajo de él hay un infinito dibujado. Es el que tiene todo lo necesario sobre la mesa y lo sabe. Habla de empezar con intención, de poner la energía en movimiento y de la habilidad que se practica hasta que parece magia.",
+    "reversed": "La misma mesa, pero las herramientas no se usan o se usan para manipular. Charla mucho y hace poco, o promete un resultado que no puede sostener. También es el talento que se desperdicia esperando la ocasión perfecta.",
+    "image": "cards/major-01.jpg"
+  },
+  {
+    "id": "major-02",
+    "name": "La Sacerdotisa",
+    "keywords": [
+      "intuición",
+      "silencio",
+      "misterio",
+      "estudio",
+      "paciencia",
+      "interior"
+    ],
+    "upright": "Una figura sentada entre dos columnas, una negra y una blanca, con un velo detrás sembrado de granadas y una luna a los pies. Tiene un rollo en las manos, medio escondido, y no habla. Es la carta del saber que no se explica: lo que ya sabés y no podés demostrar todavía. Pide esperar, mirar hacia adentro y no contarlo todo.",
+    "reversed": "El velo se corre de más o se cierra del todo. Puede ser no escucharse, llenar el silencio con ruido, o guardar tanto que la información no circula. A veces es la intuición tapada por lo que otro opina.",
+    "image": "cards/major-02.jpg"
+  },
+  {
+    "id": "major-03",
+    "name": "La Emperatriz",
+    "keywords": [
+      "fertilidad",
+      "abundancia",
+      "cuidado",
+      "cuerpo",
+      "creatividad",
+      "placer"
+    ],
+    "upright": "Una mujer sentada en un trono en medio de un trigal, con una corona de estrellas, un escudo con forma de corazón y un vestido estampado de granadas. El bosque detrás y el río que baja dicen que todo está vivo. Es la carta de lo que crece si se lo cuida: un proyecto, un cuerpo, una casa, un vínculo. También del placer sin culpa y de la generosidad concreta.",
+    "reversed": "El trigal se seca por exceso de entrega. Es la que da todo y no se deja nada, o la que ahoga al otro cuidándolo de más. También habla de bloqueo creativo y de tratar el cuerpo como un mueble.",
+    "image": "cards/major-03.jpg"
+  },
+  {
+    "id": "major-04",
+    "name": "El Emperador",
+    "keywords": [
+      "estructura",
+      "autoridad",
+      "orden",
+      "límites",
+      "estrategia",
+      "sostén"
+    ],
+    "upright": "Un hombre con armadura bajo la túnica, sentado en un trono de piedra con cabezas de carnero, cetro en una mano y orbe en la otra. Detrás hay montañas peladas, sin adorno. Es el que sostiene el orden: las reglas, el método, el plan, el techo que no se cae. Cuando sale, conviene poner límites y hacerse cargo del mando, aunque el mando sea de uno mismo.",
+    "reversed": "El trono se vuelve rígido o se cae. Es la autoridad que controla por miedo, la norma sin sentido, el jefe que no escucha. Del otro lado, también es la falta de estructura: vivir en el caos y llamarlo libertad.",
+    "image": "cards/major-04.jpg"
+  },
+  {
+    "id": "major-05",
+    "name": "El Hierofante",
+    "keywords": [
+      "enseñanza",
+      "tradición",
+      "método",
+      "mentor",
+      "transmisión",
+      "comunidad"
+    ],
+    "upright": "Un hombre con tiara sentado entre dos columnas, con la mano derecha levantada en bendición y las llaves cruzadas a sus pies; dos figuras de rodillas lo escuchan. Es la carta del que enseña y del que aprende, de las reglas que ya probó otro y del camino largo que conviene recorrer con guía. Se liga a los cursos, los maestros, las escuelas y los grupos.",
+    "reversed": "La sabiduría se vuelve dogma. Es la institución que pide obediencia en lugar de comprensión, el maestro que se cree dueño de la verdad. También es el aprendiz que copia el método ajeno sin probarlo por su cuenta.",
+    "image": "cards/major-05.jpg"
+  },
+  {
+    "id": "major-06",
+    "name": "Los Enamorados",
+    "keywords": [
+      "elección",
+      "vínculo",
+      "deseo",
+      "valores",
+      "alianza",
+      "duda"
+    ],
+    "upright": "Dos figuras desnudas bajo un ángel que extiende los brazos; detrás, el árbol de la llama y el árbol de la manzana, y el monte en el medio. La desnudez es el punto: acá no hay máscara. Habla de una elección que define quién sos, de un vínculo que se elige de verdad, de alinear lo que querés con lo que hacés. No es solo amor: es toda decisión tomada desde el deseo y no desde el miedo.",
+    "reversed": "La elección se traba o se hace por descarte. Puede ser una duda que se estira, un triángulo, o alguien eligiendo lo que se espera de él en lugar de lo que quiere. También aparece cuando dos personas no están de acuerdo en lo básico.",
+    "image": "cards/major-06.jpg"
+  },
+  {
+    "id": "major-07",
+    "name": "El Carro",
+    "keywords": [
+      "avance",
+      "victoria",
+      "dirección",
+      "disciplina",
+      "contradicción",
+      "viaje"
+    ],
+    "upright": "Un conductor con armadura está parado en un carro tirado por dos esfinges, una negra y una blanca, que miran para lados distintos. No hay riendas: las gobierna con la voluntad. La ciudad queda atrás y el carro avanza. Es la carta del que se pone en marcha y sostiene la dirección, del triunfo que se gana por no soltar, y de la fuerza que se saca de una pelea interna bien canalizada.",
+    "reversed": "El carro va de un lado para el otro. Es conducir sin destino, la carrera que consume y no llega, o la sensación de ir para adelante mientras algo adentro tira para atrás. También, el dejarse manejar por lo que uno no quiere reconocer.",
+    "image": "cards/major-07.jpg"
+  },
+  {
+    "id": "major-08",
+    "name": "La Fuerza",
+    "keywords": [
+      "templanza",
+      "coraje",
+      "paciencia",
+      "dominio",
+      "cariño",
+      "sangre fría"
+    ],
+    "upright": "Una mujer con corona de flores abre la boca de un león sin apuro, sosteniéndolo con las dos manos; arriba flota el infinito. No hay lucha: hay trato. El león no está vencido, está acompañado. Es la fuerza que viene de la calma, de aguantar sin gritar, de la firmeza amable. Sale cuando hay que sostener algo difícil por mucho tiempo y no queda resto para la bravata.",
+    "reversed": "La mano se cansa. Puede ser el enojo que sale mal, la fuerza bruta que rompe lo que quiere arreglar, o la debilidad de no ponerle un freno a nada. A veces es simplemente estar agotada de sostener todo sola.",
+    "image": "cards/major-08.jpg"
+  },
+  {
+    "id": "major-09",
+    "name": "El Ermitaño",
+    "keywords": [
+      "soledad",
+      "búsqueda",
+      "retiro",
+      "prudencia",
+      "experiencia",
+      "adentro"
+    ],
+    "upright": "Un viejo con capa sube a un pico nevado, sosteniendo una linterna con una estrella de seis puntas adentro y un bastón. No mira al camino, mira la luz. Es la carta del retiro elegido: parar, hacer silencio, hacer balance, estudiar sin público. También del que guía a otros con una luz chica, la propia, y no con reflectores.",
+    "reversed": "El retiro se vuelve encierro. Es el aislamiento que se estira de más, la soledad que ya no es una elección, o la terquedad de no pedir ayuda cuando hace falta. También, alguien que se cree el único que sabe.",
+    "image": "cards/major-09.jpg"
+  },
+  {
+    "id": "major-10",
+    "name": "La Rueda de la Fortuna",
+    "keywords": [
+      "ciclo",
+      "cambio",
+      "azar",
+      "giro",
+      "oportunidad",
+      "movimiento"
+    ],
+    "upright": "Una rueda con letras y símbolos gira, con una esfinge arriba y un perro, una serpiente y Anubis en los costados; en las esquinas, cuatro figuras aladas leyendo. Nadie empuja la rueda, gira sola. Es la carta de los cambios que llegan sin permiso, de la suerte que se reparte sin cálculo, y de saber que ninguna posición dura para siempre. Cuando sale, conviene subirse al movimiento en lugar de frenarlo.",
+    "reversed": "La rueda gira y uno se queda agarrado a un radio. Es resistencia al cambio, repetir el mismo ciclo, o esperar que la suerte resuelva algo que requiere una decisión propia.",
+    "image": "cards/major-10.jpg"
+  },
+  {
+    "id": "major-11",
+    "name": "La Justicia",
+    "keywords": [
+      "equilibrio",
+      "consecuencia",
+      "verdad",
+      "decisión",
+      "claro",
+      "cuentas"
+    ],
+    "upright": "Una figura sentada entre dos columnas sostiene una espada derecha en una mano y una balanza en la otra; la corona tiene un cuadrado. Detrás cuelga un velo. La espada corta y la balanza pesa, las dos cosas juntas. Es la carta de la decisión honesta, de lo que se cosecha, de decir la verdad y aceptar el resultado. Sale cuando hay que poner las cosas en claro y firmar.",
+    "reversed": "La balanza se inclina por conveniencia. Es la injusticia, el juicio apurado, la excusa propia, o la autoexigencia de un tribunal que nunca absuelve. También, dejar todo en la nebulosa para no decidir.",
+    "image": "cards/major-11.jpg"
+  },
+  {
+    "id": "major-12",
+    "name": "El Colgado",
+    "keywords": [
+      "pausa",
+      "entrega",
+      "otro punto de vista",
+      "espera",
+      "sacrificio",
+      "revelación"
+    ],
+    "upright": "Un hombre cuelga de un pie de una rama en forma de T, con la otra pierna cruzada y las manos atrás; la cara está tranquila y una aureola le rodea la cabeza. No está preso, está eligiendo quedarse ahí. Es la carta de la pausa fértil: soltar el control, mirar el problema al revés, aceptar que no hay nada que forzar por ahora. Cuando sale, lo que se pide no es acción, es paciencia.",
+    "reversed": "La pausa se vuelve martirio. Es el sacrificio que nadie pidió, la espera sin sentido, la indecisión disfrazada de paciencia. También, dar vueltas a lo mismo sin dejarlo ir.",
+    "image": "cards/major-12.jpg"
+  },
+  {
+    "id": "major-13",
+    "name": "La Muerte",
+    "keywords": [
+      "final",
+      "transformación",
+      "corte",
+      "duelo",
+      "renovación",
+      "soltar"
+    ],
+    "upright": "Un esqueleto con armadura negra cabalga un caballo blanco llevando una bandera con una rosa blanca; un rey ya cayó y un obispo espera de rodillas, mientras al fondo el sol sale entre dos torres. La muerte no negocia: llega y corta. La carta es el final que ya está decidido, la transformación que no se puede evitar, el duelo que hay que hacer para que lo nuevo tenga lugar. La rosa blanca es el detalle que importa: también hay algo que se limpia.",
+    "reversed": "Se estira lo que ya terminó. Es aferrarse a una relación, a un trabajo o a una versión de uno mismo que ya no va, y pagar el costo de sostenerla. También, el miedo al cambio que deja todo en una sala de espera.",
+    "image": "cards/major-13.jpg"
+  },
+  {
+    "id": "major-14",
+    "name": "La Templanza",
+    "keywords": [
+      "medida",
+      "mezcla",
+      "sanación",
+      "tiempo",
+      "equilibrio",
+      "proceso"
+    ],
+    "upright": "Un ángel con un pie en el agua y otro en la tierra pasa líquido de una copa a otra sin que se derrame; al fondo un camino sube hacia el sol. El agua sube, no baja, y eso no debería ser posible. Es la carta de la alquimia lenta: combinar cosas distintas, dosificar, curar a fuego bajo, aguantar la mezcla hasta que se integre. Sale cuando la respuesta es el equilibrio, no el extremo.",
+    "reversed": "La mezcla se desbalancea. Es el exceso en cualquiera de los dos lados, la impaciencia por ver resultados antes de tiempo, o la convivencia forzada de cosas que todavía no están listas para juntarse.",
+    "image": "cards/major-14.jpg"
+  },
+  {
+    "id": "major-15",
+    "name": "El Diablo",
+    "keywords": [
+      "dependencia",
+      "deseo",
+      "sombra",
+      "atadura",
+      "poder",
+      "materialismo"
+    ],
+    "upright": "Un macho cabrío alado sobre un pedestal, con una antorcha encendida hacia abajo; dos figuras encadenadas a él, con cuernos y cola de vid, pero las cadenas están flojas. Ese es el detalle: los grilletes se pueden sacar. Es la carta de lo que nos ata y nos gusta, el vicio, el contrato que conviene revisar, el deseo que manda. Cuando sale, hay que mirar de frente qué se está sosteniendo por gusto y qué por miedo.",
+    "reversed": "Las cadenas se aflojan de verdad. Es el momento de cortar la dependencia, ver el mecanismo, reconocer que el poder del otro era propio. También, la caída en la tentación cuando ya sabías de qué se trataba.",
+    "image": "cards/major-15.jpg"
+  },
+  {
+    "id": "major-16",
+    "name": "La Torre",
+    "keywords": [
+      "derrumbe",
+      "crisis",
+      "revelación",
+      "brusco",
+      "libertad",
+      "verdad"
+    ],
+    "upright": "Un rayo parte la punta de una torre, la corona vuela, el fuego sale por las ventanas y dos figuras caen al vacío; el cielo está oscuro y llueve chispas. No hay aviso ni negociación. Es el golpe que rompe una estructura que ya no aguantaba, la crisis que aparece de golpe y la información que cae de un solo golpe. Cuando sale, algo se cae: la carta no promete que sea suave, promete que después se ve más claro.",
+    "reversed": "El derrumbe se posterga, y eso a veces es peor. Es la crisis anunciada que se evita parche a parche, el miedo a que se caiga todo, o el temblor interno que todavía no se muestra afuera.",
+    "image": "cards/major-16.jpg"
+  },
+  {
+    "id": "major-17",
+    "name": "La Estrella",
+    "keywords": [
+      "esperanza",
+      "calma",
+      "guía",
+      "sanación",
+      "claridad",
+      "confianza"
+    ],
+    "upright": "Una figura desnuda con un pie en el agua y otro en la tierra vacía un cántaro en el río y otro en la tierra; arriba hay una estrella grande rodeada de siete chicas y un pájaro en un árbol. Es el después de la tormenta: el aire limpio, el cuerpo que respira, la confianza que vuelve despacio. La carta habla de dejarse ver tal cual uno está y de confiar sin pruebas.",
+    "reversed": "La estrella se ve lejos y uno no se cree capaz. Es la desesperanza, la sensación de estar sin rumbo, la fe que no se sostiene. También, idealizar un futuro para no mirar el presente.",
+    "image": "cards/major-17.jpg"
+  },
+  {
+    "id": "major-18",
+    "name": "La Luna",
+    "keywords": [
+      "miedo",
+      "ilusión",
+      "inconsciente",
+      "sueños",
+      "confusión",
+      "instinto"
+    ],
+    "upright": "Una luna con cara de perfil mira entre dos torres, un perro y un lobo le aúllan y un cangrejo sale del agua por un camino que se pierde en el fondo. La luz es poca y engaña: cambia las formas de las cosas. Es la carta de lo que no se ve claro, del miedo que aparece de noche, de los sueños y de las señales que hay que saber distinguir. Cuando sale, no conviene decidir con la información de las dos de la mañana.",
+    "reversed": "La niebla empieza a levantar. Es darse cuenta de que el monstruo era una sombra de un abrigo, o al contrario, hundirse en la confusión y creerle a todo lo que la cabeza inventa. También, el engaño que se descubre.",
+    "image": "cards/major-18.jpg"
+  },
+  {
+    "id": "major-19",
+    "name": "El Sol",
+    "keywords": [
+      "claridad",
+      "alegría",
+      "éxito",
+      "vitalidad",
+      "verdad",
+      "niño"
+    ],
+    "upright": "Un sol grande con cara mira desde arriba un jardín con girasoles; un chico desnudo monta un caballo blanco sin montura y lleva una bandera roja. No hay nada escondido en la escena: todo está a la vista y todo está bien. Es la carta del Sí, del resultado que llega, de la salud que vuelve, de la alegría simple y del orgullo legítimo. Sale cuando conviene mostrarse, festejar y decir lo que uno quiere en voz alta.",
+    "reversed": "El sol queda detrás de una nube. Es el éxito que no se disfruta, la alegría postergada, la necesidad de aprobación ajena. También, alguien que alardea para tapar que no está bien.",
+    "image": "cards/major-19.jpg"
+  },
+  {
+    "id": "major-20",
+    "name": "El Juicio",
+    "keywords": [
+      "llamado",
+      "balance",
+      "despertar",
+      "perdón",
+      "decisión",
+      "renacer"
+    ],
+    "upright": "Un ángel toca una trompeta con bandera y, abajo, hombres, mujeres y chicos salen de sus tumbas con los brazos abiertos. Es el momento en que se hace balance de todo lo vivido y se responde a un llamado que no se puede ignorar. Habla de un despertar, de perdonar para no seguir cargando, de tomar la decisión que se viene pateando y de dar un paso definitivo hacia adelante.",
+    "reversed": "La trompeta suena y uno se queda en la tumba. Es el llamado que se ignora por miedo, la culpa que no se suelta, el juicio propio que no deja avanzar. También, la misma historia repetida una y otra vez por no cerrarla.",
+    "image": "cards/major-20.jpg"
+  },
+  {
+    "id": "major-21",
+    "name": "El Mundo",
+    "keywords": [
+      "cierre",
+      "logro",
+      "plenitud",
+      "integración",
+      "viaje",
+      "conclusión"
+    ],
+    "upright": "Una figura entre dos bastones dentro de una corona de laurel atada arriba y abajo; en las cuatro esquinas, los mismos cuatro animales que miraban la Rueda. Baila, y tiene los dos pies livianos. Es el final del recorrido: lo que empezó con el Loco se completa, las partes se integran, el ciclo se cierra. Sale cuando algo se termina bien y hay que reconocerlo antes de arrancar otra cosa.",
+    "reversed": "El círculo no se cierra del todo. Es el cierre a medias, el proyecto que falta un paso, la sensación de que algo quedó pendiente y no se sabe qué. También, quedarse en la puerta del final por miedo a lo que viene después.",
+    "image": "cards/major-21.jpg"
+  },
+  {
+    "id": "cups-01",
+    "name": "As de Copas",
+    "keywords": [
+      "apertura emocional",
+      "amor",
+      "intuición",
+      "abundancia afectiva",
+      "comienzo"
+    ],
+    "upright": "Una mano sale de una nube y sostiene un cáliz del que brotan cinco chorros de agua. Es la emoción en estado puro, antes de que se convierta en historia. Marca un comienzo de corazón: un amor que arranca, una amistad que se abre, la sensación de que algo se descongela adentro. La copa está llena y se derrama, o sea que hay más de lo que uno puede retener.",
+    "reversed": "La copa se da vuelta y el agua se pierde. Suele hablar de emoción tapada, de dar sin recibir, o de alguien que no puede dejar entrar nada. También aparece cuando uno se enamora de una idea y no de la persona.",
+    "image": "cards/cups-01.jpg"
+  },
+  {
+    "id": "cups-02",
+    "name": "Dos de Copas",
+    "keywords": [
+      "vínculo",
+      "reciprocidad",
+      "acuerdo",
+      "encuentro",
+      "espejo"
+    ],
+    "upright": "Dos figuras se miran de frente y se pasan una copa cada una, con un león alado y el caduceo arriba. Es el encuentro entre iguales, el momento en que dos personas se eligen sin que ninguna tenga que agacharse. No es pasión todavía: es reconocimiento. Lo que se ve es el pacto, el gesto de brindar por algo que los dos quieren.",
+    "reversed": "El brindis se rompe. Desbalance: uno da más de lo que recibe, uno de los dos mira para otro lado. A veces no hay tercero en discordia, solo dos personas que ya no se reconocen.",
+    "image": "cards/cups-02.jpg"
+  },
+  {
+    "id": "cups-03",
+    "name": "Tres de Copas",
+    "keywords": [
+      "celebración",
+      "amistad",
+      "comunidad",
+      "alegría compartida",
+      "cosecha afectiva",
+      "unión"
+    ],
+    "upright": "Tres mujeres levantan sus copas en ronda, en un gesto de brindis, con frutas y calabazas en el piso. Es la alegría que se comparte, el grupo que celebra un logro o un reencuentro. No hay protagonista único: las tres copas se sostienen al mismo nivel. La carta muestra que lo bueno, cuando se festeja con otros, se agranda.",
+    "reversed": "La ronda se afloja. Alguien queda afuera del brindis o la fiesta se sostiene de apariencia. También puede ser un exceso: celebrar de más para no mirar lo que falta.",
+    "image": "cards/cups-03.jpg"
+  },
+  {
+    "id": "cups-04",
+    "name": "Cuatro de Copas",
+    "keywords": [
+      "apatía",
+      "contemplación",
+      "desinterés",
+      "oportunidad ignorada",
+      "retiro"
+    ],
+    "upright": "Un joven está sentado bajo un árbol, con los brazos cruzados, mirando tres copas plantadas frente a él. Una mano sale de una nube y le ofrece una cuarta. Es el momento de la saturación: hay ofertas, pero la persona no las ve o no las quiere. La carta muestra que el desinterés también es una respuesta. A veces lo que se ofrece no es lo que se busca.",
+    "reversed": "La mano que ofrece se vuelve visible. El aburrimiento cede y aparece una apertura nueva, o una invitación que antes se descartó vuelve a tener sentido. Ojo con confundir movimiento con salida real.",
+    "image": "cards/cups-04.jpg"
+  },
+  {
+    "id": "cups-05",
+    "name": "Cinco de Copas",
+    "keywords": [
+      "pérdida",
+      "duelo",
+      "arrepentimiento",
+      "desilusión",
+      "lo que queda en pie"
+    ],
+    "upright": "Una figura con capa negra mira de espaldas tres copas volcadas en el suelo, mientras dos copas siguen de pie a su espalda. Es la pérdida que ocupa toda la escena y no deja ver lo que se salvó. La carta no niega el dolor, pero señala que hay algo intacto detrás. El puente y el río al fondo indican que el camino sigue existiendo.",
+    "reversed": "Las copas que estaban en pie se hacen visibles. El duelo empieza a cerrarse, o la persona acepta ayuda para levantar lo caído. También aparece cuando uno se aferra a la pérdida como identidad.",
+    "image": "cards/cups-05.jpg"
+  },
+  {
+    "id": "cups-06",
+    "name": "Seis de Copas",
+    "keywords": [
+      "memoria",
+      "nostalgia",
+      "infancia",
+      "regalo",
+      "raíces",
+      "inocencia"
+    ],
+    "upright": "Un chico le da una copa con una flor a una chica más pequeña en un patio viejo, rodeado de copas con flores blancas. Es la escena del recuerdo, el gesto simple que viene de lejos. Habla de lo que se hereda del pasado: afectos, costumbres, personas que vuelven. No es huir hacia atrás, es reconocer de dónde se viene.",
+    "reversed": "El pasado se suelta de golpe o se vuelve un refugio. Puede señalar una idealización de lo que fue, o la necesidad de cerrar una etapa infantil para crecer.",
+    "image": "cards/cups-06.jpg"
+  },
+  {
+    "id": "cups-07",
+    "name": "Siete de Copas",
+    "keywords": [
+      "fantasía",
+      "ilusión",
+      "opciones",
+      "dispersión",
+      "sueño",
+      "elección"
+    ],
+    "upright": "Siete copas flotan en una nube con figuras distintas adentro: un castillo, joyas, una corona de laurel, un dragón, una serpiente, una figura cubierta y una cabeza. La persona mira la escena de espaldas. Es la confusión de tener muchas opciones y poca claridad sobre cuál es real. La carta muestra que no todo lo que brilla es alcanzable, y que elegir requiere renunciar.",
+    "reversed": "La niebla se disipa. Las opciones se ordenan y aparece una decisión concreta, o se cae una fantasía que sostenía el plan. También señala el momento de dejar de imaginar y empezar a hacer.",
+    "image": "cards/cups-07.jpg"
+  },
+  {
+    "id": "cups-08",
+    "name": "Ocho de Copas",
+    "keywords": [
+      "partida",
+      "renuncia",
+      "búsqueda",
+      "desapego",
+      "cansancio",
+      "rumbo nuevo"
+    ],
+    "upright": "Una figura se aleja de noche hacia unas montañas, dejando atrás ocho copas apiladas en el suelo. Es el momento de irse aunque lo que queda esté ordenado y completo. La carta habla de una búsqueda que exige dejar lo conocido, no porque esté mal, sino porque ya no alcanza. La luna en el cielo marca el camino hacia adentro.",
+    "reversed": "La partida se posterga. La persona da vueltas, se va y vuelve, o no se anima a soltar lo que ya cumplió su ciclo. También puede indicar un regreso para cerrar lo pendiente.",
+    "image": "cards/cups-08.jpg"
+  },
+  {
+    "id": "cups-09",
+    "name": "Nueve de Copas",
+    "keywords": [
+      "satisfacción",
+      "deseo cumplido",
+      "placer",
+      "confort",
+      "autosuficiencia"
+    ],
+    "upright": "Una figura sentada cruza los brazos con aire de satisfacción, con nueve copas ordenadas en fila detrás sobre una mesa. Es el disfrute de lo conseguido, la sensación de que el vaso está lleno y alcanza. La carta no promete éxito futuro: muestra un momento de plenitud real, ganada o elegida. El gesto cerrado avisa que también puede volverse autocomplacencia.",
+    "reversed": "La satisfacción se desinfla. El deseo cumplido no trae la paz que se esperaba, o el confort se vuelve encierro. A veces señala exceso: saciarse para tapar un vacío.",
+    "image": "cards/cups-09.jpg"
+  },
+  {
+    "id": "cups-10",
+    "name": "Diez de Copas",
+    "keywords": [
+      "armonía",
+      "familia",
+      "plenitud afectiva",
+      "hogar",
+      "cierre feliz",
+      "arraigo"
+    ],
+    "upright": "Una pareja mira un arcoíris con diez copas en el cielo, mientras dos chicos juegan cerca de una casa. Es la imagen de la felicidad compartida y estable, el ciclo afectivo que llega a buen puerto. La carta habla de pertenencia: un lugar, una familia, un grupo donde uno descansa. No es un final, es un estado que se sostiene entre todos.",
+    "reversed": "La escena ideal se agrieta. Hay fachada de armonía, o un ideal de hogar que no se condice con la realidad. También puede marcar la necesidad de soltar una idea de familia que ya no va más.",
+    "image": "cards/cups-10.jpg"
+  },
+  {
+    "id": "cups-11",
+    "name": "Sota de Copas",
+    "keywords": [
+      "mensaje afectivo",
+      "sorpresa",
+      "imaginación",
+      "aprendiz",
+      "intuición joven",
+      "apertura"
+    ],
+    "upright": "Un joven sostiene una copa de la que asoma un pez, como si la copa hablara. Es el mensajero del corazón, la noticia que llega con ternura o la idea creativa que sorprende. Habla del que recién aprende a escuchar sus emociones y las muestra sin filtro. Invita a recibir lo que aparece como novedad.",
+    "reversed": "El mensaje se confunde. El pez se escapa, la emoción se desborda o se dice algo que no era lo que se sentía. También señala inmadurez afectiva: reaccionar antes de escuchar.",
+    "image": "cards/cups-11.jpg"
+  },
+  {
+    "id": "cups-12",
+    "name": "Caballero de Copas",
+    "keywords": [
+      "invitación",
+      "romance",
+      "oferta",
+      "sensibilidad",
+      "idealismo",
+      "avance suave"
+    ],
+    "upright": "Un caballero avanza lento en su caballo blanco, con una copa extendida y un yelmo alado, entre un río y montañas. Es el que lleva una propuesta afectiva, una invitación o una declaración. No ataca: ofrece. La carta habla del coraje de exponer lo que se siente, con calma y sin apuro. El ritmo es pausado, pero el rumbo es claro.",
+    "reversed": "La oferta se retira o llega a destiempo. El idealismo se vuelve fantasía y la promesa no se sostiene. También aparece cuando alguien dice lo que el otro quiere oír sin intención de cumplir.",
+    "image": "cards/cups-12.jpg"
+  },
+  {
+    "id": "cups-13",
+    "name": "Reina de Copas",
+    "keywords": [
+      "intuición",
+      "compasión",
+      "profundidad emocional",
+      "contención",
+      "visión",
+      "receptividad"
+    ],
+    "upright": "Una reina sentada junto al mar sostiene una copa cerrada y ornamentada, mirándola con atención. Es la que ve lo que no se dice, la que escucha sin invadir. La copa cerrada sugiere que su mundo interior es profundo y no se derrama en cualquier lado. La carta habla de contener sin ahogar, de la emoción convertida en sabiduría.",
+    "reversed": "La copa se cierra de más. Hay sensibilidad a flor de piel, emoción que gobierna, o una intuición que se confunde con miedo. También señala a quien cuida a todos y no se cuida a sí misma.",
+    "image": "cards/cups-13.jpg"
+  },
+  {
+    "id": "cups-14",
+    "name": "Rey de Copas",
+    "keywords": [
+      "madurez emocional",
+      "diplomacia",
+      "calma",
+      "contención",
+      "sabiduría del corazón",
+      "serenidad"
+    ],
+    "upright": "Un rey sentado en un trono que flota sobre el mar sostiene una copa y un cetro, sin que la tormenta lo mueva. Es la emoción gobernada, el que siente profundo pero no se deja arrastrar. La carta habla de la calma como decisión, no como falta de intensidad. Se puede decir la verdad con suavidad y sostener lo que se siente sin hacer escándalo.",
+    "reversed": "El mar se agita y el trono se bambolea. Hay emoción reprimida que se filtra, manipulación disfrazada de calma, o frialdad como escudo. También señala el momento de pedir ayuda en vez de sostener todo.",
+    "image": "cards/cups-14.jpg"
+  },
+  {
+    "id": "pentacles-01",
+    "name": "As de Oros",
+    "keywords": [
+      "semilla material",
+      "oportunidad",
+      "prosperidad",
+      "comienzo práctico",
+      "raíz",
+      "potencial concreto"
+    ],
+    "upright": "Una mano sale de una nube y sostiene un pentáculo sobre un jardín con lirios, un cerco y un camino que va a las montañas. Es el recurso en estado puro, la oportunidad que se entrega para que uno la plante. La carta habla de un comienzo en lo concreto: un trabajo, un ahorro, un cuerpo que se cuida. El pentáculo no crece solo, pide tierra y trabajo.",
+    "reversed": "La mano afloja y el oro se cae. La oportunidad se pierde por distracción, o se confunde valor con precio. También aparece cuando el comienzo se apura sin preparar el terreno.",
+    "image": "cards/pentacles-01.jpg"
+  },
+  {
+    "id": "pentacles-02",
+    "name": "Dos de Oros",
+    "keywords": [
+      "equilibrio",
+      "malabares",
+      "adaptación",
+      "prioridades",
+      "cambio",
+      "versatilidad"
+    ],
+    "upright": "Un joven hace malabares con dos pentáculos unidos por un lazo en forma de infinito, con dos barcos en un mar agitado al fondo. Es el arte de sostener dos frentes a la vez sin soltar ninguno. La carta habla de priorizar en movimiento, de reacomodarse cuando el mar se mueve. El infinito avisa que el juego no termina, pero se puede bailar.",
+    "reversed": "Se cae un pentáculo. Hay demasiadas cosas en el aire, plata que no alcanza, o una decisión que se posterga con más movimiento. También señala el cansancio de vivir al día.",
+    "image": "cards/pentacles-02.jpg"
+  },
+  {
+    "id": "pentacles-03",
+    "name": "Tres de Oros",
+    "keywords": [
+      "oficio",
+      "colaboración",
+      "maestría",
+      "reconocimiento",
+      "construcción",
+      "trabajo en equipo"
+    ],
+    "upright": "Un artesano trabaja en una iglesia mientras un monje y un arquitecto con planos lo observan; tres pentáculos decoran el arco. Es el trabajo bien hecho, la obra que avanza porque cada uno aporta lo que sabe. La carta habla de oficio y de colaboración: nadie construye una catedral solo. El reconocimiento llega como consecuencia, no como meta.",
+    "reversed": "La obra se traba. Hay crítica que no construye, roles confusos, o trabajo sin reconocimiento. También señala el miedo a mostrar lo propio frente a quien sabe más.",
+    "image": "cards/pentacles-03.jpg"
+  },
+  {
+    "id": "pentacles-04",
+    "name": "Cuatro de Oros",
+    "keywords": [
+      "posesión",
+      "seguridad",
+      "apego",
+      "control",
+      "ahorro",
+      "miedo a soltar"
+    ],
+    "upright": "Un hombre sentado aprieta un pentáculo contra el pecho, tiene otro en la cabeza y dos bajo los pies, con una ciudad al fondo. Es el que sujeta con fuerza lo que tiene, por miedo a que se le escape. La carta habla del control como defensa: lo que se protege de más termina inmovilizando. Tener no es lo mismo que agarrar.",
+    "reversed": "La mano se abre. Hay un gasto, una entrega, o la decisión de soltar lo que se cuidaba en exceso. También puede señalar la pérdida que obliga a aflojar.",
+    "image": "cards/pentacles-04.jpg"
+  },
+  {
+    "id": "pentacles-05",
+    "name": "Cinco de Oros",
+    "keywords": [
+      "escasez",
+      "exclusión",
+      "frío",
+      "ayuda no vista",
+      "necesidad",
+      "desamparo"
+    ],
+    "upright": "Dos figuras caminan en la nieve, una con muletas, pasando frente a una iglesia con una ventana iluminada, sin entrar. Es la necesidad material o el desamparo que no se anima a pedir ayuda. La carta habla de la pobreza que también es interna: sentirse afuera, sin techo, sin red. La ventana encendida está ahí, pero las figuras no la ven.",
+    "reversed": "Se ve la ventana. La ayuda se acepta, la crisis empieza a ceder, o la persona sale del frío con lo justo. También señala el orgullo que impide pedir.",
+    "image": "cards/pentacles-05.jpg"
+  },
+  {
+    "id": "pentacles-06",
+    "name": "Seis de Oros",
+    "keywords": [
+      "generosidad",
+      "justicia",
+      "dar y recibir",
+      "equilibrio material",
+      "ayuda",
+      "circulación"
+    ],
+    "upright": "Un comerciante pesa monedas con una balanza y reparte a dos figuras arrodilladas que reciben. Es el flujo de recursos que circula, el que tiene y da sin humillar. La carta habla de justicia material: dar lo que sobra, recibir lo que falta. También marca que toda ayuda tiene dos lados, el que da y el que acepta.",
+    "reversed": "La balanza se inclina. Hay deuda, dependencia, o una ayuda que se da con condición y control. También aparece cuando alguien da de más y se queda sin nada.",
+    "image": "cards/pentacles-06.jpg"
+  },
+  {
+    "id": "pentacles-07",
+    "name": "Siete de Oros",
+    "keywords": [
+      "paciencia",
+      "espera",
+      "evaluación",
+      "cosecha",
+      "inversión",
+      "proceso lento"
+    ],
+    "upright": "Un campesino se apoya en su herramienta y mira una planta con siete pentáculos, como si evaluara el resultado de su trabajo. Es el momento de parar y mirar: lo sembrado crece, pero todavía no se cosecha. La carta habla de la espera activa, de cuidar sin arrancar la planta antes de tiempo. El fruto no se apura.",
+    "reversed": "La espera cansa y aparece la duda: seguir o abandonar. Puede señalar una inversión que no rinde, o la impaciencia que arruina lo que ya venía creciendo.",
+    "image": "cards/pentacles-07.jpg"
+  },
+  {
+    "id": "pentacles-08",
+    "name": "Ocho de Oros",
+    "keywords": [
+      "aprendizaje",
+      "dedicación",
+      "oficio",
+      "práctica",
+      "mejora",
+      "rutina que forma"
+    ],
+    "upright": "Un artesano graba pentáculos uno por uno, con una ciudad al fondo y una pieza terminada colgada. Es el trabajo repetido que afina la mano, el oficio que se aprende haciendo. La carta habla de la dedicación silenciosa, la mejora que no se nota día a día pero que acumula. Cada pentáculo es una repetición, y cada repetición deja una marca.",
+    "reversed": "La mano se cansa. Hay trabajo mecánico sin sentido, perfeccionismo que no deja terminar, o una rutina que ya no forma sino que desgasta.",
+    "image": "cards/pentacles-08.jpg"
+  },
+  {
+    "id": "pentacles-09",
+    "name": "Nueve de Oros",
+    "keywords": [
+      "independencia",
+      "abundancia propia",
+      "autosuficiencia",
+      "disfrute",
+      "confort",
+      "logro material"
+    ],
+    "upright": "Una mujer en un jardín con vides sostiene un pájaro en la mano, con nueve pentáculos detrás y una casa al fondo. Es la abundancia que se construyó con trabajo propio, el disfrute de lo que no se debe a nadie. La carta habla de independencia: estar bien parada, con lo necesario y sin pedir permiso. El pájaro en la mano es la libertad domada, no encadenada.",
+    "reversed": "El jardín se descuida. Hay confort sin disfrute, soledad disfrazada de autonomía, o dependencia de las cosas para sentirse valioso. También señala gastar para llenar lo que el logro no llenó.",
+    "image": "cards/pentacles-09.jpg"
+  },
+  {
+    "id": "pentacles-10",
+    "name": "Diez de Oros",
+    "keywords": [
+      "legado",
+      "familia",
+      "patrimonio",
+      "permanencia",
+      "raíces",
+      "herencia"
+    ],
+    "upright": "Un anciano sentado bajo un arco con diez pentáculos mira a su familia, con un perro y un pueblo al fondo. Es lo que se construye para que dure: la casa, el linaje, lo que se hereda y se transmite. La carta habla de permanencia, del esfuerzo que trasciende a una sola vida. No es solo plata: es estructura, memoria, pertenencia.",
+    "reversed": "La estructura pesa. Hay herencias que atan, mandatos familiares, o un patrimonio que se desmorona. También señala la ruptura con lo que se esperaba de uno.",
+    "image": "cards/pentacles-10.jpg"
+  },
+  {
+    "id": "pentacles-11",
+    "name": "Sota de Oros",
+    "keywords": [
+      "aprendiz material",
+      "oportunidad nueva",
+      "estudio",
+      "curiosidad práctica",
+      "semilla",
+      "mensaje de tierra"
+    ],
+    "upright": "Un joven sostiene un pentáculo entre las manos y lo mira fijo, de pie en un campo arado. Es el que recién empieza a entender el valor de las cosas: el estudio, el ahorro, el cuerpo, la tierra. La carta habla de una oportunidad concreta que se presenta y pide ser tomada en serio. No es suerte: es atención puesta en lo real.",
+    "reversed": "El pentáculo se descuida. Hay falta de constancia, planes que no bajan a la tierra, o una oportunidad que se toma a la ligera. También señala el miedo a empezar de cero.",
+    "image": "cards/pentacles-11.jpg"
+  },
+  {
+    "id": "pentacles-12",
+    "name": "Caballero de Oros",
+    "keywords": [
+      "constancia",
+      "rutina",
+      "trabajo lento",
+      "perseverancia",
+      "paciencia",
+      "responsabilidad"
+    ],
+    "upright": "Un caballero quieto sobre un caballo pesado sostiene un pentáculo, en un campo arado, sin apuro. Es el que avanza despacio pero no retrocede, el que hace el trabajo aburrido que sostiene todo. La carta habla de la constancia como forma de coraje: sin brillo, sin aplauso, con resultados que llegan de a poco. La quietud no es pasividad, es firmeza.",
+    "reversed": "La quietud se vuelve estancamiento. Hay rutina sin rumbo, miedo al cambio, o un trabajo que se hace por obligación y no por elección. También señala la terquedad de no aflojar cuando convendría.",
+    "image": "cards/pentacles-12.jpg"
+  },
+  {
+    "id": "pentacles-13",
+    "name": "Reina de Oros",
+    "keywords": [
+      "cuidado",
+      "nutrición",
+      "practicidad",
+      "hogar",
+      "cuerpo",
+      "prosperidad que contiene"
+    ],
+    "upright": "Una reina en un jardín con flores y un conejo sostiene un pentáculo, sentada en un trono de piedra. Es la que cuida lo concreto: la casa, el cuerpo, la comida, el dinero de todos los días. La carta habla de la nutrición como oficio, de hacer que las cosas funcionen sin ruido. Su riqueza es la que se toca y se comparte.",
+    "reversed": "El cuidado se vuelve control. Hay sobreprotección, descuido propio por atender a los demás, o una practicidad que ahoga lo afectivo. También señala el cuerpo pidiendo atención.",
+    "image": "cards/pentacles-13.jpg"
+  },
+  {
+    "id": "pentacles-14",
+    "name": "Rey de Oros",
+    "keywords": [
+      "seguridad",
+      "prosperidad",
+      "dominio material",
+      "abundancia estable",
+      "practicidad",
+      "liderazgo de tierra"
+    ],
+    "upright": "Un rey en un trono con tallas de toros y vides sostiene un pentáculo y un cetro, con un castillo al fondo. Es el que administra lo que tiene y lo hace crecer, el que conoce el valor de cada cosa. La carta habla de la abundancia estable, la que no depende del azar sino de la gestión. El dominio no es avaricia: es responsabilidad sobre lo propio.",
+    "reversed": "El dominio se endurece. Hay avaricia, apego al poder económico, o una seguridad construida solo sobre lo material. También señala el cansancio de sostener una imagen de éxito.",
+    "image": "cards/pentacles-14.jpg"
+  },
+  {
+    "id": "wands-01",
+    "name": "As de Bastos",
+    "keywords": [
+      "chispa",
+      "inspiración",
+      "inicio",
+      "impulso",
+      "potencial creativo",
+      "energía pura"
+    ],
+    "upright": "Una mano sale de una nube y sostiene un bastón del que brotan hojas, con un castillo en la lejanía. Es la chispa inicial, el deseo que prende antes de convertirse en plan. La carta habla de un comienzo por impulso: una idea, una pasión, unas ganas de arrancar. El bastón no camina solo, pero sin él no hay camino.",
+    "reversed": "La chispa no prende. Hay ganas sin dirección, arranques que se apagan, o una idea que se aborta antes de nacer. También señala energía mal encauzada.",
+    "image": "cards/wands-01.jpg"
+  },
+  {
+    "id": "wands-02",
+    "name": "Dos de Bastos",
+    "keywords": [
+      "planificación",
+      "visión",
+      "decisión",
+      "alcance",
+      "poder personal",
+      "horizonte"
+    ],
+    "upright": "Una figura en una muralla sostiene un globo en la mano, con un bastón fijo en la almena y el otro en la mano, mirando el horizonte. Es el que mira el mundo y planifica el próximo movimiento, con lo que tiene y lo que quiere. La carta habla de la visión: elegir el rumbo antes de dar el paso. El globo en la mano es el mundo como posibilidad, no como conquista todavía.",
+    "reversed": "La muralla se vuelve encierro. Hay planes que no se animan a salir del papel, miedo a lo grande, o una visión que se queda en sueño. También señala la impaciencia de saltar sin haber mirado.",
+    "image": "cards/wands-02.jpg"
+  },
+  {
+    "id": "wands-03",
+    "name": "Tres de Bastos",
+    "keywords": [
+      "expansión",
+      "previsión",
+      "mirar lejos",
+      "comercio",
+      "espera activa",
+      "futuro"
+    ],
+    "upright": "Una figura de espaldas en un acantilado mira barcos que llegan por mar, con tres bastones plantados a su lado. Es el que ya sembró y ahora mira el horizonte esperando el resultado. La carta habla de la previsión: lo que se lanzó al mundo vuelve, y hay que estar parado para recibirlo. La espera no es pasiva, es vigía.",
+    "reversed": "Los barcos se retrasan. Hay proyectos que no llegan, demoras, o una espera que se vuelve ansiedad. También señala la falta de visión: mirar solo lo inmediato.",
+    "image": "cards/wands-03.jpg"
+  },
+  {
+    "id": "wands-04",
+    "name": "Cuatro de Bastos",
+    "keywords": [
+      "celebración",
+      "hito",
+      "hogar",
+      "alegría",
+      "estabilidad",
+      "llegada"
+    ],
+    "upright": "Cuatro bastones sostienen una estructura con guirnaldas, y dos figuras levantan flores como en una fiesta, con un castillo al fondo. Es la celebración de una etapa cumplida: un casamiento, una mudanza, un logro que se comparte. La carta habla del descanso merecido, del momento en que la energía se detiene para festejar lo andado.",
+    "reversed": "La fiesta se pospone. Hay inestabilidad, una llegada que se demora, o una celebración vacía que tapa una crisis. También señala la dificultad para permitirse el descanso.",
+    "image": "cards/wands-04.jpg"
+  },
+  {
+    "id": "wands-05",
+    "name": "Cinco de Bastos",
+    "keywords": [
+      "competencia",
+      "roce",
+      "dispersión",
+      "conflicto",
+      "energía encontrada",
+      "desafío"
+    ],
+    "upright": "Cinco figuras agitan sus bastones en todas direcciones sin que ningún golpe conecte del todo. Es la energía de muchos que apuntan para lados distintos: competencia, discusión, esfuerzo que se dispersa. La carta habla del roce que no llega a guerra, del desgaste de pelear sin un enemigo claro. El movimiento es mucho, el avance es poco.",
+    "reversed": "Los bastones se bajan. El conflicto se apaga, se encuentra un orden, o la persona se retira del juego para no gastarse. También señala competencia interna: pelearse con uno mismo.",
+    "image": "cards/wands-05.jpg"
+  },
+  {
+    "id": "wands-06",
+    "name": "Seis de Bastos",
+    "keywords": [
+      "victoria",
+      "reconocimiento",
+      "éxito público",
+      "liderazgo",
+      "aprobación",
+      "triunfo"
+    ],
+    "upright": "Un jinete con una corona de laurel avanza en un caballo blanco, con una multitud que levanta bastones a su alrededor. Es la victoria que se ve, el logro que los demás aplauden. La carta habla del reconocimiento público, del éxito que llega después del esfuerzo. No es solo ganar: es que lo vean.",
+    "reversed": "El aplauso se apaga. Hay un éxito que no llega, un reconocimiento negado, o un ego que se infla con la aprobación ajena. También señala ganar a costa de traicionar lo propio.",
+    "image": "cards/wands-06.jpg"
+  },
+  {
+    "id": "wands-07",
+    "name": "Siete de Bastos",
+    "keywords": [
+      "defensa",
+      "posición",
+      "resistencia",
+      "ventaja",
+      "firmeza",
+      "desafío"
+    ],
+    "upright": "Una figura en una colina alta defiende su lugar con un bastón, enfrentando seis bastones que suben desde abajo. Es el que sostiene su posición cuando el terreno es suyo y los demás quieren tomarlo. La carta habla de la firmeza: no de atacar, sino de no moverse. La altura es ventaja, pero también aislamiento.",
+    "reversed": "La colina se pierde. Hay agotamiento, una defensa que se abandona, o una posición que se sostiene por orgullo y no por convicción. También señala el miedo a bajar y mezclarse.",
+    "image": "cards/wands-07.jpg"
+  },
+  {
+    "id": "wands-08",
+    "name": "Ocho de Bastos",
+    "keywords": [
+      "velocidad",
+      "movimiento",
+      "mensaje",
+      "avance",
+      "noticias",
+      "fluidez"
+    ],
+    "upright": "Ocho bastones cruzan el aire en diagonal sobre un paisaje abierto. Es la energía en movimiento puro, sin obstáculos: noticias que llegan, proyectos que avanzan, decisiones que se destraban. La carta habla de la velocidad como aliada, del momento en que todo fluye. Lo que estaba parado se mueve, y hay que moverse con eso.",
+    "reversed": "Los bastones se frenan en el aire. Hay demoras, mensajes que no llegan, o una velocidad que atropella y desordena. También señala la ansiedad de querer todo ya.",
+    "image": "cards/wands-08.jpg"
+  },
+  {
+    "id": "wands-09",
+    "name": "Nueve de Bastos",
+    "keywords": [
+      "resistencia",
+      "heridas",
+      "última línea",
+      "perseverancia",
+      "alerta",
+      "fortaleza"
+    ],
+    "upright": "Una figura vendada en la cabeza se apoya en un bastón, con ocho bastones en fila detrás como una cerca. Es el que ya recibió golpes y sigue de pie, el que defiende lo construido con el cuerpo cansado. La carta habla de la resistencia ganada con heridas, de la última línea que no se entrega. La fuerza no es que no duela, es no soltar.",
+    "reversed": "La guardia baja. Hay agotamiento, paranoia de un ataque que ya pasó, o una defensa que se mantiene por costumbre y no por peligro real. También señala la necesidad de pedir relevo.",
+    "image": "cards/wands-09.jpg"
+  },
+  {
+    "id": "wands-10",
+    "name": "Diez de Bastos",
+    "keywords": [
+      "carga",
+      "exceso",
+      "responsabilidad",
+      "sobrecarga",
+      "esfuerzo",
+      "llegada"
+    ],
+    "upright": "Una figura encorvada carga diez bastones en los brazos, tapándole la vista, avanzando hacia un pueblo cercano. Es la carga que se acumuló de a poco y ahora pesa entera. La carta habla del exceso de responsabilidad, del que hace todo solo porque no delega o no confía. El pueblo está cerca, pero no se ve por el peso.",
+    "reversed": "La carga se reparte. Hay un límite que se pone, una tarea que se suelta, o el reconocimiento de que ya no se puede seguir así. También señala la sensación de que todo depende de uno, aunque no sea cierto.",
+    "image": "cards/wands-10.jpg"
+  },
+  {
+    "id": "wands-11",
+    "name": "Sota de Bastos",
+    "keywords": [
+      "entusiasmo",
+      "exploración",
+      "noticia",
+      "novedad",
+      "curiosidad",
+      "chispa joven"
+    ],
+    "upright": "Un joven mira un bastón con hojas brotando, de pie en un desierto con pirámides al fondo. Es el que descubre su propio fuego, la novedad que enciende las ganas. La carta habla del entusiasmo de empezar algo sin saber bien adónde lleva, de la curiosidad como motor. El desierto es vasto, pero la chispa alcanza para arrancar.",
+    "reversed": "El entusiasmo se apaga. Hay noticias que no llegan, ideas que quedan a mitad, o un arranque sin continuidad. También señala la dispersión de querer probar todo y no elegir nada.",
+    "image": "cards/wands-11.jpg"
+  },
+  {
+    "id": "wands-12",
+    "name": "Caballero de Bastos",
+    "keywords": [
+      "acción",
+      "aventura",
+      "impulso",
+      "audacia",
+      "movimiento",
+      "pasión en marcha"
+    ],
+    "upright": "Un caballero a toda velocidad levanta un bastón en un caballo encabritado, cruzando un desierto. Es el que se larga sin esperar permiso, el impulso hecho movimiento. La carta habla de la audacia como forma de vida, del coraje de ir a buscar lo que se quiere. La velocidad es mucha, y eso también es un riesgo.",
+    "reversed": "El caballo se desboca. Hay impulso sin freno, arranques que se agotan rápido, o una pasión que quema lo que toca. También señala el miedo a la acción: quedarse mirando el desierto.",
+    "image": "cards/wands-12.jpg"
+  },
+  {
+    "id": "wands-13",
+    "name": "Reina de Bastos",
+    "keywords": [
+      "confianza",
+      "calidez",
+      "carisma",
+      "magnetismo",
+      "voluntad",
+      "vitalidad"
+    ],
+    "upright": "Una reina sostiene un girasol en una mano, con un gato negro a sus pies y girasoles y leones tallados en su trono. Es la que irradia, la que entra y se nota, sin pedir permiso para brillar. La carta habla de la confianza propia, del calor que atrae sin apagar a nadie. Su fuego es vitalidad, no agresión.",
+    "reversed": "El girasol mira para otro lado. Hay inseguridad tapada con ruido, una vitalidad que se agota, o celos del brillo ajeno. También señala la confianza que se confunde con prepotencia.",
+    "image": "cards/wands-13.jpg"
+  },
+  {
+    "id": "wands-14",
+    "name": "Rey de Bastos",
+    "keywords": [
+      "visión",
+      "liderazgo",
+      "emprendimiento",
+      "carisma",
+      "voluntad",
+      "fuego que dirige"
+    ],
+    "upright": "Un rey sentado sostiene un bastón con hojas, con una salamandra y un león cerca, mirando al frente. Es el que dirige con el fuego, el que inspira y arranca proyectos sin perder la visión. La carta habla del liderazgo por convicción, del que se para adelante y los demás lo siguen porque creen en lo que ve. Su fuego ordena, no desordena.",
+    "reversed": "El fuego se vuelve imposición. Hay autoritarismo, decisiones calientes sin escuchar, o una visión que avasalla a los demás. También señala el miedo a liderar y esconder el propio fuego.",
+    "image": "cards/wands-14.jpg"
+  },
+  {
+    "id": "swords-01",
+    "name": "As de Espadas",
+    "keywords": [
+      "claridad",
+      "verdad",
+      "corte",
+      "idea",
+      "avance mental",
+      "decisión",
+      "razón"
+    ],
+    "upright": "Una mano sale de una nube y sostiene una espada vertical con una corona, una rama de laurel y una palma, sobre montañas. Es la verdad que corta lo confuso, la idea que ordena el ruido. La carta habla de la claridad como filo: separa lo que sirve de lo que no. No siempre es cómoda, pero despeja el camino.",
+    "reversed": "El filo se pierde. Hay confusión, una verdad que no se quiere ver, o una decisión que se posterga. También señala el uso de la razón como arma contra uno mismo.",
+    "image": "cards/swords-01.jpg"
+  },
+  {
+    "id": "swords-02",
+    "name": "Dos de Espadas",
+    "keywords": [
+      "indecisión",
+      "equilibrio precario",
+      "tregua",
+      "bloqueo",
+      "negación",
+      "paz forzada"
+    ],
+    "upright": "Una figura con los ojos vendados cruza dos espadas frente al pecho, sentada junto al mar. Es la decisión que se posterga, el equilibrio que se sostiene sin mirar. La carta habla del bloqueo elegido: no ver para no tener que elegir. Las espadas equilibradas piden quietud, pero el mar al fondo sigue moviéndose.",
+    "reversed": "La venda cae. Hay una decisión que se destraba, una verdad que se enfrenta, o el fin de una tregua que ya no servía. También señala el alivio de soltar una tensión contenida.",
+    "image": "cards/swords-02.jpg"
+  },
+  {
+    "id": "swords-03",
+    "name": "Tres de Espadas",
+    "keywords": [
+      "dolor",
+      "ruptura",
+      "verdad hiriente",
+      "duelo",
+      "desilusión",
+      "corazón herido"
+    ],
+    "upright": "Tres espadas atraviesan un corazón bajo la lluvia y nubes densas. Es el dolor que entra de golpe, la palabra o la verdad que parte al medio. La carta habla de la herida como hecho: no se puede desatravesar el corazón, pero se puede atravesar el duelo. La lluvia limpia lo que la herida dejó al descubierto.",
+    "reversed": "Las espadas se aflojan. El dolor empieza a ceder, la herida cicatriza, o la persona deja de hurgar en lo que ya pasó. También señala el dolor que se niega y se vuelve frío.",
+    "image": "cards/swords-03.jpg"
+  },
+  {
+    "id": "swords-04",
+    "name": "Cuatro de Espadas",
+    "keywords": [
+      "descanso",
+      "retiro",
+      "recuperación",
+      "pausa",
+      "tregua",
+      "reposo"
+    ],
+    "upright": "La figura de un caballero yace sobre una tumba con las manos en plegaria, con tres espadas colgadas arriba y una al costado. Es el descanso después de la batalla, el retiro necesario para reponer el cuerpo y la mente. La carta habla de la pausa como estrategia: parar no es rendirse, es recuperar fuerzas. El silencio también cura.",
+    "reversed": "El reposo se interrumpe. Hay agotamiento que se niega, insomnio, o una pausa que se prolonga en aislamiento. También señala la necesidad de volver a la acción después de un largo descanso.",
+    "image": "cards/swords-04.jpg"
+  },
+  {
+    "id": "swords-05",
+    "name": "Cinco de Espadas",
+    "keywords": [
+      "victoria vacía",
+      "conflicto",
+      "orgullo",
+      "derrota ajena",
+      "rencor",
+      "ganar a costa"
+    ],
+    "upright": "Una figura junta tres espadas mientras dos figuras se alejan derrotadas, con un cielo de nubes desparejas. Es la victoria que deja un gusto amargo, la pelea que se gana a costa del vínculo. La carta habla del conflicto como costo: se puede tener razón y perder la relación. Ganar solo no es ganar.",
+    "reversed": "Las espadas se dejan caer. Hay una tregua posible, un conflicto que se cierra, o la decisión de no pelear más por orgullo. También señala el rencor que se sostiene para no soltar la razón.",
+    "image": "cards/swords-05.jpg"
+  },
+  {
+    "id": "swords-06",
+    "name": "Seis de Espadas",
+    "keywords": [
+      "transición",
+      "partida",
+      "cambio",
+      "travesía",
+      "alivio",
+      "rumbo nuevo"
+    ],
+    "upright": "Un barquero rema a dos figuras, una encapuchada y una agachada, con seis espadas clavadas en la barca, cruzando un agua calma. Es el viaje que aleja de lo difícil hacia una orilla más tranquila. La carta habla de la transición: no se borra lo vivido, se lo lleva y se sigue. Las espadas van con uno, pero ya no cortan.",
+    "reversed": "La barca no avanza. Hay resistencia al cambio, un pasado que se arrastra, o una partida que se posterga por miedo a lo desconocido. También señala un regreso forzado a lo que se quería dejar.",
+    "image": "cards/swords-06.jpg"
+  },
+  {
+    "id": "swords-07",
+    "name": "Siete de Espadas",
+    "keywords": [
+      "astucia",
+      "estrategia",
+      "engaño",
+      "evasión",
+      "sigilo",
+      "robo"
+    ],
+    "upright": "Una figura se aleja en puntas de pie con cinco espadas en los brazos, mirando hacia atrás, mientras dos espadas quedan clavadas en un campamento. Es el que se lleva lo que pudo sin dar la cara, el atajo o la trampa. La carta habla de la astucia como doble filo: la estrategia sirve, el engaño deja rastro. Lo que se esconde siempre mira hacia atrás.",
+    "reversed": "El sigilo se descubre. Hay una verdad que sale a la luz, una trampa que se desarma, o el alivio de dejar de esconderse. También señala el autosabotaje: robarse a uno mismo las posibilidades.",
+    "image": "cards/swords-07.jpg"
+  },
+  {
+    "id": "swords-08",
+    "name": "Ocho de Espadas",
+    "keywords": [
+      "encierro",
+      "limitación",
+      "miedo",
+      "víctima",
+      "ceguera",
+      "restricción"
+    ],
+    "upright": "Una figura con los ojos vendados y atada, rodeada de ocho espadas clavadas en el suelo, con agua al fondo. Es la sensación de no tener salida, el encierro que se sostiene con miedo. La carta habla de las limitaciones que uno se impone: las ataduras están flojas, la venda se puede sacar, pero la figura no lo intenta. La mente es la primera celda.",
+    "reversed": "La venda y las ataduras caen. Hay una salida que se descubre, un miedo que se nombra, o la decisión de pedir ayuda para salir. También señala el momento de dejar de verse como víctima.",
+    "image": "cards/swords-08.jpg"
+  },
+  {
+    "id": "swords-09",
+    "name": "Nueve de Espadas",
+    "keywords": [
+      "ansiedad",
+      "insomnio",
+      "preocupación",
+      "rumiación",
+      "miedo",
+      "angustia mental"
+    ],
+    "upright": "Una persona se sienta en la cama con la cabeza entre las manos, despierta, con nueve espadas colgadas en la pared. Es la mente que no apaga, la preocupación que crece de noche y agranda lo que no pasó. La carta habla de la ansiedad como cárcel mental: los miedos son reales, pero la escena se ve peor de lo que es. El amanecer no aparece en el cuadro, pero existe.",
+    "reversed": "La cabeza se levanta. Hay alivio, una preocupación que se comparte, o el fin de una noche larga. También señala la salida de un pensamiento que se repetía sin descanso.",
+    "image": "cards/swords-09.jpg"
+  },
+  {
+    "id": "swords-10",
+    "name": "Diez de Espadas",
+    "keywords": [
+      "fin",
+      "fondo",
+      "cierre",
+      "traición",
+      "agotamiento",
+      "amanecer"
+    ],
+    "upright": "Una figura yace boca abajo con diez espadas clavadas en la espalda, mientras el amanecer asoma en el horizonte. Es el final definitivo, el punto más bajo de una etapa que ya no puede seguir. La carta habla del cierre doloroso que no deja dudas: se terminó. Pero el cielo claro avisa que el fondo también es un comienzo.",
+    "reversed": "Las espadas se retiran. Hay una recuperación lenta, un final que no llega, o una etapa que se estira más de lo necesario. También señala el miedo a tocar fondo para poder renacer.",
+    "image": "cards/swords-10.jpg"
+  },
+  {
+    "id": "swords-11",
+    "name": "Sota de Espadas",
+    "keywords": [
+      "curiosidad",
+      "vigilancia",
+      "observación",
+      "mensaje",
+      "alerta",
+      "mente joven"
+    ],
+    "upright": "Un joven sostiene una espada y mira por encima del hombro, con el viento moviendo su pelo y nubes al fondo. Es el que observa antes de hablar, el que aprende a usar la palabra con filo. La carta habla de la curiosidad mental, del estado de alerta que capta lo que otros pasan por alto. No es paranoia: es atención.",
+    "reversed": "La espada se vuelve torpe. Hay chismes, palabras que hieren sin pensar, o una desconfianza que lee mal las intenciones. También señala el silencio de quien ve todo y no dice nada.",
+    "image": "cards/swords-11.jpg"
+  },
+  {
+    "id": "swords-12",
+    "name": "Caballero de Espadas",
+    "keywords": [
+      "rapidez",
+      "confrontación",
+      "determinación",
+      "mente ágil",
+      "directo",
+      "impulso de palabra"
+    ],
+    "upright": "Un caballero a galope levanta la espada, inclinado hacia adelante contra el viento, con nubes de tormenta. Es el que va directo al punto, el que dice lo que piensa sin rodeos. La carta habla de la velocidad mental, del coraje de enfrentar lo incómodo. El filo es rápido, y la rapidez a veces atropella.",
+    "reversed": "El galope se descontrola. Hay palabras que salen antes de tiempo, discusiones por impulso, o una mente que no frena. También señala la agresividad verbal que se vuelve contra uno.",
+    "image": "cards/swords-12.jpg"
+  },
+  {
+    "id": "swords-13",
+    "name": "Reina de Espadas",
+    "keywords": [
+      "claridad",
+      "franqueza",
+      "independencia",
+      "juicio",
+      "límites",
+      "honestidad"
+    ],
+    "upright": "Una reina sostiene una espada en alto y extiende la otra mano, sentada entre nubes, con mariposas y una cabeza tallada en su trono. Es la que ve con claridad y dice la verdad sin adornos, la que pone límites con serenidad. La carta habla del juicio limpio, de la mente que ordena sin crueldad. Su franqueza es un respeto.",
+    "reversed": "La franqueza se vuelve frialdad. Hay dureza que hiere, una mente que se protege de más, o un juicio que se emite sin escuchar. También señala la dificultad para pedir lo que se necesita.",
+    "image": "cards/swords-13.jpg"
+  },
+  {
+    "id": "swords-14",
+    "name": "Rey de Espadas",
+    "keywords": [
+      "autoridad mental",
+      "verdad",
+      "disciplina",
+      "justicia",
+      "claridad",
+      "decisión firme"
+    ],
+    "upright": "Un rey sentado sostiene una espada en vertical, con mariposas y figuras aladas en su trono y nubes al fondo. Es el que decide con la cabeza fría, el que ordena desde la verdad y no desde la emoción. La carta habla de la autoridad ganada por la claridad: dice lo que piensa y sostiene lo que dice. Su poder es la palabra.",
+    "reversed": "La autoridad se vuelve rigidez. Hay frialdad, un criterio que se impone sin matices, o un poder que se ejerce con la palabra como arma. También señala el miedo a decidir y delegar en otro la propia verdad.",
+    "image": "cards/swords-14.jpg"
+  }
+]

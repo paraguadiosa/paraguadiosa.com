@@ -117,8 +117,14 @@ foliate-view {
     color: var(--accent);
 }
 
-.reader-step:active {
+.reader-step:active:not(:disabled) {
     background: var(--color-surface-hover);
+}
+
+.reader-step:disabled {
+    opacity: 0.45;
+    cursor: default;
+    color: var(--color-text-faint);
 }
 
 .reader-progress {

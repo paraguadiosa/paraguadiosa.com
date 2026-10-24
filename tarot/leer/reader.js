@@ -8,6 +8,16 @@ import "../vendor/foliate/view.js";
 const BOOK_PATH = "../data/rider-waite-es.epub";
 const STORE_KEY = "tarot-reader-cfi";
 
+// On a phone there is no console. With ?probe=1 the reader reports each step to
+// the server, so a device-only failure can be read in the access log.
+const PROBE = new URLSearchParams(location.search).has("probe");
+
+function report(step, extra = {}) {
+    if (!PROBE) return;
+    const params = new URLSearchParams({ step, ...extra });
+    fetch(`/_probe?${params}`, { cache: "no-store", keepalive: true }).catch(() => {});
+}
+
 const view = document.getElementById("reader-view");
 const status = document.getElementById("reader-status");
 const prevButton = document.getElementById("reader-prev");
@@ -15,6 +25,17 @@ const nextButton = document.getElementById("reader-next");
 const progress = document.getElementById("reader-progress");
 const progressFill = document.getElementById("reader-progress-fill");
 const pctLabel = document.getElementById("reader-pct");
+
+// foliate reads this.book in goLeft/goRight, and this.book only exists once
+// open() has fetched and unzipped the EPUB. On a phone that takes a moment, and
+// a tap in the meantime throws "undefined is not an object (this.book.dir)".
+let ready = false;
+
+function setControls(enabled) {
+    ready = enabled;
+    prevButton.disabled = !enabled;
+    nextButton.disabled = !enabled;
+}
 
 const store = {
     read() {
@@ -39,12 +60,18 @@ const store = {
 // .xhtml file" with a blank reader. The bytes are the same; serving them as
 // text/html keeps Chromium and WebKit on the same path.
 const XHTML = "application/xhtml+xml";
+let seenDocuments = 0;
 
 function documentsAsHTML(book) {
     const target = book?.transformTarget;
     if (!target) return;
     target.addEventListener("data", (event) => {
-        if (event.detail?.type === XHTML) event.detail.type = "text/html";
+        if (event.detail?.type !== XHTML) return;
+        event.detail.type = "text/html";
+        if (seenDocuments < 3) {
+            seenDocuments += 1;
+            report("document", { n: String(seenDocuments), type: "text/html" });
+        }
     });
 }
 
@@ -66,36 +93,53 @@ function setProgress(fraction) {
 
 function fail(error) {
     console.error(error);
+    report("error", { message: String(error?.message ?? error).slice(0, 80) });
+    setControls(false);
     status.hidden = false;
     status.textContent = "No se pudo abrir el libro. Recargá la página.";
 }
 
 async function start() {
     try {
+        report("start");
         await view.open(new URL(BOOK_PATH, import.meta.url).href);
+        report("opened", {
+            sections: String(view.book?.sections?.length ?? 0),
+            target: String(!!view.book?.transformTarget),
+        });
         documentsAsHTML(view.book);
         applyLayout();
         await view.init({ lastLocation: store.read() ?? undefined, showTextStart: true });
+        report("init");
+        setControls(true);
         status.hidden = true;
     } catch (error) {
         fail(error);
     }
 }
 
-view.addEventListener("load", () => {
+view.addEventListener("load", ({ detail }) => {
+    report("load", { index: String(detail?.index ?? "") });
     status.hidden = true;
 });
 
 view.addEventListener("relocate", ({ detail }) => {
     setProgress(detail?.fraction);
     if (detail?.cfi) store.write(detail.cfi);
+    report("relocate", { pct: String(Math.round((detail?.fraction ?? 0) * 100)) });
 });
 
-prevButton.addEventListener("click", () => view.goLeft());
-nextButton.addEventListener("click", () => view.goRight());
+prevButton.addEventListener("click", () => {
+    if (!ready) return;
+    view.goLeft();
+});
+nextButton.addEventListener("click", () => {
+    if (!ready) return;
+    view.goRight();
+});
 
 document.addEventListener("keydown", (event) => {
-    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (!ready || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
         event.preventDefault();
         view.goRight();
@@ -114,4 +158,5 @@ document.addEventListener("visibilitychange", () => {
 
 window.addEventListener("resize", applyLayout);
 
+setControls(false);
 start();

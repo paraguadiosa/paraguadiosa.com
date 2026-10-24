@@ -118,5 +118,33 @@ assert.ok(mobileText.length > 100, `mobile renders ${mobileText.length} chars`);
 console.log(`ok 9 - mobile 390px: no overflow, controls at y=${Math.round(nextBox.y)}, ${mobileText.length} chars`);
 await mobile.screenshot({ path: "/tmp/tarot-reader-mobile.png" });
 
+// 8. A tap before the book is ready must not throw. On iOS this was "undefined
+//    is not an object (evaluating 'this.book.dir')": foliate reads this.book in
+//    goLeft/goRight, and this.book only exists after open() finishes.
+const slow = await browser.newPage({ viewport: { width: 390, height: 844 } });
+const earlyErrors = [];
+slow.on("pageerror", (error) => earlyErrors.push(String(error).slice(0, 120)));
+await slow.route("**/rider-waite-es.epub", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await route.continue();
+});
+await slow.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await slow.waitForTimeout(700);
+const disabledUpFront = await slow.locator("#reader-next").isDisabled();
+await slow.keyboard.press("ArrowRight");
+// A disabled button swallows clicks, so the guard in the handler is exercised by
+// clearing the attribute first: this is the stray-tap path without the markup help.
+await slow.evaluate(() => {
+    const button = document.getElementById("reader-next");
+    button.disabled = false;
+    button.click();
+});
+await slow.waitForTimeout(11000);
+const enabledAfter = await slow.locator("#reader-next").isEnabled();
+assert.ok(disabledUpFront, "the next button was enabled before the book opened");
+assert.ok(enabledAfter, "the controls never became usable after loading");
+assert.equal(earlyErrors.length, 0, `errors while the book was loading: ${earlyErrors.join(" | ")}`);
+console.log("ok 10 - taps before the book is open are ignored and leave no error");
+
 await browser.close();
-console.log(`\n9 checks passed (cover section: ${cover.length} chars)`);
+console.log(`\n10 checks passed (cover section: ${cover.length} chars)`);

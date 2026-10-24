@@ -106,12 +106,20 @@ assert.match(script, /event\.detail\.type = "text\/html"/, "the shim does not re
 assert.match(script, /documentsAsHTML\(view\.book\)/, "the shim is defined but never installed");
 ok("XHTML documents are served to the paginator as text/html");
 
-// 7. The spread page links to the reader.
+// 7. Navigation stays off until the book is open: foliate reads this.book in
+//    goLeft/goRight, and this.book only exists after open() resolves.
+assert.match(script, /let ready = false/, "reader.js has no readiness flag");
+assert.match(script, /if \(!ready\) return;/, "the navigation handlers do not check readiness");
+assert.match(script, /setControls\(true\)/, "the controls are never enabled after loading");
+assert.match(page, /id="reader-next"[^>]*disabled/, "the next button starts enabled in the markup");
+ok("navigation is disabled until the book is open");
+
+// 8. The spread page links to the reader.
 const spread = read("tarot/index.html");
 assert.match(spread, /href="\.\/leer\/index\.html"/, "tarot page does not link to the reader");
 ok("tarot page links to the reader");
 
-// 8. House style: no em dashes in the new files.
+// 9. House style: no em dashes in the new files.
 for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
     const text = read(file);
     assert.ok(!text.includes("\u2014"), `${file} contains an em dash`);

@@ -1,19 +1,153 @@
 /* tarot.css
-   Rules the tarot draw needs, on top of style.css.
-   No colour literals here: every colour comes from the design tokens. */
+   TempleOS look for the tarot page, on top of style.css.
+   No colour literals in rule bodies: every colour comes from the
+   token blocks below. Dark is the default (cobalt), the theme toggle
+   switches to a paper-terminal light mode. */
 
+/* ---------- Tokens: TempleOS dark (default) ---------- */
 body.tarot {
-    background-image: url("../media/wallpaper/moon_and_star.jpg");
-    /* Same art as WebP: 380 KB instead of 655 KB. A browser without WebP
-       support drops this line and keeps the JPEG above. */
-    background-image: url("../media/wallpaper/moon_and_star.webp");
+    --accent: #99a8ff;
+    --accent-soft: rgba(61, 85, 224, 0.32);
+    --color-text: #efedff;
+    --color-text-soft: #a0a6d2;
+    --color-text-faint: #7d84b8;
+    --color-surface: rgba(12, 13, 41, 0.92);
+    --color-line: rgba(61, 85, 224, 0.6);
+    --color-line-soft: rgba(61, 85, 224, 0.28);
+    --color-inset: rgba(61, 85, 224, 0.09);
+    --color-rose: #ff8195;
+    --color-rose-soft: rgba(255, 129, 149, 0.4);
+    --color-edge: rgba(153, 168, 255, 0.18);
+    --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.75),
+                   0 0 44px -12px rgba(61, 85, 224, 0.35);
+    --page-bg: #05051a;
+    --glow-top: rgba(61, 85, 224, 0.22);
+    --scrim-soft: rgba(5, 5, 26, 0.5);
+    --scrim-deep: rgba(3, 3, 16, 0.85);
+    --border: #3d55e0;
+    --border-dim: #182264;
+    --code-color: #99a8ff;
+    --code-opacity: 0.07;
+    --radius-lg: 0px;
+    --radius-sm: 0px;
+    color-scheme: dark;
+}
+
+/* ---------- Tokens: paper terminal (light) ---------- */
+:root[data-theme="light"] body.tarot {
+    --accent: #3d55e0;
+    --accent-soft: rgba(61, 85, 224, 0.14);
+    --color-text: #1f2233;
+    --color-text-soft: #3a3f5c;
+    --color-text-faint: #585e7c;
+    --color-surface: rgba(247, 244, 236, 0.94);
+    --color-line: rgba(61, 85, 224, 0.42);
+    --color-line-soft: rgba(61, 85, 224, 0.22);
+    --color-inset: rgba(61, 85, 224, 0.06);
+    --color-rose: #b3261e;
+    --color-rose-soft: rgba(179, 38, 30, 0.3);
+    --color-edge: rgba(255, 255, 255, 0.7);
+    --shadow-card: 0 24px 60px -28px rgba(30, 30, 60, 0.35);
+    --page-bg: #ece7da;
+    --glow-top: rgba(120, 140, 220, 0.22);
+    --scrim-soft: rgba(240, 236, 224, 0.6);
+    --scrim-deep: rgba(236, 231, 218, 0.85);
+    --border: #3d55e0;
+    --border-dim: #b9c2f0;
+    --code-color: #2b2f5e;
+    --code-opacity: 0.06;
+    color-scheme: light;
+}
+
+/* The wallpaper is gone for this page: the HolyC texture is the art. */
+body.tarot {
+    background-image: none;
+}
+
+/* ---------- Static HolyC texture behind everything ---------- */
+.tarot-code-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 24px;
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 12%,
+        #000 88%,
+        transparent 100%
+    );
+}
+
+.tarot-code-bg pre {
+    flex: 1 1 320px;
+    min-width: 0;
+    margin: 0;
+    padding-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    line-height: 1.3;
+    white-space: pre;
+    color: var(--code-color);
+    opacity: var(--code-opacity);
+}
+
+/* Quiet CRT scanlines. Static, no flicker, never animated. */
+.tarot-crt {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        transparent 0 2px,
+        rgba(0, 0, 0, 0.08) 2px 3px
+    );
+}
+
+/* ---------- Cobalt dialog window ---------- */
+body.tarot .overlay {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    border: 2px solid var(--color-line);
+    border-radius: 0;
+}
+
+body.tarot .site-brand h2,
+body.tarot .tarot-title {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+body.tarot .page-tagline {
+    font-style: normal;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+}
+
+body.tarot .theme-toggle {
+    border-radius: 0;
 }
 
 .tarot-title {
     font-size: clamp(1.45em, 1.28em + 1.1vw, 1.9em);
     line-height: 1.18;
-    letter-spacing: -0.014em;
+    letter-spacing: 0.04em;
     margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--accent);
 }
 
 /* ---------- The draw form ---------- */
@@ -66,8 +200,8 @@ body.tarot {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-text-soft);
-    border: 1px solid var(--color-line);
-    border-radius: 999px;
+    border: 2px solid var(--color-line);
+    border-radius: 0;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
@@ -111,12 +245,12 @@ body.tarot {
     width: 100%;
     min-height: 44px;
     padding: 10px 14px;
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: 1rem;
     color: var(--color-text);
     background-color: var(--color-inset);
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-line);
+    border-radius: 0;
 }
 
 .tarot-question input::placeholder {
@@ -140,8 +274,8 @@ body.tarot {
     text-transform: uppercase;
     color: var(--accent);
     background: transparent;
-    border: 1px solid var(--accent-soft);
-    border-radius: 999px;
+    border: 2px solid var(--accent-soft);
+    border-radius: 0;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
@@ -186,8 +320,8 @@ body.tarot {
     min-width: 0;
     padding: 18px;
     background-color: var(--color-inset);
-    border: 1px solid var(--color-line-soft);
-    border-radius: var(--radius-lg);
+    border: 4px double var(--border);
+    border-radius: 0;
 }
 
 .tarot-position {
@@ -196,21 +330,26 @@ body.tarot {
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
+    color: #fff;
+    background-color: var(--border);
+    padding: 5px 8px;
+    margin-bottom: 12px;
 }
 
 .tarot-card-image {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid var(--color-line);
-    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-line);
+    border-radius: 0;
     margin-bottom: 14px;
 }
 
 .tarot-card-name {
-    font-size: 1.12em;
+    font-family: var(--font-mono);
+    font-size: 1.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     margin-bottom: 4px;
 }
 
@@ -242,7 +381,7 @@ body.tarot {
     gap: 10px;
     margin-top: 24px;
     padding-top: 18px;
-    border-top: 1px solid var(--color-line-soft);
+    border-top: 2px solid var(--color-line-soft);
 }
 
 .tarot-seed {
@@ -270,8 +409,8 @@ body.tarot {
     text-transform: uppercase;
     color: var(--accent);
     background: transparent;
-    border: 1px solid var(--accent-soft);
-    border-radius: 999px;
+    border: 2px solid var(--accent-soft);
+    border-radius: 0;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
@@ -283,7 +422,17 @@ body.tarot {
 }
 
 /* ---------- Narrow screens ---------- */
+@media only screen and (max-width: 900px) {
+    .tarot-code-bg pre:nth-child(3) {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 600px) {
+    .tarot-code-bg pre:nth-child(n + 2) {
+        display: none;
+    }
+
     .tarot-cards {
         grid-template-columns: 1fr;
     }

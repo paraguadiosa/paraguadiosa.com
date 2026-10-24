@@ -136,6 +136,30 @@ test("cards.json holds 78 cards in app order with their images", () => {
     }
 });
 
+test("the temple background ships the real RNG constants, static and local", () => {
+    const html = read("tarot/index.html");
+    const css = read("tarot/tarot.css");
+
+    // The numbers must match A and C in tarot.js, decimal and hex.
+    assert.match(html, /6364136223846793005/);
+    assert.match(html, /1442695040888963407/);
+    assert.match(html, /0x5851F42D4C957F2D/);
+    assert.match(html, /0x14057B7EF767814F/);
+
+    // Decoration only, and no runtime: no canvas, no animation, no external URL.
+    assert.match(html, /class="tarot-code-bg" aria-hidden="true"/);
+    assert.doesNotMatch(html, /<canvas/);
+    assert.doesNotMatch(css, /@keyframes|animation:/);
+
+    // The background block is self-contained: nothing it loads over the network.
+    const bg = html.match(/<div class="tarot-code-bg"[\s\S]*?<\/div>/);
+    assert.ok(bg, "missing tarot-code-bg block");
+    assert.doesNotMatch(bg[0], /https?:\/\/|<img|<script|<canvas/);
+
+    // The wallpaper is gone for the tarot page: the code is the texture.
+    assert.match(css, /body\.tarot \{[\s\S]*?background-image: none/);
+});
+
 test("tarot.js makes no network call", () => {
     const source = read("tarot/tarot.js");
     assert.doesNotMatch(source, /\bfetch\s*\(/);

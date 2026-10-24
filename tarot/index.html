@@ -11,6 +11,313 @@
 </head>
 
 <body class="tarot">
+    <div class="tarot-code-bg" aria-hidden="true">
+        <pre>/* mazo.hc :: oráculo listo
+   TempleOS Rand :: Kernel/KMathB.HC
+   seed 0x00C0FFEE :: Fisher-Yates 0..77 */
+
+#define LIN_CONGRUE_A  6364136223846793005   /* 0x5851F42D4C957F2D */
+#define LIN_CONGRUE_C  1442695040888963407   /* 0x14057B7EF767814F */
+
+U32 RandU32()
+{
+  U64 res = rand_seed;
+  U64 mid = (res &amp; 0xFFFFFFFF0000) &gt;&gt; 16;
+  res = LIN_CONGRUE_A * res;
+  res = res ^ mid;
+  res = res + LIN_CONGRUE_C;
+  rand_seed = res;
+  return res &amp; 0xFFFFFFFF;
+}
+
+/* 77 swaps */
+swap 77 39 0x75D18F65
+swap 76 45 0x082DBB5F
+swap 75 65 0x53B699ED
+swap 74 51 0x6A50736E
+swap 73 13 0xA32B3755
+swap 72 66 0x023EC929
+swap 71 66 0x2F83325A
+swap 70 06 0x7701D1A0
+swap 69 56 0xC46FCF70
+swap 68 60 0x9348442E
+swap 67 41 0x6BA8DEAD
+swap 66 64 0xA9E91E10
+swap 65 30 0x373A1288
+swap 64 55 0xA4B61021
+swap 63 10 0x413D11CA
+swap 62 28 0x3C4D990E
+swap 61 14 0xE8F7668A
+swap 60 53 0xEC591604
+swap 59 00 0x2C57B83C
+swap 58 26 0xF0F18C2A
+swap 57 12 0xC3750AE2
+swap 56 40 0xC4A4461E
+swap 55 49 0xC7887331
+swap 54 41 0x03BACA64
+swap 53 27 0xB102AD7D
+swap 52 03 0xA4FDB24A
+swap 51 22 0x63A62B4E
+swap 50 30 0x2089AE5F
+swap 49 45 0x30CE6889
+swap 48 30 0xC62DE92A
+swap 47 30 0xBF5D959E
+swap 46 34 0xF72F92EA
+swap 45 06 0x14129F5C
+swap 44 18 0x8642348D
+swap 43 18 0xEAA52ADA
+swap 42 10 0x6B7EC646
+swap 41 15 0x9660807F
+swap 40 13 0xA11F8282
+swap 39 28 0xBB645114
+swap 38 05 0x78F8192F
+swap 37 30 0x6D4F480A
+swap 36 07 0x3B8273DC
+swap 35 29 0xDE463B7D
+swap 34 08 0x93DB2B0E
+swap 33 28 0x8BDF91FC
+swap 32 24 0x4E7BA7E2
+swap 31 16 0x1C497010
+swap 30 04 0x4BF33FE8
+swap 29 14 0xF887998A
+swap 28 12 0xC1AF0D14
+swap 27 06 0xB3437A7A
+swap 26 10 0xF8813F80
+swap 25 02 0xEBA7D250
+swap 24 08 0xF9E2C506
+swap 23 11 0xA581E73B
+swap 22 11 0x4BCDD12D
+swap 21 15 0xE416DD73
+swap 20 11 0x1E139F70
+swap 19 10 0x752A09F2
+swap 18 05 0xA27239EF
+swap 17 08 0xEC22E3C0
+swap 16 06 0x12582631
+swap 15 04 0x71E09914
+swap 14 07 0xE27726B3
+swap 13 03 0xD5FAF94F
+swap 12 04 0xB0325768
+swap 11 05 0x811AC6C9
+swap 10 09 0xBCB2AA9E
+swap 09 07 0xBCAE64C3
+swap 08 06 0x32205138
+swap 07 07 0xD821BE47
+swap 06 05 0x3285F4A9
+swap 05 01 0xDE016B7F
+swap 04 04 0xD744B9A1
+swap 03 00 0xCA06D858
+swap 02 01 0x1AFBE6CD
+swap 01 01 0xAC67E141
+
+/* 3 picks */
+pick 69 bit 1 0x6706FC59
+pick 25 bit 0 0xDCF366F2
+pick 17 bit 0 0x1E547BC8</pre>
+        <pre>/* mazo.hc :: oráculo listo
+   TempleOS Rand :: Kernel/KMathB.HC
+   seed 0x00C0FFEE :: Fisher-Yates 0..77 */
+
+#define LIN_CONGRUE_A  6364136223846793005   /* 0x5851F42D4C957F2D */
+#define LIN_CONGRUE_C  1442695040888963407   /* 0x14057B7EF767814F */
+
+U32 RandU32()
+{
+  U64 res = rand_seed;
+  U64 mid = (res &amp; 0xFFFFFFFF0000) &gt;&gt; 16;
+  res = LIN_CONGRUE_A * res;
+  res = res ^ mid;
+  res = res + LIN_CONGRUE_C;
+  rand_seed = res;
+  return res &amp; 0xFFFFFFFF;
+}
+
+/* 77 swaps */
+swap 77 39 0x75D18F65
+swap 76 45 0x082DBB5F
+swap 75 65 0x53B699ED
+swap 74 51 0x6A50736E
+swap 73 13 0xA32B3755
+swap 72 66 0x023EC929
+swap 71 66 0x2F83325A
+swap 70 06 0x7701D1A0
+swap 69 56 0xC46FCF70
+swap 68 60 0x9348442E
+swap 67 41 0x6BA8DEAD
+swap 66 64 0xA9E91E10
+swap 65 30 0x373A1288
+swap 64 55 0xA4B61021
+swap 63 10 0x413D11CA
+swap 62 28 0x3C4D990E
+swap 61 14 0xE8F7668A
+swap 60 53 0xEC591604
+swap 59 00 0x2C57B83C
+swap 58 26 0xF0F18C2A
+swap 57 12 0xC3750AE2
+swap 56 40 0xC4A4461E
+swap 55 49 0xC7887331
+swap 54 41 0x03BACA64
+swap 53 27 0xB102AD7D
+swap 52 03 0xA4FDB24A
+swap 51 22 0x63A62B4E
+swap 50 30 0x2089AE5F
+swap 49 45 0x30CE6889
+swap 48 30 0xC62DE92A
+swap 47 30 0xBF5D959E
+swap 46 34 0xF72F92EA
+swap 45 06 0x14129F5C
+swap 44 18 0x8642348D
+swap 43 18 0xEAA52ADA
+swap 42 10 0x6B7EC646
+swap 41 15 0x9660807F
+swap 40 13 0xA11F8282
+swap 39 28 0xBB645114
+swap 38 05 0x78F8192F
+swap 37 30 0x6D4F480A
+swap 36 07 0x3B8273DC
+swap 35 29 0xDE463B7D
+swap 34 08 0x93DB2B0E
+swap 33 28 0x8BDF91FC
+swap 32 24 0x4E7BA7E2
+swap 31 16 0x1C497010
+swap 30 04 0x4BF33FE8
+swap 29 14 0xF887998A
+swap 28 12 0xC1AF0D14
+swap 27 06 0xB3437A7A
+swap 26 10 0xF8813F80
+swap 25 02 0xEBA7D250
+swap 24 08 0xF9E2C506
+swap 23 11 0xA581E73B
+swap 22 11 0x4BCDD12D
+swap 21 15 0xE416DD73
+swap 20 11 0x1E139F70
+swap 19 10 0x752A09F2
+swap 18 05 0xA27239EF
+swap 17 08 0xEC22E3C0
+swap 16 06 0x12582631
+swap 15 04 0x71E09914
+swap 14 07 0xE27726B3
+swap 13 03 0xD5FAF94F
+swap 12 04 0xB0325768
+swap 11 05 0x811AC6C9
+swap 10 09 0xBCB2AA9E
+swap 09 07 0xBCAE64C3
+swap 08 06 0x32205138
+swap 07 07 0xD821BE47
+swap 06 05 0x3285F4A9
+swap 05 01 0xDE016B7F
+swap 04 04 0xD744B9A1
+swap 03 00 0xCA06D858
+swap 02 01 0x1AFBE6CD
+swap 01 01 0xAC67E141
+
+/* 3 picks */
+pick 69 bit 1 0x6706FC59
+pick 25 bit 0 0xDCF366F2
+pick 17 bit 0 0x1E547BC8</pre>
+        <pre>/* mazo.hc :: oráculo listo
+   TempleOS Rand :: Kernel/KMathB.HC
+   seed 0x00C0FFEE :: Fisher-Yates 0..77 */
+
+#define LIN_CONGRUE_A  6364136223846793005   /* 0x5851F42D4C957F2D */
+#define LIN_CONGRUE_C  1442695040888963407   /* 0x14057B7EF767814F */
+
+U32 RandU32()
+{
+  U64 res = rand_seed;
+  U64 mid = (res &amp; 0xFFFFFFFF0000) &gt;&gt; 16;
+  res = LIN_CONGRUE_A * res;
+  res = res ^ mid;
+  res = res + LIN_CONGRUE_C;
+  rand_seed = res;
+  return res &amp; 0xFFFFFFFF;
+}
+
+/* 77 swaps */
+swap 77 39 0x75D18F65
+swap 76 45 0x082DBB5F
+swap 75 65 0x53B699ED
+swap 74 51 0x6A50736E
+swap 73 13 0xA32B3755
+swap 72 66 0x023EC929
+swap 71 66 0x2F83325A
+swap 70 06 0x7701D1A0
+swap 69 56 0xC46FCF70
+swap 68 60 0x9348442E
+swap 67 41 0x6BA8DEAD
+swap 66 64 0xA9E91E10
+swap 65 30 0x373A1288
+swap 64 55 0xA4B61021
+swap 63 10 0x413D11CA
+swap 62 28 0x3C4D990E
+swap 61 14 0xE8F7668A
+swap 60 53 0xEC591604
+swap 59 00 0x2C57B83C
+swap 58 26 0xF0F18C2A
+swap 57 12 0xC3750AE2
+swap 56 40 0xC4A4461E
+swap 55 49 0xC7887331
+swap 54 41 0x03BACA64
+swap 53 27 0xB102AD7D
+swap 52 03 0xA4FDB24A
+swap 51 22 0x63A62B4E
+swap 50 30 0x2089AE5F
+swap 49 45 0x30CE6889
+swap 48 30 0xC62DE92A
+swap 47 30 0xBF5D959E
+swap 46 34 0xF72F92EA
+swap 45 06 0x14129F5C
+swap 44 18 0x8642348D
+swap 43 18 0xEAA52ADA
+swap 42 10 0x6B7EC646
+swap 41 15 0x9660807F
+swap 40 13 0xA11F8282
+swap 39 28 0xBB645114
+swap 38 05 0x78F8192F
+swap 37 30 0x6D4F480A
+swap 36 07 0x3B8273DC
+swap 35 29 0xDE463B7D
+swap 34 08 0x93DB2B0E
+swap 33 28 0x8BDF91FC
+swap 32 24 0x4E7BA7E2
+swap 31 16 0x1C497010
+swap 30 04 0x4BF33FE8
+swap 29 14 0xF887998A
+swap 28 12 0xC1AF0D14
+swap 27 06 0xB3437A7A
+swap 26 10 0xF8813F80
+swap 25 02 0xEBA7D250
+swap 24 08 0xF9E2C506
+swap 23 11 0xA581E73B
+swap 22 11 0x4BCDD12D
+swap 21 15 0xE416DD73
+swap 20 11 0x1E139F70
+swap 19 10 0x752A09F2
+swap 18 05 0xA27239EF
+swap 17 08 0xEC22E3C0
+swap 16 06 0x12582631
+swap 15 04 0x71E09914
+swap 14 07 0xE27726B3
+swap 13 03 0xD5FAF94F
+swap 12 04 0xB0325768
+swap 11 05 0x811AC6C9
+swap 10 09 0xBCB2AA9E
+swap 09 07 0xBCAE64C3
+swap 08 06 0x32205138
+swap 07 07 0xD821BE47
+swap 06 05 0x3285F4A9
+swap 05 01 0xDE016B7F
+swap 04 04 0xD744B9A1
+swap 03 00 0xCA06D858
+swap 02 01 0x1AFBE6CD
+swap 01 01 0xAC67E141
+
+/* 3 picks */
+pick 69 bit 1 0x6706FC59
+pick 25 bit 0 0xDCF366F2
+pick 17 bit 0 0x1E547BC8</pre>
+    </div>
+    <div class="tarot-crt" aria-hidden="true"></div>
+
     <div class="container">
         <div class="overlay">
             <header>

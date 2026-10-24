@@ -2,10 +2,11 @@
 """Build the static tarot assets from the Rider-Waite source notes.
 
 Reads the card notes and images from the source repo (read only) and writes
-two committed outputs into the site:
+three committed outputs into the site:
 
     tarot/data/cards.json
     tarot/cards/<id>.jpg  (480 x 848, JPEG quality 82)
+    tarot/data/rider-waite-es.epub  (the 480px EPUB served by /tarot/leer/)
 
 Standard library plus Pillow. Every card image is normalized to one canvas size
 so a spread renders with cards of identical height: the source scans differ by
@@ -31,6 +32,10 @@ SITE = Path(__file__).resolve().parent.parent
 SOURCE = Path(os.environ.get("TAROT_SOURCE", "/home/eve/repos/tarot-rider-waite"))
 DATA_PATH = SITE / "tarot" / "data" / "cards.json"
 IMAGES_OUT = SITE / "tarot" / "cards"
+# The reader at /tarot/leer/ serves the 480px profile: same card width as the
+# spread page, 7.8 MB instead of the 19 MB Boox build.
+EPUB_PATH = SITE / "tarot" / "data" / "rider-waite-es.epub"
+EPUB_SOURCE = SOURCE / "build" / "rider-waite-es-xteink.epub"
 WIDTH = 480
 HEIGHT = 848
 QUALITY = 82
@@ -158,7 +163,16 @@ def build_outputs(check=False):
             sys.exit(2)
         images[cid] = encode_card(src)
 
-    return {"cards": cards, "data": data, "images": images}
+    if not EPUB_SOURCE.is_file():
+        print(f"tarot: missing source EPUB {EPUB_SOURCE}", file=sys.stderr)
+        sys.exit(2)
+
+    return {
+        "cards": cards,
+        "data": data,
+        "images": images,
+        "epub": EPUB_SOURCE.read_bytes(),
+    }
 
 
 def compare_outputs(outputs):
@@ -177,6 +191,12 @@ def compare_outputs(outputs):
                 missing += 1
             else:
                 changed += 1
+    current_epub = read_bytes(EPUB_PATH)
+    if current_epub != outputs["epub"]:
+        if current_epub is None:
+            missing += 1
+        else:
+            changed += 1
     return missing, changed
 
 
@@ -192,6 +212,7 @@ def main(argv):
     outputs = build_outputs()
     data_size = len(outputs["data"])
     images_size = sum(len(data) for data in outputs["images"].values())
+    epub_size = len(outputs["epub"])
     count = len(outputs["cards"])
 
     if args.check:
@@ -205,7 +226,7 @@ def main(argv):
             sys.exit(1)
         print(
             f"tarot: ok, {count} cards, data {data_size} bytes, "
-            f"images {images_size} bytes"
+            f"images {images_size} bytes, epub {epub_size} bytes"
         )
         return
 
@@ -220,9 +241,14 @@ def main(argv):
             written += 1
         else:
             unchanged += 1
+    if write_if_changed(EPUB_PATH, outputs["epub"]):
+        written += 1
+    else:
+        unchanged += 1
     print(
         f"tarot: {count} cards, data {data_size} bytes, "
-        f"images {images_size} bytes, {written} written, {unchanged} unchanged"
+        f"images {images_size} bytes, epub {epub_size} bytes, "
+        f"{written} written, {unchanged} unchanged"
     )
 
 

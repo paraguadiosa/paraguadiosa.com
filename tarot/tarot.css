@@ -305,3 +305,22 @@ body.tarot {
         justify-content: center;
     }
 }
+
+/* ---------- Link to the EPUB reader ---------- */
+.tarot-reader-link {
+    margin: 16px 0 0;
+    font-size: 0.92rem;
+}
+
+.tarot-reader-link a {
+    color: var(--color-text-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-line);
+    padding-bottom: 1px;
+}
+
+.tarot-reader-link a:hover,
+.tarot-reader-link a:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent-soft);
+}

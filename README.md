@@ -35,6 +35,8 @@ The generated data lives in the repo:
 
 - `tarot/data/cards.json`: the 78 notes the page reads.
 - `tarot/cards/`: the card images, normalized to 480 x 848 so a spread renders level.
+- `tarot/data/rider-waite-es.epub`: the book, built from the same notes in the
+  source repo (480px profile, 7.8 MB). Served by the reader at `tarot/leer/`.
 
 Rebuild them from the source of truth (`/home/eve/repos/tarot-rider-waite`):
 
@@ -48,6 +50,20 @@ Run the RNG vectors and the page and data checks, all in one command:
 Full gate for the tarot page:
 
     python3 scripts/build_tarot.py --check && npm test
+
+### The reader
+
+`tarot/leer/` is an EPUB reader for the book above. It uses vendored
+[foliate-js](https://github.com/johnfactotum/foliate-js) (MIT, no build step, see
+`tarot/vendor/foliate/PROVENANCE.md`), keeps the reading position in localStorage
+and needs no backend. The spread page links to it.
+
+    node tools/verify-reader.mjs           # static: assets, EPUB, imports, wiring
+    node tools/verify-reader-browser.mjs   # browser: renders, paginates, restores
+
+The browser check expects a static server on `http://127.0.0.1:8765`
+(`python3 -m http.server 8765`) and playwright installed outside the repo. It is
+not part of `npm test` on purpose: the repo has no runtime dependencies.
 
 ## Where the text comes from
 

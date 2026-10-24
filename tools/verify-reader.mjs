@@ -84,7 +84,12 @@ assert.match(page, /<foliate-view[^>]*id="reader-view"/, "page has no foliate-vi
 assert.match(page, /<script type="module" src="\.\/reader\.js">/, "page does not load reader.js as a module");
 assert.match(page, /reader\.css/, "page does not load reader.css");
 assert.match(page, /href="\.\.\/index\.html"/, "page has no way back to the spread");
-ok("reader page has the viewer, the module script and the way back");
+assert.match(
+    page,
+    /window\.addEventListener\("error"[\s\S]{0,400}reader-status/,
+    "page has no visible error handler for a failed load",
+);
+ok("reader page has the viewer, the module script, the way back and an error slot");
 
 // 5. The script opens the committed EPUB and keeps the position.
 const script = read(SCRIPT);
@@ -94,12 +99,19 @@ assert.match(script, /goRight/, "reader.js has no forward navigation");
 assert.match(script, /goLeft/, "reader.js has no backward navigation");
 ok("reader.js opens the EPUB, navigates both ways and stores the CFI");
 
-// 6. The spread page links to the reader.
+// 6. iOS: spine documents are handed to the iframe as text/html. A blob typed
+//    application/xhtml+xml makes Safari download the file instead of showing it.
+assert.match(script, /application\/xhtml\+xml/, "reader.js has no XHTML type shim");
+assert.match(script, /event\.detail\.type = "text\/html"/, "the shim does not rewrite the blob type");
+assert.match(script, /documentsAsHTML\(view\.book\)/, "the shim is defined but never installed");
+ok("XHTML documents are served to the paginator as text/html");
+
+// 7. The spread page links to the reader.
 const spread = read("tarot/index.html");
 assert.match(spread, /href="\.\/leer\/index\.html"/, "tarot page does not link to the reader");
 ok("tarot page links to the reader");
 
-// 7. House style: no em dashes, no gold accent in the new files.
+// 8. House style: no em dashes in the new files.
 for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
     const text = read(file);
     assert.ok(!text.includes("\u2014"), `${file} contains an em dash`);

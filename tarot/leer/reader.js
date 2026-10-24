@@ -33,6 +33,21 @@ const store = {
     },
 };
 
+// Safari (WebKit) downloads a document instead of rendering it when the iframe
+// navigates to a blob typed application/xhtml+xml, which is what foliate hands
+// to the paginator for every spine item. Reported on iOS as "it downloads an
+// .xhtml file" with a blank reader. The bytes are the same; serving them as
+// text/html keeps Chromium and WebKit on the same path.
+const XHTML = "application/xhtml+xml";
+
+function documentsAsHTML(book) {
+    const target = book?.transformTarget;
+    if (!target) return;
+    target.addEventListener("data", (event) => {
+        if (event.detail?.type === XHTML) event.detail.type = "text/html";
+    });
+}
+
 // Narrow screens get tighter margins so the card images stay legible.
 function applyLayout() {
     const renderer = view.renderer;
@@ -58,6 +73,7 @@ function fail(error) {
 async function start() {
     try {
         await view.open(new URL(BOOK_PATH, import.meta.url).href);
+        documentsAsHTML(view.book);
         applyLayout();
         await view.init({ lastLocation: store.read() ?? undefined, showTextStart: true });
         status.hidden = true;

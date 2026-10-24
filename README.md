@@ -60,10 +60,13 @@ and needs no backend. The spread page links to it.
 
     node tools/verify-reader.mjs           # static: assets, EPUB, imports, wiring
     node tools/verify-reader-browser.mjs   # browser: renders, paginates, restores
+    python3 tools/verify-reader-webkit.py  # WebKit (Safari engine): opens, no download
 
 The browser check expects a static server on `http://127.0.0.1:8765`
 (`python3 -m http.server 8765`) and playwright installed outside the repo. It is
-not part of `npm test` on purpose: the repo has no runtime dependencies.
+not part of `npm test` on purpose: the repo has no runtime dependencies. The
+WebKit check needs `webkit2gtk4.1` and `python3-gobject`, and is the only one
+that exercises the engine Safari uses.
 
 ## Where the text comes from
 

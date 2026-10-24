@@ -34,6 +34,20 @@
         <p class="reader-status">El lector corre en el navegador: activá JavaScript para leer.</p>
     </noscript>
 
+    <script>
+        // If the module or any vendored file fails to load, say it in place
+        // instead of leaving the reader on "Abriendo el libro" forever.
+        window.addEventListener("error", function (event) {
+            var status = document.getElementById("reader-status");
+            if (!status) return;
+            var where = event.filename
+                ? " (" + event.filename.split("/").pop() + ":" + event.lineno + ")"
+                : "";
+            status.hidden = false;
+            status.textContent = "Error: " + (event.message || "el lector no cargó") + where;
+        });
+    </script>
+
     <script type="module" src="./reader.js"></script>
 </body>
 </html>

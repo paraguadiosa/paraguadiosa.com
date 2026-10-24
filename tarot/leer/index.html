@@ -48,6 +48,8 @@
         });
     </script>
 
-    <script type="module" src="./reader.js"></script>
+    <!-- The ?v is a cache buster: iOS Safari keeps ES modules alive across
+         reloads, and a stale reader.js hides every fix. Bump it on changes. -->
+    <script type="module" src="./reader.js?v=3"></script>
 </body>
 </html>

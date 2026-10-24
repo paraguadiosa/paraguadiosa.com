@@ -82,7 +82,7 @@ ok(`${importCount} relative imports inside the vendored files resolve`);
 // 4. The page wires the reader: custom element, module script, stylesheet.
 const page = read(PAGE);
 assert.match(page, /<foliate-view[^>]*id="reader-view"/, "page has no foliate-view element");
-assert.match(page, /<script type="module" src="\.\/reader\.js">/, "page does not load reader.js as a module");
+assert.match(page, /<script type="module" src="\.\/reader\.js\?v=\d+">/, "page does not load reader.js as a versioned module");
 assert.match(page, /reader\.css/, "page does not load reader.css");
 assert.match(page, /href="\.\.\/index\.html"/, "page has no way back to the spread");
 assert.match(

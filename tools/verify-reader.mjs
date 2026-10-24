@@ -28,6 +28,7 @@ const VENDOR = [
 ];
 
 const EPUB = "tarot/data/rider-waite-es.epub";
+const SIMPLE = "tarot/leer/simple.js";
 const PAGE = "tarot/leer/index.html";
 const SCRIPT = "tarot/leer/reader.js";
 
@@ -38,7 +39,7 @@ const ok = (label) => {
 };
 
 // 1. The reader page and its assets exist.
-for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", EPUB, ...VENDOR]) {
+for (const file of [PAGE, SCRIPT, SIMPLE, "tarot/leer/reader.css", EPUB, ...VENDOR]) {
     assert.ok(existsSync(rel(file)), `missing ${file}`);
     ok(`${file} exists`);
 }
@@ -81,10 +82,15 @@ ok(`${importCount} relative imports inside the vendored files resolve`);
 // 4. The page wires the reader: custom element, module script, stylesheet.
 const page = read(PAGE);
 assert.match(page, /<foliate-view[^>]*id="reader-view"/, "page has no foliate-view element");
-assert.match(page, /<script type="module" src="\.\/reader\.js">/, "page does not load reader.js as a module");
+assert.match(page, /<script type="module" src="\.\/reader\.js\?v=\d+">/, "page does not load reader.js as a versioned module");
 assert.match(page, /reader\.css/, "page does not load reader.css");
 assert.match(page, /href="\.\.\/index\.html"/, "page has no way back to the spread");
-ok("reader page has the viewer, the module script and the way back");
+assert.match(
+    page,
+    /window\.addEventListener\("error"[\s\S]{0,400}reader-status/,
+    "page has no visible error handler for a failed load",
+);
+ok("reader page has the viewer, the module script, the way back and an error slot");
 
 // 5. The script opens the committed EPUB and keeps the position.
 const script = read(SCRIPT);
@@ -94,13 +100,40 @@ assert.match(script, /goRight/, "reader.js has no forward navigation");
 assert.match(script, /goLeft/, "reader.js has no backward navigation");
 ok("reader.js opens the EPUB, navigates both ways and stores the CFI");
 
-// 6. The spread page links to the reader.
+// 6. iOS: spine documents are handed to the iframe as text/html. A blob typed
+//    application/xhtml+xml makes Safari download the file instead of showing it.
+assert.match(script, /application\/xhtml\+xml/, "reader.js has no XHTML type shim");
+assert.match(script, /event\.detail\.type = "text\/html"/, "the shim does not rewrite the blob type");
+assert.match(script, /documentsAsHTML\(view\.book\)/, "the shim is defined but never installed");
+ok("XHTML documents are served to the paginator as text/html");
+
+// 7. Navigation stays off until the book is open: foliate reads this.book in
+//    goLeft/goRight, and this.book only exists after open() resolves.
+assert.match(script, /let ready = false/, "reader.js has no readiness flag");
+assert.match(script, /if \(!ready\) return;/, "the navigation handlers do not check readiness");
+assert.match(script, /setControls\(true\)/, "the controls are never enabled after loading");
+assert.match(page, /id="reader-next"[^>]*disabled/, "the next button starts enabled in the markup");
+ok("navigation is disabled until the book is open");
+
+// 8. The iframe-free renderer exists and is reachable from the reader.
+const simple = read(SIMPLE);
+assert.match(simple, /from "\.\.\/vendor\/foliate\/vendor\/zip\.js"/, "simple.js does not reuse the vendored zip reader");
+assert.match(simple, /attachShadow\(\{ mode: "open" \}\)/, "simple.js does not isolate the book styles");
+assert.match(script, /await import\("\.\/simple\.js"\)/, "reader.js never loads the fallback");
+assert.match(script, /FALLBACK_MS/, "reader.js has no fallback timer");
+assert.match(script, /IS_IOS/, "reader.js does not detect iOS");
+assert.match(script, /FORCE_SIMPLE = PARAMS\.has\("simple"\) \|\| IS_IOS/, "iOS does not start on the iframe-free renderer");
+assert.match(script, /await import\("\.\.\/vendor\/foliate\/view\.js"\)/, "the engine is not loaded lazily");
+assert.match(read("tarot/leer/reader.css"), /\.reader-simple/, "no styles for the fallback surface");
+ok("the iframe-free renderer is wired as a fallback");
+
+// 9. The spread page links to the reader.
 const spread = read("tarot/index.html");
 assert.match(spread, /href="\.\/leer\/index\.html"/, "tarot page does not link to the reader");
 ok("tarot page links to the reader");
 
-// 7. House style: no em dashes, no gold accent in the new files.
-for (const file of [PAGE, SCRIPT, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
+// 10. House style: no em dashes in the new files.
+for (const file of [PAGE, SCRIPT, SIMPLE, "tarot/leer/reader.css", "tarot/vendor/foliate/PROVENANCE.md"]) {
     const text = read(file);
     assert.ok(!text.includes("\u2014"), `${file} contains an em dash`);
 }

@@ -118,5 +118,89 @@ assert.ok(mobileText.length > 100, `mobile renders ${mobileText.length} chars`);
 console.log(`ok 9 - mobile 390px: no overflow, controls at y=${Math.round(nextBox.y)}, ${mobileText.length} chars`);
 await mobile.screenshot({ path: "/tmp/tarot-reader-mobile.png" });
 
+// 8. A tap before the book is ready must not throw. On iOS this was "undefined
+//    is not an object (evaluating 'this.book.dir')": foliate reads this.book in
+//    goLeft/goRight, and this.book only exists after open() finishes.
+const slow = await browser.newPage({ viewport: { width: 390, height: 844 } });
+const earlyErrors = [];
+slow.on("pageerror", (error) => earlyErrors.push(String(error).slice(0, 120)));
+await slow.route("**/rider-waite-es.epub", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await route.continue();
+});
+await slow.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await slow.waitForTimeout(700);
+const disabledUpFront = await slow.locator("#reader-next").isDisabled();
+await slow.keyboard.press("ArrowRight");
+// A disabled button swallows clicks, so the guard in the handler is exercised by
+// clearing the attribute first: this is the stray-tap path without the markup help.
+await slow.evaluate(() => {
+    const button = document.getElementById("reader-next");
+    button.disabled = false;
+    button.click();
+});
+await slow.waitForTimeout(11000);
+const enabledAfter = await slow.locator("#reader-next").isEnabled();
+assert.ok(disabledUpFront, "the next button was enabled before the book opened");
+assert.ok(enabledAfter, "the controls never became usable after loading");
+assert.equal(earlyErrors.length, 0, `errors while the book was loading: ${earlyErrors.join(" | ")}`);
+console.log("ok 10 - taps before the book is open are ignored and leave no error");
+
+// 11. When the paginator's iframe never renders a document (what iOS does), the
+//     reader must fall back to the iframe-free renderer on its own. Simulated by
+//     breaking createObjectURL, which is how the paginator feeds its iframe.
+const blind = await browser.newPage({ viewport: { width: 390, height: 844 } });
+await blind.addInitScript(() => {
+    window.URL.createObjectURL = () => "blob:broken-on-purpose";
+});
+await blind.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await blind.waitForTimeout(14000);
+const fallbackState = await blind.evaluate(() => {
+    const host = document.querySelector(".reader-simple");
+    const text = host?.shadowRoot?.textContent ?? "";
+    return {
+        hasSimple: !!host,
+        chars: text.trim().length,
+        viewHidden: document.querySelector("foliate-view")?.hidden ?? null,
+        controlsEnabled: !document.querySelector("#reader-next")?.disabled,
+    };
+});
+assert.ok(fallbackState.hasSimple, "the iframe-free renderer never started");
+assert.ok(fallbackState.chars > 500, `the fallback rendered ${fallbackState.chars} chars`);
+assert.ok(fallbackState.controlsEnabled, "controls stayed disabled after the fallback");
+console.log(`ok 11 - falls back to the iframe-free renderer (${fallbackState.chars} chars, controls on)`);
+
+// 12. With an iPhone user agent the reader must go straight to the iframe-free
+//     renderer: no iframe, no download, no five second wait.
+const iphone = await browser.newPage({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
+        + "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.7 Mobile/15E148 Safari/604.1",
+});
+const started = Date.now();
+await iphone.goto(`${BASE}/tarot/leer/index.html`, { waitUntil: "domcontentloaded" });
+await iphone.waitForFunction(() => {
+    const host = document.querySelector(".reader-simple");
+    return host && (host.shadowRoot?.textContent ?? "").trim().length > 100;
+}, { timeout: 15000 });
+const iphoneElapsed = Date.now() - started;
+const iphoneState = await iphone.evaluate(() => {
+    const host = document.querySelector(".reader-simple");
+    const imgs = host ? Array.from(host.shadowRoot?.querySelectorAll("img") ?? []) : [];
+    return {
+        chars: (host?.shadowRoot?.textContent ?? "").trim().length,
+        images: imgs.length,
+        imagesLoaded: imgs.filter((i) => i.complete && i.naturalWidth > 0).length,
+        openedByPaginator: !!document.querySelector("foliate-view")?.book,
+    };
+});
+assert.ok(!iphoneState.openedByPaginator, "the paginator opened the book on an iPhone UA");
+assert.ok(iphoneState.chars > 100, `the iPhone path rendered ${iphoneState.chars} chars`);
+assert.ok(iphoneElapsed < 12000, `the iPhone path took ${iphoneElapsed} ms to show text`);
+console.log(`ok 12 - iPhone UA skips the iframe (${iphoneState.chars} chars, `
+    + `${iphoneState.imagesLoaded}/${iphoneState.images} images, ${iphoneElapsed} ms)`);
+
 await browser.close();
-console.log(`\n9 checks passed (cover section: ${cover.length} chars)`);
+console.log(`\n12 checks passed (cover section: ${cover.length} chars)`);

@@ -22,18 +22,34 @@
     </main>
 
     <footer class="reader-controls">
-        <button class="reader-step" id="reader-prev" type="button" aria-label="Pagina anterior">&#8249;</button>
+        <button class="reader-step" id="reader-prev" type="button" aria-label="Pagina anterior" disabled>&#8249;</button>
         <div class="reader-progress" role="progressbar" aria-label="Progreso de lectura"
              aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="reader-progress">
             <div class="reader-progress-fill" id="reader-progress-fill"></div>
         </div>
-        <button class="reader-step" id="reader-next" type="button" aria-label="Pagina siguiente">&#8250;</button>
+        <button class="reader-step" id="reader-next" type="button" aria-label="Pagina siguiente" disabled>&#8250;</button>
     </footer>
 
     <noscript>
         <p class="reader-status">El lector corre en el navegador: activá JavaScript para leer.</p>
     </noscript>
 
-    <script type="module" src="./reader.js"></script>
+    <script>
+        // If the module or any vendored file fails to load, say it in place
+        // instead of leaving the reader on "Abriendo el libro" forever.
+        window.addEventListener("error", function (event) {
+            var status = document.getElementById("reader-status");
+            if (!status) return;
+            var where = event.filename
+                ? " (" + event.filename.split("/").pop() + ":" + event.lineno + ")"
+                : "";
+            status.hidden = false;
+            status.textContent = "Error: " + (event.message || "el lector no cargó") + where;
+        });
+    </script>
+
+    <!-- The ?v is a cache buster: iOS Safari keeps ES modules alive across
+         reloads, and a stale reader.js hides every fix. Bump it on changes. -->
+    <script type="module" src="./reader.js?v=3"></script>
 </body>
 </html>

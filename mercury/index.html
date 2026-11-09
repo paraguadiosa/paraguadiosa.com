@@ -51,14 +51,6 @@
         </div>
 
         <div class="overlay">
-            <h2 class="mercury-section-title">Las que vienen</h2>
-            <ul class="mercury-list" id="mercury-list">
-                <li class="mercury-row mercury-row-placeholder">Cargando la tabla…</li>
-            </ul>
-            <button class="mercury-more" id="mercury-more" type="button" hidden>Ver las que ya pasaron</button>
-        </div>
-
-        <div class="overlay">
             <h2 class="mercury-section-title">El mapa</h2>
             <p class="mercury-hint">Cada barra es una retrogradación. La línea es hoy.</p>
             <div class="mercury-years" id="mercury-years"></div>
@@ -115,9 +107,28 @@
                 Control: las tres de 2025 salen el 15 de marzo, el 18 de julio y el 9 de noviembre, y las estaciones caen en 9°35′ de Aries y 26°50′ de Piscis, igual que las efemérides publicadas.
             </p>
             <p class="mercury-note" id="mercury-generated"></p>
+            <ul class="mercury-links">
+                <li><a href="https://ftp.imcce.fr/pub/ephem/planets/vsop87/" rel="noopener">VSOP87</a>,
+                    la serie planetaria que hace la cuenta, publicada por el IMCCE</li>
+                <li><a href="https://pymeeus.readthedocs.io/" rel="noopener">PyMeeus</a>,
+                    la implementación en Python</li>
+                <li><a href="https://eclipse.gsfc.nasa.gov/SEcat5/deltatpoly.html" rel="noopener">Delta T</a>,
+                    la diferencia entre el tiempo civil y el de las efemérides</li>
+                <li><a href="https://www.astro.com/swisseph/" rel="noopener">Swiss Ephemeris</a>,
+                    contra lo que se controlaron las estaciones</li>
+            </ul>
+
             <p class="mercury-note">
                 Esto es astronomía, no consejo. Si te sale mal algo, no fue Mercurio.
             </p>
+        </div>
+
+        <div class="overlay">
+            <h2 class="mercury-section-title">Las que vienen</h2>
+            <ul class="mercury-list" id="mercury-list">
+                <li class="mercury-row mercury-row-placeholder">Cargando la tabla…</li>
+            </ul>
+            <button class="mercury-more" id="mercury-more" type="button" hidden>Ver las que ya pasaron</button>
         </div>
 
         <footer class="site-footer">

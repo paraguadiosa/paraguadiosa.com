@@ -14,6 +14,11 @@ const SIGNS_ES = [
     "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis",
 ];
 
+const MONTHS_SHORT = [
+    "ene", "feb", "mar", "abr", "may", "jun",
+    "jul", "ago", "sep", "oct", "nov", "dic",
+];
+
 const SIGNS_SHORT = [
     "Ari", "Tau", "Gém", "Cán", "Leo", "Vir",
     "Lib", "Esc", "Sag", "Cap", "Acu", "Pis",
@@ -318,6 +323,15 @@ function renderMap(windows, now) {
         const track = document.createElement("div");
         track.className = "mercury-year-track";
 
+        // One line per month boundary, so a bar can be read against the calendar
+        // instead of guessed.
+        for (let month = 1; month < 12; month += 1) {
+            const line = document.createElement("span");
+            line.className = "mercury-year-month";
+            line.style.left = `${((month / 12) * 100).toFixed(3)}%`;
+            track.append(line);
+        }
+
         windows.forEach((window) => {
             if (window.shadowEnd < yearStart || window.shadowStart > yearEnd) return;
 
@@ -353,6 +367,20 @@ function renderMap(windows, now) {
         row.append(label, track);
         yearsNode.append(row);
     }
+
+    // Month names under the tracks, one per band, in the same grid.
+    const monthsRow = document.createElement("div");
+    monthsRow.className = "mercury-year is-months";
+    const gutter = document.createElement("span");
+    const months = document.createElement("div");
+    months.className = "mercury-months";
+    MONTHS_SHORT.forEach((name) => {
+        const cell = document.createElement("span");
+        cell.textContent = name;
+        months.append(cell);
+    });
+    monthsRow.append(gutter, months);
+    yearsNode.append(monthsRow);
 }
 
 // ---------- any date: the answer ----------

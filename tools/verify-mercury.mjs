@@ -96,6 +96,26 @@ async function inspect(width, height, label) {
     assert.equal(/undefined|NaN|null/.test(measured.bodyText), false,
         `${label}: the page leaks a missing value: ${measured.bodyText.match(/[^.]*(undefined|NaN|null)[^.]*/)?.[0]}`);
 
+    // The month gridlines and their labels have to line up with the bands.
+    const mapAlign = await page.evaluate(() => {
+        const track = document.querySelector(".mercury-year-track");
+        const box = track.getBoundingClientRect();
+        const centers = [...document.querySelectorAll(".mercury-months span")].map((node) => {
+            const rect = node.getBoundingClientRect();
+            return rect.left + rect.width / 2;
+        });
+        const worst = Math.max(...centers.map((center, index) =>
+            Math.abs(center - (box.left + ((index + 0.5) * box.width) / 12))));
+        return {
+            labels: centers.length,
+            lines: document.querySelectorAll(".mercury-year-month").length,
+            worst,
+        };
+    });
+    assert.equal(mapAlign.labels, 12, `${label}: ${mapAlign.labels} month labels`);
+    assert.equal(mapAlign.lines, 33, `${label}: ${mapAlign.lines} month lines for three years`);
+    assert.ok(mapAlign.worst < 2, `${label}: month labels are off by ${mapAlign.worst.toFixed(1)}px`);
+
     if (measured.state === "retro") {
         assert.equal(measured.meterHidden, false, `${label}: the meter is hidden while retrograde`);
         assert.equal(measured.meterWidth > 0, true, `${label}: the meter has no filled width`);

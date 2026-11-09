@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercurio retrógrado | Paraguadiosa</title>
+    <meta name="description" content="Cuándo está retrógrado Mercurio, cuándo vuelve, y cuánto falta. Calculado con la efeméride real.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="./mercury.css">
+    <script src="../theme.js"></script>
+</head>
+
+<body class="mercury">
+    <div class="container">
+        <div class="overlay">
+            <header>
+                <div class="nav-header">
+                    <div class="site-brand">
+                        <h2>Paraguadiosa</h2>
+                        <span class="page-tagline">Mercurio · cuándo sí, cuándo no</span>
+                    </div>
+                    <nav class="nav-links">
+                        <a href="../index.html" class="active">Personal</a>
+                        <a href="https://evecoronel.com">Professional</a>
+                        <button class="theme-toggle" type="button" hidden>Light</button>
+                    </nav>
+                </div>
+            </header>
+
+            <h1 class="mercury-title">Mercurio retrógrado</h1>
+
+            <p class="mercury-lede">
+                Cuándo arranca, cuándo termina y cuánto falta. Sale de la efeméride
+                de verdad, no de una lista copiada: el navegador solo compara fechas.
+            </p>
+
+            <section id="mercury-status" class="mercury-status" data-state="direct" aria-live="polite">
+                <p class="mercury-kicker">Ahora</p>
+                <p class="mercury-state" id="mercury-state">Calculando</p>
+                <p class="mercury-when" id="mercury-when">Un segundo, que estoy leyendo el cielo.</p>
+                <div class="mercury-meter" id="mercury-meter" hidden>
+                    <div class="mercury-meter-fill" id="mercury-meter-fill"></div>
+                </div>
+                <p class="mercury-degrees" id="mercury-degrees"></p>
+            </section>
+
+            <noscript>
+                <p class="mercury-note">
+                    Sin JavaScript no hay cuenta regresiva: la tabla de abajo es la misma
+                    información, en crudo.
+                </p>
+            </noscript>
+        </div>
+
+        <div class="overlay">
+            <h2 class="mercury-section-title">Las que vienen</h2>
+            <p class="mercury-hint">Fechas en tu hora, con la sombra: los días de los bordes donde ya se siente.</p>
+            <ul class="mercury-list" id="mercury-list">
+                <li class="mercury-row mercury-row-placeholder">Cargando la tabla…</li>
+            </ul>
+            <button class="mercury-more" id="mercury-more" type="button" hidden>Ver las que ya pasaron</button>
+        </div>
+
+        <div class="overlay">
+            <h2 class="mercury-section-title">El mapa</h2>
+            <p class="mercury-hint">Cada barra es una retrogradación. La línea es hoy.</p>
+            <div class="mercury-years" id="mercury-years"></div>
+        </div>
+
+        <div class="overlay">
+            <h2 class="mercury-section-title">Cómo se calcula</h2>
+            <p class="mercury-method">
+                Longitud eclíptica geocéntrica aparente de Mercurio (PyMeeus, serie VSOP87
+                con tiempo-luz y aberración), muestreada cada medio día entre
+                <span id="mercury-range">2020 y 2040</span>.
+                La retrogradación abre cuando la velocidad pasa de positiva a negativa y
+                cierra cuando vuelve: las dos estaciones se refinan por bisección hasta el minuto.
+            </p>
+            <p class="mercury-method-mercury">
+                Control: las tres de 2025 salen el 15 de marzo, el 18 de julio y el 9 de
+                noviembre, y las estaciones caen en 9°35′ de Aries y 26°50′ de Piscis;
+                igual que las efemérides publicadas.
+            </p>
+            <p class="mercury-note" id="mercury-generated"></p>
+            <p class="mercury-note">
+                Esto es astronomía, no consejo. Si te sale mal el contrato, no fue Mercurio.
+            </p>
+        </div>
+
+        <footer class="site-footer">
+            <span>paraguadiosa</span>
+            <span>&middot;</span>
+            <a href="../index.html">volver</a>
+        </footer>
+    </div>
+
+    <script type="module" src="./mercury.js"></script>
+</body>
+</html>

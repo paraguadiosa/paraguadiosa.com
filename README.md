@@ -93,3 +93,29 @@ commit ships a fresh stamp:
 
 Dark is the default, lavender is the personal accent, light mode inverts the surface
 tokens. The toggle stores the choice in localStorage.
+
+## Mercury retrogrades
+
+`mercury/` answers one question: is Mercury retrograde now, and when does the next
+window open. It is a static page: the browser compares the current date against a
+table and renders the countdown, no model, no backend, no third party API.
+
+The table is generated here and committed:
+
+- `mercury/data/retrograde.json`: every retrograde window from 2020 to 2040, with
+  both stations, the sign and degree of each, and the shadow period.
+
+Rebuild it when the range has to grow:
+
+    python3 -m venv ~/.venvs/mercury-build
+    ~/.venvs/mercury-build/bin/pip install -r requirements-mercury.txt
+    python3 scripts/build_mercury.py           # rewrite the data file
+    python3 scripts/build_mercury.py --check   # fail when the file is stale
+
+The method is the apparent geocentric ecliptic longitude of Mercury (PyMeeus 0.5.12,
+VSOP87 with light time and aberration), sampled every half day; a window opens where
+the daily rate turns negative and closes at the next turn, both stations refined by
+bisection. The gate vector is in `tests/mercury-data.test.mjs`: the three 2025 windows
+and their station degrees, against the published ephemerides.
+
+A full rebuild takes about four minutes.

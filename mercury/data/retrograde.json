@@ -1,0 +1,998 @@
+{
+ "generated": "2026-11-09T01:58:57Z",
+ "first_year": 2020,
+ "last_year": 2040,
+ "method": "apparent geocentric ecliptic longitude, PyMeeus 0.5.12 (VSOP87)",
+ "windows": [
+  {
+   "start": "2020-02-17T00:52:55Z",
+   "end": "2020-03-10T03:48:22Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 12.89
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 28.21
+   },
+   "days": 22.12,
+   "shadow_start": "2020-02-02T12:52:55Z",
+   "shadow_end": "2020-03-30T02:29:20Z"
+  },
+  {
+   "start": "2020-06-18T04:59:07Z",
+   "end": "2020-07-12T08:25:45Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 14.76
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 5.49
+   },
+   "days": 24.14,
+   "shadow_start": "2020-06-01T22:59:07Z",
+   "shadow_end": "2020-07-26T17:06:42Z"
+  },
+  {
+   "start": "2020-10-14T01:02:41Z",
+   "end": "2020-11-03T17:48:54Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 11.67
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 25.89
+   },
+   "days": 20.7,
+   "shadow_start": "2020-09-24T01:02:41Z",
+   "shadow_end": "2020-11-19T20:58:54Z"
+  },
+  {
+   "start": "2021-01-30T15:50:08Z",
+   "end": "2021-02-21T00:51:42Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 26.49
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 11.02
+   },
+   "days": 21.38,
+   "shadow_start": "2021-01-15T03:50:08Z",
+   "shadow_end": "2021-03-13T05:05:38Z"
+  },
+  {
+   "start": "2021-05-29T22:34:31Z",
+   "end": "2021-06-22T21:59:45Z",
+   "retrograde": {
+    "sign": "Gemini",
+    "degree": 24.72
+   },
+   "direct": {
+    "sign": "Gemini",
+    "degree": 16.13
+   },
+   "days": 23.98,
+   "shadow_start": "2021-05-15T04:34:31Z",
+   "shadow_end": "2021-07-07T17:44:32Z"
+  },
+  {
+   "start": "2021-09-27T05:08:10Z",
+   "end": "2021-10-18T15:15:49Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 25.47
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 10.12
+   },
+   "days": 21.42,
+   "shadow_start": "2021-09-06T23:08:10Z",
+   "shadow_end": "2021-11-03T01:02:55Z"
+  },
+  {
+   "start": "2022-01-14T11:39:30Z",
+   "end": "2022-02-04T04:12:35Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 10.33
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 24.37
+   },
+   "days": 20.69,
+   "shadow_start": "2021-12-29T05:39:30Z",
+   "shadow_end": "2022-02-24T05:56:02Z"
+  },
+  {
+   "start": "2022-05-10T11:47:59Z",
+   "end": "2022-06-03T08:00:15Z",
+   "retrograde": {
+    "sign": "Gemini",
+    "degree": 4.86
+   },
+   "direct": {
+    "sign": "Taurus",
+    "degree": 26.09
+   },
+   "days": 23.84,
+   "shadow_start": "2022-04-26T11:47:59Z",
+   "shadow_end": "2022-06-18T22:44:25Z"
+  },
+  {
+   "start": "2022-09-10T03:36:25Z",
+   "end": "2022-10-02T09:06:12Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 8.92
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 24.2
+   },
+   "days": 22.23,
+   "shadow_start": "2022-08-20T15:36:25Z",
+   "shadow_end": "2022-10-17T04:34:59Z"
+  },
+  {
+   "start": "2022-12-29T09:29:31Z",
+   "end": "2023-01-18T13:11:31Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 24.35
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 8.13
+   },
+   "days": 20.15,
+   "shadow_start": "2022-12-12T15:29:31Z",
+   "shadow_end": "2023-02-07T05:16:41Z"
+  },
+  {
+   "start": "2023-04-21T08:35:15Z",
+   "end": "2023-05-15T03:16:47Z",
+   "retrograde": {
+    "sign": "Taurus",
+    "degree": 15.62
+   },
+   "direct": {
+    "sign": "Taurus",
+    "degree": 5.85
+   },
+   "days": 23.78,
+   "shadow_start": "2023-04-07T08:35:15Z",
+   "shadow_end": "2023-05-31T19:37:03Z"
+  },
+  {
+   "start": "2023-08-23T19:58:14Z",
+   "end": "2023-09-15T20:19:52Z",
+   "retrograde": {
+    "sign": "Virgo",
+    "degree": 21.85
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 8.0
+   },
+   "days": 23.02,
+   "shadow_start": "2023-08-03T19:58:14Z",
+   "shadow_end": "2023-09-30T05:11:42Z"
+  },
+  {
+   "start": "2023-12-13T07:06:34Z",
+   "end": "2024-01-02T03:07:09Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 8.49
+   },
+   "direct": {
+    "sign": "Sagittarius",
+    "degree": 22.18
+   },
+   "days": 19.83,
+   "shadow_start": "2023-11-25T07:06:34Z",
+   "shadow_end": "2024-01-21T03:58:54Z"
+  },
+  {
+   "start": "2024-04-01T22:14:33Z",
+   "end": "2024-04-25T12:54:11Z",
+   "retrograde": {
+    "sign": "Aries",
+    "degree": 27.22
+   },
+   "direct": {
+    "sign": "Aries",
+    "degree": 15.98
+   },
+   "days": 23.61,
+   "shadow_start": "2024-03-18T22:14:33Z",
+   "shadow_end": "2024-05-13T08:59:29Z"
+  },
+  {
+   "start": "2024-08-05T04:55:18Z",
+   "end": "2024-08-28T21:12:41Z",
+   "retrograde": {
+    "sign": "Virgo",
+    "degree": 4.1
+   },
+   "direct": {
+    "sign": "Leo",
+    "degree": 21.41
+   },
+   "days": 23.68,
+   "shadow_start": "2024-07-16T22:55:18Z",
+   "shadow_end": "2024-09-11T23:48:11Z"
+  },
+  {
+   "start": "2024-11-26T02:39:46Z",
+   "end": "2024-12-15T20:55:51Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 22.67
+   },
+   "direct": {
+    "sign": "Sagittarius",
+    "degree": 6.39
+   },
+   "days": 19.76,
+   "shadow_start": "2024-11-07T08:39:46Z",
+   "shadow_end": "2025-01-03T03:09:58Z"
+  },
+  {
+   "start": "2025-03-15T06:45:44Z",
+   "end": "2025-04-07T11:07:36Z",
+   "retrograde": {
+    "sign": "Aries",
+    "degree": 9.59
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 26.82
+   },
+   "days": 23.18,
+   "shadow_start": "2025-03-01T12:45:44Z",
+   "shadow_end": "2025-04-26T08:25:49Z"
+  },
+  {
+   "start": "2025-07-18T04:44:41Z",
+   "end": "2025-08-11T07:28:45Z",
+   "retrograde": {
+    "sign": "Leo",
+    "degree": 15.57
+   },
+   "direct": {
+    "sign": "Leo",
+    "degree": 4.25
+   },
+   "days": 24.11,
+   "shadow_start": "2025-06-30T10:44:41Z",
+   "shadow_end": "2025-08-25T08:32:54Z"
+  },
+  {
+   "start": "2025-11-09T18:59:07Z",
+   "end": "2025-11-29T17:37:54Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 6.86
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 20.7
+   },
+   "days": 19.94,
+   "shadow_start": "2025-10-21T06:59:07Z",
+   "shadow_end": "2025-12-17T03:50:27Z"
+  },
+  {
+   "start": "2026-02-26T06:47:20Z",
+   "end": "2026-03-20T19:32:43Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 22.56
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 8.49
+   },
+   "days": 22.53,
+   "shadow_start": "2026-02-11T18:47:20Z",
+   "shadow_end": "2026-04-09T11:39:33Z"
+  },
+  {
+   "start": "2026-06-29T17:35:59Z",
+   "end": "2026-07-23T22:57:02Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 26.26
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 16.31
+   },
+   "days": 24.22,
+   "shadow_start": "2026-06-13T05:35:59Z",
+   "shadow_end": "2026-08-07T03:34:07Z"
+  },
+  {
+   "start": "2026-10-24T07:10:16Z",
+   "end": "2026-11-13T15:53:10Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 20.98
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 5.03
+   },
+   "days": 20.36,
+   "shadow_start": "2026-10-04T13:10:16Z",
+   "shadow_end": "2026-11-30T06:11:17Z"
+  },
+  {
+   "start": "2027-02-09T17:34:47Z",
+   "end": "2027-03-03T12:31:47Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 5.98
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 20.92
+   },
+   "days": 21.79,
+   "shadow_start": "2027-01-25T23:34:47Z",
+   "shadow_end": "2027-03-23T14:54:41Z"
+  },
+  {
+   "start": "2027-06-10T18:15:34Z",
+   "end": "2027-07-04T19:38:55Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 6.36
+   },
+   "direct": {
+    "sign": "Gemini",
+    "degree": 27.47
+   },
+   "days": 24.06,
+   "shadow_start": "2027-05-26T00:15:34Z",
+   "shadow_end": "2027-07-19T08:40:21Z"
+  },
+  {
+   "start": "2027-10-07T14:34:51Z",
+   "end": "2027-10-28T14:09:44Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 4.92
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 19.31
+   },
+   "days": 20.98,
+   "shadow_start": "2027-09-17T02:34:51Z",
+   "shadow_end": "2027-11-13T09:49:37Z"
+  },
+  {
+   "start": "2028-01-24T11:00:40Z",
+   "end": "2028-02-14T12:37:28Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 19.7
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 3.98
+   },
+   "days": 21.07,
+   "shadow_start": "2028-01-08T23:00:40Z",
+   "shadow_end": "2028-03-05T16:39:34Z"
+  },
+  {
+   "start": "2028-05-21T08:43:29Z",
+   "end": "2028-06-14T06:05:49Z",
+   "retrograde": {
+    "sign": "Gemini",
+    "degree": 16.31
+   },
+   "direct": {
+    "sign": "Gemini",
+    "degree": 7.76
+   },
+   "days": 23.89,
+   "shadow_start": "2028-05-06T14:43:29Z",
+   "shadow_end": "2028-06-29T08:56:36Z"
+  },
+  {
+   "start": "2028-09-19T16:31:56Z",
+   "end": "2028-10-11T10:26:24Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 18.59
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 3.48
+   },
+   "days": 21.75,
+   "shadow_start": "2028-08-30T10:31:56Z",
+   "shadow_end": "2028-10-26T13:45:15Z"
+  },
+  {
+   "start": "2029-01-07T07:54:24Z",
+   "end": "2029-01-27T18:39:50Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 3.63
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 17.54
+   },
+   "days": 20.45,
+   "shadow_start": "2028-12-22T01:54:24Z",
+   "shadow_end": "2029-02-16T16:47:47Z"
+  },
+  {
+   "start": "2029-05-01T23:05:56Z",
+   "end": "2029-05-25T19:20:48Z",
+   "retrograde": {
+    "sign": "Taurus",
+    "degree": 26.67
+   },
+   "direct": {
+    "sign": "Taurus",
+    "degree": 17.56
+   },
+   "days": 23.84,
+   "shadow_start": "2029-04-17T17:05:56Z",
+   "shadow_end": "2029-06-10T19:54:32Z"
+  },
+  {
+   "start": "2029-09-02T12:16:35Z",
+   "end": "2029-09-25T02:00:32Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 1.83
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 17.44
+   },
+   "days": 22.57,
+   "shadow_start": "2029-08-13T12:16:35Z",
+   "shadow_end": "2029-10-09T16:16:27Z"
+  },
+  {
+   "start": "2029-12-22T05:48:10Z",
+   "end": "2030-01-11T05:45:05Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 17.7
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 1.43
+   },
+   "days": 20.0,
+   "shadow_start": "2029-12-04T17:48:10Z",
+   "shadow_end": "2030-01-30T15:49:14Z"
+  },
+  {
+   "start": "2030-04-13T02:33:38Z",
+   "end": "2030-05-06T20:14:56Z",
+   "retrograde": {
+    "sign": "Taurus",
+    "degree": 7.8
+   },
+   "direct": {
+    "sign": "Aries",
+    "degree": 27.43
+   },
+   "days": 23.74,
+   "shadow_start": "2030-03-30T02:33:38Z",
+   "shadow_end": "2030-05-24T00:37:27Z"
+  },
+  {
+   "start": "2030-08-16T01:19:09Z",
+   "end": "2030-09-08T09:26:17Z",
+   "retrograde": {
+    "sign": "Virgo",
+    "degree": 14.49
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 1.11
+   },
+   "days": 23.34,
+   "shadow_start": "2030-07-27T07:19:09Z",
+   "shadow_end": "2030-09-22T14:53:49Z"
+  },
+  {
+   "start": "2030-12-06T02:44:49Z",
+   "end": "2030-12-25T21:13:58Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 1.86
+   },
+   "direct": {
+    "sign": "Sagittarius",
+    "degree": 15.55
+   },
+   "days": 19.77,
+   "shadow_start": "2030-11-17T20:44:49Z",
+   "shadow_end": "2031-01-13T14:40:41Z"
+  },
+  {
+   "start": "2031-03-26T00:43:31Z",
+   "end": "2031-04-18T11:15:45Z",
+   "retrograde": {
+    "sign": "Aries",
+    "degree": 19.74
+   },
+   "direct": {
+    "sign": "Aries",
+    "degree": 7.84
+   },
+   "days": 23.44,
+   "shadow_start": "2031-03-12T00:43:31Z",
+   "shadow_end": "2031-05-06T19:04:49Z"
+  },
+  {
+   "start": "2031-07-29T06:46:57Z",
+   "end": "2031-08-22T04:27:07Z",
+   "retrograde": {
+    "sign": "Leo",
+    "degree": 26.42
+   },
+   "direct": {
+    "sign": "Leo",
+    "degree": 14.29
+   },
+   "days": 23.9,
+   "shadow_start": "2031-07-10T12:46:57Z",
+   "shadow_end": "2031-09-05T05:56:19Z"
+  },
+  {
+   "start": "2031-11-19T21:12:57Z",
+   "end": "2031-12-09T16:22:56Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 16.05
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 29.81
+   },
+   "days": 19.8,
+   "shadow_start": "2031-11-01T03:12:57Z",
+   "shadow_end": "2031-12-27T14:21:29Z"
+  },
+  {
+   "start": "2032-03-07T16:21:11Z",
+   "end": "2032-03-30T14:29:02Z",
+   "retrograde": {
+    "sign": "Aries",
+    "degree": 2.39
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 19.03
+   },
+   "days": 22.92,
+   "shadow_start": "2032-02-22T10:21:11Z",
+   "shadow_end": "2032-04-18T20:35:34Z"
+  },
+  {
+   "start": "2032-07-10T02:33:22Z",
+   "end": "2032-08-03T06:51:07Z",
+   "retrograde": {
+    "sign": "Leo",
+    "degree": 7.54
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 26.82
+   },
+   "days": 24.18,
+   "shadow_start": "2032-06-22T20:33:22Z",
+   "shadow_end": "2032-08-17T09:08:12Z"
+  },
+  {
+   "start": "2032-11-02T11:54:13Z",
+   "end": "2032-11-22T14:00:13Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 0.21
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 14.13
+   },
+   "days": 20.09,
+   "shadow_start": "2032-10-13T17:54:13Z",
+   "shadow_end": "2032-12-09T15:35:10Z"
+  },
+  {
+   "start": "2033-02-18T21:19:07Z",
+   "end": "2033-03-13T02:57:11Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 15.56
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 1.03
+   },
+   "days": 22.23,
+   "shadow_start": "2033-02-04T03:19:07Z",
+   "shadow_end": "2033-04-02T00:07:22Z"
+  },
+  {
+   "start": "2033-06-21T10:05:31Z",
+   "end": "2033-07-15T14:18:52Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 17.94
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 8.51
+   },
+   "days": 24.18,
+   "shadow_start": "2033-06-05T10:05:31Z",
+   "shadow_end": "2033-07-29T21:40:46Z"
+  },
+  {
+   "start": "2033-10-16T22:00:51Z",
+   "end": "2033-11-06T12:38:55Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 14.27
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 28.45
+   },
+   "days": 20.61,
+   "shadow_start": "2033-09-26T16:00:51Z",
+   "shadow_end": "2033-11-22T18:35:50Z"
+  },
+  {
+   "start": "2034-02-02T11:20:27Z",
+   "end": "2034-02-23T22:54:01Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 29.11
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 13.74
+   },
+   "days": 21.48,
+   "shadow_start": "2034-01-18T11:20:27Z",
+   "shadow_end": "2034-03-16T02:58:44Z"
+  },
+  {
+   "start": "2034-06-02T05:24:03Z",
+   "end": "2034-06-26T05:23:16Z",
+   "retrograde": {
+    "sign": "Gemini",
+    "degree": 27.92
+   },
+   "direct": {
+    "sign": "Gemini",
+    "degree": 19.28
+   },
+   "days": 24.0,
+   "shadow_start": "2034-05-17T23:24:03Z",
+   "shadow_end": "2034-07-10T23:09:56Z"
+  },
+  {
+   "start": "2034-09-30T02:57:53Z",
+   "end": "2034-10-21T10:21:23Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 28.11
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 12.69
+   },
+   "days": 21.31,
+   "shadow_start": "2034-09-09T14:57:53Z",
+   "shadow_end": "2034-11-05T22:38:31Z"
+  },
+  {
+   "start": "2035-01-17T06:42:26Z",
+   "end": "2035-02-07T01:24:23Z",
+   "retrograde": {
+    "sign": "Aquarius",
+    "degree": 12.93
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 27.03
+   },
+   "days": 20.78,
+   "shadow_start": "2035-01-01T12:42:26Z",
+   "shadow_end": "2035-02-27T04:05:03Z"
+  },
+  {
+   "start": "2035-05-13T18:40:53Z",
+   "end": "2035-06-06T14:52:37Z",
+   "retrograde": {
+    "sign": "Gemini",
+    "degree": 7.99
+   },
+   "direct": {
+    "sign": "Taurus",
+    "degree": 29.3
+   },
+   "days": 23.84,
+   "shadow_start": "2035-04-29T06:40:53Z",
+   "shadow_end": "2035-06-22T02:26:39Z"
+  },
+  {
+   "start": "2035-09-13T02:26:35Z",
+   "end": "2035-10-05T04:51:58Z",
+   "retrograde": {
+    "sign": "Libra",
+    "degree": 11.62
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 26.78
+   },
+   "days": 22.1,
+   "shadow_start": "2035-08-23T14:26:35Z",
+   "shadow_end": "2035-10-20T02:19:36Z"
+  },
+  {
+   "start": "2036-01-01T04:22:15Z",
+   "end": "2036-01-21T09:41:35Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 26.93
+   },
+   "direct": {
+    "sign": "Capricorn",
+    "degree": 10.73
+   },
+   "days": 20.22,
+   "shadow_start": "2035-12-15T04:22:15Z",
+   "shadow_end": "2036-02-10T03:31:06Z"
+  },
+  {
+   "start": "2036-04-23T13:18:21Z",
+   "end": "2036-05-17T08:29:21Z",
+   "retrograde": {
+    "sign": "Taurus",
+    "degree": 18.63
+   },
+   "direct": {
+    "sign": "Taurus",
+    "degree": 9.05
+   },
+   "days": 23.8,
+   "shadow_start": "2036-04-09T19:18:21Z",
+   "shadow_end": "2036-06-02T20:32:49Z"
+  },
+  {
+   "start": "2036-08-25T19:46:32Z",
+   "end": "2036-09-17T17:19:12Z",
+   "retrograde": {
+    "sign": "Virgo",
+    "degree": 24.63
+   },
+   "direct": {
+    "sign": "Virgo",
+    "degree": 10.64
+   },
+   "days": 22.9,
+   "shadow_start": "2036-08-06T01:46:32Z",
+   "shadow_end": "2036-10-02T03:29:01Z"
+  },
+  {
+   "start": "2036-12-15T02:03:42Z",
+   "end": "2037-01-03T22:57:02Z",
+   "retrograde": {
+    "sign": "Capricorn",
+    "degree": 11.04
+   },
+   "direct": {
+    "sign": "Sagittarius",
+    "degree": 24.74
+   },
+   "days": 19.87,
+   "shadow_start": "2036-11-27T14:03:42Z",
+   "shadow_end": "2037-01-23T02:14:15Z"
+  },
+  {
+   "start": "2037-04-05T00:05:39Z",
+   "end": "2037-04-28T15:55:58Z",
+   "retrograde": {
+    "sign": "Taurus",
+    "degree": 0.1
+   },
+   "direct": {
+    "sign": "Aries",
+    "degree": 19.09
+   },
+   "days": 23.66,
+   "shadow_start": "2037-03-22T00:05:39Z",
+   "shadow_end": "2037-05-16T07:53:28Z"
+  },
+  {
+   "start": "2037-08-08T05:44:56Z",
+   "end": "2037-08-31T20:05:56Z",
+   "retrograde": {
+    "sign": "Virgo",
+    "degree": 6.99
+   },
+   "direct": {
+    "sign": "Leo",
+    "degree": 24.11
+   },
+   "days": 23.6,
+   "shadow_start": "2037-07-20T05:44:56Z",
+   "shadow_end": "2037-09-14T23:11:23Z"
+  },
+  {
+   "start": "2037-11-28T21:58:13Z",
+   "end": "2037-12-18T16:11:52Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 25.22
+   },
+   "direct": {
+    "sign": "Sagittarius",
+    "degree": 8.94
+   },
+   "days": 19.76,
+   "shadow_start": "2037-11-10T15:58:13Z",
+   "shadow_end": "2038-01-06T01:21:54Z"
+  },
+  {
+   "start": "2038-03-18T06:07:05Z",
+   "end": "2038-04-10T12:11:56Z",
+   "retrograde": {
+    "sign": "Aries",
+    "degree": 12.37
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 29.82
+   },
+   "days": 23.25,
+   "shadow_start": "2038-03-04T12:07:05Z",
+   "shadow_end": "2038-04-29T06:17:09Z"
+  },
+  {
+   "start": "2038-07-21T06:58:15Z",
+   "end": "2038-08-14T08:48:04Z",
+   "retrograde": {
+    "sign": "Leo",
+    "degree": 18.58
+   },
+   "direct": {
+    "sign": "Leo",
+    "degree": 7.05
+   },
+   "days": 24.08,
+   "shadow_start": "2038-07-03T00:58:15Z",
+   "shadow_end": "2038-08-28T09:47:04Z"
+  },
+  {
+   "start": "2038-11-12T14:53:40Z",
+   "end": "2038-12-02T12:29:31Z",
+   "retrograde": {
+    "sign": "Sagittarius",
+    "degree": 9.41
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 23.23
+   },
+   "days": 19.9,
+   "shadow_start": "2038-10-24T14:53:40Z",
+   "shadow_end": "2038-12-20T01:49:18Z"
+  },
+  {
+   "start": "2039-03-01T04:11:10Z",
+   "end": "2039-03-23T19:19:35Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 25.26
+   },
+   "direct": {
+    "sign": "Pisces",
+    "degree": 11.36
+   },
+   "days": 22.63,
+   "shadow_start": "2039-02-14T16:11:10Z",
+   "shadow_end": "2039-04-12T09:11:18Z"
+  },
+  {
+   "start": "2039-07-02T21:47:35Z",
+   "end": "2039-07-27T03:05:46Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 29.38
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 19.24
+   },
+   "days": 24.22,
+   "shadow_start": "2039-06-16T03:47:35Z",
+   "shadow_end": "2039-08-10T07:03:31Z"
+  },
+  {
+   "start": "2039-10-27T03:51:53Z",
+   "end": "2039-11-16T10:37:24Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 23.55
+   },
+   "direct": {
+    "sign": "Scorpio",
+    "degree": 7.56
+   },
+   "days": 20.28,
+   "shadow_start": "2039-10-07T03:51:53Z",
+   "shadow_end": "2039-12-03T03:53:33Z"
+  },
+  {
+   "start": "2040-02-12T13:37:23Z",
+   "end": "2040-03-05T11:19:29Z",
+   "retrograde": {
+    "sign": "Pisces",
+    "degree": 8.62
+   },
+   "direct": {
+    "sign": "Aquarius",
+    "degree": 23.69
+   },
+   "days": 21.9,
+   "shadow_start": "2040-01-28T13:37:23Z",
+   "shadow_end": "2040-03-25T12:35:48Z"
+  },
+  {
+   "start": "2040-06-13T00:19:34Z",
+   "end": "2040-07-07T02:20:32Z",
+   "retrograde": {
+    "sign": "Cancer",
+    "degree": 9.54
+   },
+   "direct": {
+    "sign": "Cancer",
+    "degree": 0.52
+   },
+   "days": 24.08,
+   "shadow_start": "2040-05-28T12:19:34Z",
+   "shadow_end": "2040-07-21T13:46:58Z"
+  },
+  {
+   "start": "2040-10-09T12:02:56Z",
+   "end": "2040-10-30T09:05:05Z",
+   "retrograde": {
+    "sign": "Scorpio",
+    "degree": 7.52
+   },
+   "direct": {
+    "sign": "Libra",
+    "degree": 21.85
+   },
+   "days": 20.88,
+   "shadow_start": "2040-09-19T00:02:56Z",
+   "shadow_end": "2040-11-15T07:19:35Z"
+  }
+ ]
+}

@@ -147,6 +147,10 @@ test("the front page links to the tarot", () => {
     assert.match(read("index.html"), /<a href="\.\/tarot\/">/);
 });
 
+test("the front page links to the retrogrades page", () => {
+    assert.match(read("index.html"), /<a href="\.\/mercury\/">/);
+});
+
 // Read width and height straight out of the JPEG SOF marker. No image library.
 function jpegSize(buffer) {
     let offset = 2;

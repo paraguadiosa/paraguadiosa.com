@@ -93,3 +93,63 @@ commit ships a fresh stamp:
 
 Dark is the default, lavender is the personal accent, light mode inverts the surface
 tokens. The toggle stores the choice in localStorage.
+
+## Mercury retrogrades
+
+`mercury/` answers one question: is Mercury retrograde now, and when does the next
+window open. It is a static page: the browser compares the current date against a
+table and renders the countdown, no model, no backend, no third party API.
+
+The table is generated here and committed:
+
+- `mercury/data/retrograde.json`: every retrograde window from 2020 to 2040, with
+  both stations, the sign and degree of each, and the shadow period.
+
+Rebuild it when the range has to grow:
+
+    python3 -m venv ~/.venvs/mercury-build
+    ~/.venvs/mercury-build/bin/pip install -r requirements-mercury.txt
+    python3 scripts/build_mercury.py           # rewrite the data file
+    python3 scripts/build_mercury.py --check   # fail when the file is stale
+
+The method is the apparent geocentric ecliptic longitude of Mercury (PyMeeus 0.5.12,
+VSOP87 with light time and aberration), sampled every half day; a window opens where
+the daily rate turns negative and closes at the next turn, both stations refined by
+bisection. The gate vector is in `tests/mercury-data.test.mjs`: the three 2025 windows
+and their station degrees, against the published ephemerides.
+
+A full rebuild takes about four minutes.
+
+### Any date, and the sky
+
+The page also answers for a date the reader picks, and draws Earth and Mercury
+around the Sun with Aries at zero. That needs positions in the browser, so a
+second table carries a trimmed VSOP87:
+
+- `mercury/data/vsop87.json`: heliocentric longitude, latitude and radius for
+  Earth and Mercury, about 800 terms in 34 KB.
+- `mercury/ephemeris.js`: evaluates the series, applies light time, and returns
+  the geocentric longitude whose rate decides retrograde.
+
+Rebuild and check it with:
+
+    python3 scripts/build_ephemeris.py           # rewrite the data file
+    python3 scripts/build_ephemeris.py --check   # fail when the file is stale
+
+The trimming drops every term under 3e-8 rad and the build measures the result
+against the full theory: 8.4 arcsec in geocentric longitude over 1925-2075. The
+station instants still come from `retrograde.json`, so the table stays exact and
+the ephemeris only draws and answers outside 2020-2040, where the page says so.
+
+`tests/mercury-ephemeris.test.mjs` closes the loop: it checks the trimmed series
+against baked PyMeeus longitudes and against all 132 stations of the table.
+
+Under the picker a scrubber walks up to a month either side of the chosen date
+without moving it, and a Play button walks that month on its own, one day every
+170 ms. The sky follows: the marker on the ring sits at the geocentric longitude
+that the answer quotes, and a fourteen day trail with an arrowhead shows the way
+it is moving, so the retrograde reads as the dot stalling and going back.
+
+The whole page is verified in a real browser with
+`node tools/verify-mercury.mjs [base-url]` (needs playwright, same as the reader
+tools).

@@ -1,0 +1,582 @@
+/* mercury.css
+   Rules the retrogrades page needs, on top of style.css.
+   No colour literals here: every colour comes from the design tokens. */
+
+body.mercury {
+    background-image: url("../media/wallpaper/moon_and_star.jpg");
+    /* Same art as WebP, the lighter file wins where it is supported. */
+    background-image: url("../media/wallpaper/moon_and_star.webp");
+}
+
+.mercury-title {
+    font-size: clamp(1.45em, 1.28em + 1.1vw, 1.9em);
+    line-height: 1.18;
+    letter-spacing: -0.014em;
+    margin-bottom: 14px;
+}
+
+.mercury-lede {
+    color: var(--color-text-soft);
+    max-width: 46ch;
+    margin-bottom: 22px;
+}
+
+/* ---------- The status card ---------- */
+
+.mercury-status {
+    border: 1px solid var(--color-line);
+    border-left: 3px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    background: var(--color-inset);
+    padding: 18px 18px 16px;
+    transition: border-color 160ms ease;
+}
+
+.mercury-status[data-state="retro"] {
+    border-left-color: var(--accent);
+}
+
+.mercury-status[data-state="shadow"] {
+    border-left-color: var(--color-rose);
+}
+
+.mercury-status[data-state="direct"] {
+    border-left-color: var(--color-text-faint);
+}
+
+.mercury-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    margin-bottom: 8px;
+}
+
+.mercury-state {
+    font-family: var(--font-display);
+    font-size: clamp(1.25em, 1.1em + 1vw, 1.6em);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.mercury-status[data-state="retro"] .mercury-state {
+    color: var(--accent);
+}
+
+.mercury-when {
+    color: var(--color-text-soft);
+    font-size: 0.98em;
+    line-height: 1.5;
+}
+
+.mercury-degrees {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+}
+
+.mercury-meter {
+    margin-top: 14px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--color-line-soft);
+    overflow: hidden;
+}
+
+.mercury-meter-fill {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 240ms ease;
+}
+
+/* ---------- Section furniture ---------- */
+
+.mercury-section-title {
+    font-size: 1.1em;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+}
+
+.mercury-hint {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+    margin-bottom: 16px;
+}
+
+/* ---------- The list of windows ---------- */
+
+.mercury-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.mercury-row {
+    display: grid;
+    gap: 2px;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-line-soft);
+}
+
+.mercury-row:first-child {
+    border-top: none;
+}
+
+.mercury-row-when {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text);
+}
+
+.mercury-row-sign {
+    font-size: 0.95em;
+    color: var(--color-text-soft);
+}
+
+.mercury-row-meta {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+}
+
+.mercury-row-heading {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-top: 1px solid var(--color-line);
+    padding-top: 16px;
+}
+
+.mercury-row-placeholder {
+    color: var(--color-text-faint);
+    font-style: italic;
+}
+
+.mercury-badge {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    vertical-align: 1px;
+}
+
+.mercury-more {
+    margin-top: 18px;
+    min-height: 44px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+    background: transparent;
+    border: 1px solid var(--color-line);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.mercury-more:hover,
+.mercury-more:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent-soft);
+    background: var(--color-surface-hover);
+}
+
+/* ---------- The year map ---------- */
+
+.mercury-years {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.mercury-year {
+    display: grid;
+    grid-template-columns: 3.4rem 1fr;
+    align-items: center;
+    gap: 10px;
+}
+
+.mercury-year-label {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: var(--color-text-faint);
+}
+
+.mercury-year-track {
+    position: relative;
+    height: 22px;
+    border-radius: 4px;
+    background: var(--color-line-soft);
+    overflow: hidden;
+}
+
+.mercury-year-bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+.mercury-year-bar.is-shadow {
+    background: var(--accent-soft);
+    opacity: 0.45;
+}
+
+.mercury-year-bar.is-retro {
+    background: var(--accent);
+    border-radius: 2px;
+    top: 3px;
+    bottom: 3px;
+}
+
+.mercury-year-bar.is-now {
+    box-shadow: 0 0 0 1px var(--color-text);
+}
+
+.mercury-year-month {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-line-soft);
+}
+
+.mercury-year.is-months {
+    margin-top: -8px;
+}
+
+.mercury-months {
+    display: flex;
+}
+
+.mercury-months span {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.01em;
+    color: var(--color-text-faint);
+    white-space: nowrap;
+}
+
+.mercury-year-today {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-rose);
+    transform: translateX(-0.5px);
+}
+
+/* ---------- Method notes ---------- */
+
+.mercury-method {
+    color: var(--color-text-soft);
+    font-size: 0.95em;
+    line-height: 1.55;
+    margin-bottom: 12px;
+}
+
+.mercury-method-mercury {
+    color: var(--color-text-faint);
+    font-size: 0.9em;
+    line-height: 1.55;
+    margin-bottom: 14px;
+}
+
+.mercury-links {
+    list-style: none;
+    margin: 14px 0 6px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--color-text-faint);
+}
+
+.mercury-links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent-soft);
+    padding-bottom: 1px;
+}
+
+.mercury-links a:hover,
+.mercury-links a:focus-visible {
+    border-bottom-color: var(--accent);
+}
+
+.mercury-note {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+    margin-top: 8px;
+}
+
+/* ---------- Wider screens: the rows breathe sideways ---------- */
+
+@media (min-width: 640px) {
+    .mercury-row {
+        grid-template-columns: 13rem 1fr;
+        align-items: baseline;
+        column-gap: 18px;
+    }
+
+    .mercury-row-when {
+        grid-row: span 2;
+    }
+
+    .mercury-row-meta {
+        grid-column: 2;
+    }
+
+    .mercury-row-heading {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Another date: the form, the answer, the sky ---------- */
+
+.mercury-date-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.mercury-date-label {
+    display: block;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+}
+
+.mercury-date-input {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    color: var(--color-text);
+    background: var(--color-inset);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] .mercury-date-input {
+    color-scheme: light;
+}
+
+.mercury-date-input:focus-visible {
+    outline: none;
+    border-color: var(--accent-soft);
+}
+
+.mercury-more.is-quiet {
+    color: var(--color-text-faint);
+}
+
+.mercury-date-answer {
+    color: var(--color-text-soft);
+    font-size: 0.96em;
+    line-height: 1.55;
+    margin-bottom: 4px;
+    min-height: 3.1em;
+}
+
+.mercury-date-answer strong {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.mercury-date-answer .is-retro {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ---------- The sky: two planets, Aries at zero ---------- */
+
+.mercury-sky {
+    margin: 14px 0 6px;
+}
+
+.mercury-sky-frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+}
+
+.mercury-sky-frame svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.mercury-sky-caption {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--color-text-faint);
+}
+
+.mercury-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 12px 0 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+}
+
+.mercury-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.mercury-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.mercury-dot.is-sun {
+    background: var(--color-rose);
+}
+
+.mercury-dot.is-earth {
+    background: var(--color-text);
+}
+
+.mercury-dot.is-mercury {
+    background: var(--accent);
+}
+
+.mercury-trail-swatch {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.6;
+}
+
+/* ---------- The scrubber: one month back and forth ---------- */
+
+.mercury-scrub {
+    margin: 4px 0 18px;
+    padding: 14px 14px 10px;
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-sm);
+    background: var(--color-inset);
+}
+
+.mercury-scrub-value {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+.mercury-scrub-range {
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    accent-color: var(--accent);
+    cursor: grab;
+    background: transparent;
+}
+
+.mercury-scrub-range:active {
+    cursor: grabbing;
+}
+
+.mercury-scrub-range:focus-visible {
+    outline: 1px solid var(--accent-soft);
+    outline-offset: 4px;
+}
+
+.mercury-scrub-ends {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+}
+
+.mercury-play {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 10px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.mercury-play:hover,
+.mercury-play:focus-visible {
+    background: var(--color-surface-hover);
+}
+
+.mercury-play[aria-pressed="true"] {
+    color: var(--color-text);
+    border-color: var(--color-line);
+}

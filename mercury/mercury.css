@@ -444,11 +444,13 @@ body.mercury {
     background: var(--accent);
 }
 
-.mercury-dash {
+.mercury-trail-swatch {
     display: inline-block;
     width: 18px;
-    height: 0;
-    border-top: 1px dashed var(--color-text-faint);
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+    opacity: 0.6;
 }
 
 /* ---------- The scrubber: one month back and forth ---------- */
@@ -496,22 +498,6 @@ body.mercury {
     font-size: 0.68rem;
     letter-spacing: 0.02em;
     color: var(--color-text-faint);
-}
-
-/* ---------- The chart: what the sky looks like from here ---------- */
-
-.mercury-chart {
-    margin: 22px 0 4px;
-}
-
-.mercury-chart-frame {
-    width: 100%;
-}
-
-.mercury-chart-frame svg {
-    display: block;
-    width: 100%;
-    height: auto;
 }
 
 .mercury-play {

@@ -58,8 +58,6 @@ const scrubEndNode = document.getElementById("mercury-scrub-end");
 const skyNode = document.getElementById("mercury-sky");
 const skyCaptionNode = document.getElementById("mercury-sky-caption");
 const playNode = document.getElementById("mercury-play");
-const chartNode = document.getElementById("mercury-chart");
-const chartCaptionNode = document.getElementById("mercury-chart-caption");
 
 // ---------- text helpers ----------
 
@@ -556,146 +554,10 @@ function renderSky(when, answer, ephemeris) {
     skyCaptionNode.textContent = parts.join(" ");
 }
 
-// ---------- the chart: the same phenomenon seen from the ground ----------
-
-const CHART = { width: 340, height: 170, left: 42, right: 10, top: 16, bottom: 26, days: 30 };
+// The scrubber walks this many days either side of the anchor.
+const SCRUB_DAYS = 30;
 
 const shortDayFormat = new Intl.DateTimeFormat("es-PY", { day: "numeric", month: "short" });
-
-// "12° Esc": short enough for the axis, where the full name does not fit.
-function shortPlace(longitude) {
-    const index = Math.floor((((longitude % 360) + 360) % 360) / 30);
-    const degree = (((longitude % 360) + 360) % 360) % 30;
-    return `${Math.round(degree)}° ${SIGNS_SHORT[index]}`;
-}
-
-// Longitude as seen from Earth, one sample per day for a month either side.
-// The values are unwrapped so a pass over 0° Aries draws as a line and not as a
-// jump from 359 to 1.
-function buildChart(anchor, ephemeris) {
-    const samples = [];
-    for (let offset = -CHART.days; offset <= CHART.days; offset += 1) {
-        const date = new Date(anchor.getTime() + offset * DAY_MS);
-        samples.push({ offset, date, longitude: ephemeris.geocentric(date).longitude });
-    }
-    const unwrapped = [samples[0].longitude];
-    for (let index = 1; index < samples.length; index += 1) {
-        let delta = samples[index].longitude - samples[index - 1].longitude;
-        if (delta > 180) delta -= 360;
-        if (delta < -180) delta += 360;
-        unwrapped.push(unwrapped[index - 1] + delta);
-    }
-    const lowest = Math.min(...unwrapped);
-    const highest = Math.max(...unwrapped);
-    const padding = Math.max(0.5, (highest - lowest) * 0.16);
-    return { samples, unwrapped, lowest, highest, floor: lowest - padding, ceiling: highest + padding };
-}
-
-// Stretches where the curve goes backwards: what retrograde looks like from here.
-function backwardsRuns(chart) {
-    const runs = [];
-    let current = null;
-    for (let index = 1; index < chart.unwrapped.length; index += 1) {
-        if (chart.unwrapped[index] < chart.unwrapped[index - 1]) {
-            if (current) current.to = index;
-            else current = { from: index - 1, to: index };
-        } else if (current) {
-            runs.push(current);
-            current = null;
-        }
-    }
-    if (current) runs.push(current);
-    return runs;
-}
-
-function renderChart(chart, offsetDays) {
-    const { width, height, left, right, top, bottom, days } = CHART;
-    const innerWidth = width - left - right;
-    const innerHeight = height - top - bottom;
-    const x = (offset) => left + ((offset + days) / (days * 2)) * innerWidth;
-    const y = (value) => top + ((chart.ceiling - value) / (chart.ceiling - chart.floor)) * innerHeight;
-
-    const point = (index) => `${x(index - days).toFixed(1)} ${y(chart.unwrapped[index]).toFixed(1)}`;
-    const curve = chart.unwrapped.map((_, index) => `${index ? "L" : "M"}${point(index)}`).join(" ");
-
-    const pieces = [];
-    pieces.push(`<svg viewBox="0 0 ${width} ${height}" role="img" `
-        + `aria-label="Posición de Mercurio vista desde la Tierra a lo largo de dos meses">`);
-    pieces.push(`<style>
-        .chart-axis { stroke: var(--color-line); stroke-width: 1; }
-        .chart-grid { stroke: var(--color-line-soft); stroke-width: 1; stroke-dasharray: 2 4; }
-        .chart-curve { fill: none; stroke: var(--color-text-soft); stroke-width: 1.6; }
-        .chart-band { fill: var(--accent); opacity: 0.07; }
-        .chart-back { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
-        .chart-station { fill: var(--accent); }
-        .chart-mark { stroke: var(--color-rose); stroke-width: 1; stroke-dasharray: 3 3; }
-        .chart-mark-dot { fill: var(--color-rose); }
-        .chart-mark-dot.is-back { fill: var(--accent); }
-        .chart-label { fill: var(--color-text-faint); font-family: var(--font-mono); font-size: 7px; }
-        .chart-label.is-strong { fill: var(--color-text-soft); }
-    </style>`);
-
-    // The two gridlines carry the extremes of the curve, labelled with the sign.
-    const highestIndex = chart.unwrapped.indexOf(chart.highest);
-    const lowestIndex = chart.unwrapped.indexOf(chart.lowest);
-    for (const [index, value] of [[highestIndex, chart.highest], [lowestIndex, chart.lowest]]) {
-        const lineY = y(value).toFixed(1);
-        pieces.push(`<line class="chart-grid" x1="${left}" y1="${lineY}" x2="${width - right}" y2="${lineY}"/>`);
-        pieces.push(`<text class="chart-label" x="2" y="${(Number(lineY) + 2.4).toFixed(1)}">`
-            + `${shortPlace(chart.samples[index].longitude)}</text>`);
-    }
-
-    pieces.push(`<line class="chart-axis" x1="${left}" y1="${height - bottom}" `
-        + `x2="${width - right}" y2="${height - bottom}"/>`);
-
-    // A band under each retrograde stretch, drawn first so the curve sits on it.
-    const runs = backwardsRuns(chart);
-    for (const run of runs) {
-        const bandLeft = x(run.from - days);
-        const bandRight = x(run.to - days);
-        pieces.push(`<rect class="chart-band" x="${bandLeft.toFixed(1)}" y="${top - 2}" `
-            + `width="${Math.max(1, bandRight - bandLeft).toFixed(1)}" height="${innerHeight + 4}"/>`);
-    }
-
-    pieces.push(`<path class="chart-curve" d="${curve}"/>`);
-    for (const run of runs) {
-        const from = Math.max(0, run.from - 1);
-        const to = Math.min(chart.unwrapped.length - 1, run.to + 1);
-        const segment = chart.unwrapped.slice(from, to + 1)
-            .map((_, index) => `${index ? "L" : "M"}${point(from + index)}`).join(" ");
-        pieces.push(`<path class="chart-back" d="${segment}"/>`);
-        for (const edge of [run.from, run.to]) {
-            pieces.push(`<circle class="chart-station" cx="${x(edge - days).toFixed(1)}" `
-                + `cy="${y(chart.unwrapped[edge]).toFixed(1)}" r="2.2"/>`);
-        }
-    }
-
-    // Dates on the axis: the two ends and the anchor.
-    const axisY = height - bottom + 11;
-    for (const [offset, anchorStrong] of [[-days, false], [0, true], [days, false]]) {
-        const label = shortDayFormat.format(chart.samples[offset + days].date);
-        const anchor = offset < 0 ? "start" : offset > 0 ? "end" : "middle";
-        pieces.push(`<text class="chart-label${anchorStrong ? " is-strong" : ""}" `
-            + `x="${x(offset).toFixed(1)}" y="${axisY}" text-anchor="${anchor}">${label}</text>`);
-    }
-
-    // The day the reader is looking at.
-    const markerIndex = Math.max(0, Math.min(chart.samples.length - 1, offsetDays + days));
-    const markerX = x(offsetDays).toFixed(1);
-    const markerY = y(chart.unwrapped[markerIndex]).toFixed(1);
-    const inRetrograde = runs.some((run) => markerIndex >= run.from && markerIndex <= run.to);
-    pieces.push(`<line class="chart-mark" x1="${markerX}" y1="${top - 4}" x2="${markerX}" y2="${height - bottom}"/>`);
-    pieces.push(`<circle class="chart-mark-dot${inRetrograde ? " is-back" : ""}" cx="${markerX}" cy="${markerY}" r="3.4"/>`);
-
-    pieces.push("</svg>");
-    chartNode.innerHTML = pieces.join("");
-
-    const start = chart.samples[0].date;
-    const end = chart.samples[chart.samples.length - 1].date;
-    chartCaptionNode.textContent = `Del ${dayText(start)} al ${dayText(end)}, la posición de Mercurio `
-        + `vista desde la Tierra. Cuando la curva baja, está retrógrado: no se da vuelta el planeta, `
-        + `se lo ve así desde acá.`;
-}
 
 // ---------- boot ----------
 
@@ -749,11 +611,10 @@ async function boot() {
 
     let anchor = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
     let offset = 0;
-    let chart = buildChart(anchor, ephemeris);
 
     function paintEnds() {
-        scrubStartNode.textContent = shortDayFormat.format(new Date(anchor.getTime() - CHART.days * DAY_MS));
-        scrubEndNode.textContent = shortDayFormat.format(new Date(anchor.getTime() + CHART.days * DAY_MS));
+        scrubStartNode.textContent = shortDayFormat.format(new Date(anchor.getTime() - SCRUB_DAYS * DAY_MS));
+        scrubEndNode.textContent = shortDayFormat.format(new Date(anchor.getTime() + SCRUB_DAYS * DAY_MS));
     }
 
     function render() {
@@ -763,7 +624,6 @@ async function boot() {
         scrubValueNode.textContent = `${dayYearText(when)}${shift}`;
         renderDateAnswer(when, answer);
         renderSky(when, answer, ephemeris);
-        renderChart(chart, offset);
     }
 
     function setAnchor(value) {
@@ -775,7 +635,6 @@ async function boot() {
         anchor = parsed;
         offset = 0;
         scrubNode.value = "0";
-        chart = buildChart(anchor, ephemeris);
         paintEnds();
         render();
     }
@@ -827,10 +686,10 @@ async function boot() {
         if (!lastTick) lastTick = timestamp;
         if (timestamp - lastTick >= STEP_MS) {
             lastTick = timestamp;
-            offset = Math.min(CHART.days, offset + 1);
+            offset = Math.min(SCRUB_DAYS, offset + 1);
             scrubNode.value = String(offset);
             render();
-            if (offset >= CHART.days) {
+            if (offset >= SCRUB_DAYS) {
                 stopPlayback();
                 return;
             }
@@ -843,7 +702,7 @@ async function boot() {
             stopPlayback();
             return;
         }
-        if (offset >= CHART.days) offset = -CHART.days;
+        if (offset >= SCRUB_DAYS) offset = -SCRUB_DAYS;
         playing = true;
         lastTick = 0;
         playNode.setAttribute("aria-pressed", "true");

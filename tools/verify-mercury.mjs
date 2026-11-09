@@ -155,6 +155,43 @@ async function inspect(width, height, label) {
     assert.equal(skyNodes > 25, true, `${label}: the sky has ${skyNodes} nodes`);
     await page.screenshot({ path: `/tmp/mercury-${width}-sky.png`, fullPage: false });
 
+    // The scrubber walks a month either side without moving the anchor, and the
+    // chart under it follows the curve of the geocentric longitude.
+    const anchorValue = await page.inputValue("#mercury-date");
+    const chartBefore = await page.locator("#mercury-chart svg").innerHTML();
+    const answerBefore = (await page.locator("#mercury-date-answer").textContent()).trim();
+    await page.evaluate(() => {
+        const node = document.getElementById("mercury-scrub");
+        node.value = "-30";
+        node.dispatchEvent(new Event("input", { bubbles: true }));
+    });
+    await page.waitForTimeout(200);
+    const scrubValue = (await page.locator("#mercury-scrub-value").textContent()).trim();
+    assert.match(scrubValue, /-30 días/, `${label}: the scrub label says ${scrubValue}`);
+    assert.match(scrubValue, /de \d{4}/, `${label}: the scrub label lost the year`);
+    const answerAfter = (await page.locator("#mercury-date-answer").textContent()).trim();
+    assert.notEqual(answerAfter, answerBefore, `${label}: the scrubber did not change the answer`);
+    assert.equal(await page.inputValue("#mercury-date"), anchorValue,
+        `${label}: scrubbing moved the anchor date`);
+    assert.notEqual(await page.locator("#mercury-chart svg").innerHTML(), chartBefore,
+        `${label}: the chart did not follow the scrubber`);
+    assert.equal(await page.locator(".chart-band").count() >= 1, true,
+        `${label}: the month around today has a retrograde and the chart shows no band`);
+
+    const chartNodes = await page.locator("#mercury-chart svg *").count();
+    assert.equal(chartNodes > 12, true, `${label}: the chart has ${chartNodes} nodes`);
+    const curvePath = await page.locator("#mercury-chart .chart-curve").getAttribute("d");
+    assert.equal((curvePath.match(/L/g) ?? []).length >= 55, true,
+        `${label}: the curve has ${(curvePath.match(/L/g) ?? []).length} segments`);
+    await page.locator(".mercury-chart").screenshot({ path: `/tmp/mercury-${width}-chart.png` });
+
+    // A new anchor sends the scrubber back to the middle.
+    await page.fill("#mercury-date", "2030-03-03");
+    await page.press("#mercury-date", "Enter");
+    await page.waitForTimeout(150);
+    assert.equal(await page.inputValue("#mercury-scrub"), "0",
+        `${label}: the scrubber did not recentre on a new date`);
+
     await page.close();
     return measured;
 }

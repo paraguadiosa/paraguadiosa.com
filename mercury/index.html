@@ -76,6 +76,17 @@
                 <button class="mercury-more is-quiet" id="mercury-date-today" type="button">Hoy</button>
             </form>
 
+            <div class="mercury-scrub">
+                <p class="mercury-scrub-value" id="mercury-scrub-value">…</p>
+                <input class="mercury-scrub-range" id="mercury-scrub" type="range"
+                       min="-30" max="30" step="1" value="0"
+                       aria-label="Días antes o después de la fecha elegida">
+                <p class="mercury-scrub-ends">
+                    <span id="mercury-scrub-start">…</span>
+                    <span id="mercury-scrub-end">…</span>
+                </p>
+            </div>
+
             <p class="mercury-date-answer" id="mercury-date-answer" aria-live="polite"></p>
 
             <figure class="mercury-sky">
@@ -89,6 +100,11 @@
                 <li><span class="mercury-dot is-mercury"></span>Mercurio</li>
                 <li><span class="mercury-dash"></span>por dónde se ve Mercurio desde la Tierra</li>
             </ul>
+
+            <figure class="mercury-chart">
+                <div class="mercury-chart-frame" id="mercury-chart"></div>
+                <figcaption class="mercury-sky-caption" id="mercury-chart-caption"></figcaption>
+            </figure>
         </div>
 
         <div class="overlay">

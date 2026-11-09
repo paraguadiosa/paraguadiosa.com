@@ -144,6 +144,11 @@ the ephemeris only draws and answers outside 2020-2040, where the page says so.
 `tests/mercury-ephemeris.test.mjs` closes the loop: it checks the trimmed series
 against baked PyMeeus longitudes and against all 132 stations of the table.
 
+Under the picker a scrubber walks up to a month either side of the chosen date
+without moving it, and the last chart plots the geocentric longitude for those
+two months: the stretch where the curve goes backwards is the retrograde, which
+is what the phenomenon actually looks like from the ground.
+
 The whole page is verified in a real browser with
 `node tools/verify-mercury.mjs [base-url]` (needs playwright, same as the reader
 tools).

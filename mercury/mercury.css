@@ -312,3 +312,141 @@ body.mercury {
         grid-template-columns: 1fr;
     }
 }
+
+/* ---------- Another date: the form, the answer, the sky ---------- */
+
+.mercury-date-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.mercury-date-label {
+    display: block;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+}
+
+.mercury-date-input {
+    min-height: 44px;
+    padding: 10px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    color: var(--color-text);
+    background: var(--color-inset);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    color-scheme: dark;
+}
+
+:root[data-theme="light"] .mercury-date-input {
+    color-scheme: light;
+}
+
+.mercury-date-input:focus-visible {
+    outline: none;
+    border-color: var(--accent-soft);
+}
+
+.mercury-more.is-quiet {
+    color: var(--color-text-faint);
+}
+
+.mercury-date-answer {
+    color: var(--color-text-soft);
+    font-size: 0.96em;
+    line-height: 1.55;
+    margin-bottom: 4px;
+    min-height: 3.1em;
+}
+
+.mercury-date-answer strong {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.mercury-date-answer .is-retro {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ---------- The sky: two planets, Aries at zero ---------- */
+
+.mercury-sky {
+    margin: 14px 0 6px;
+}
+
+.mercury-sky-frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+}
+
+.mercury-sky-frame svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.mercury-sky-caption {
+    margin-top: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--color-text-faint);
+}
+
+.mercury-legend {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin: 12px 0 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+    color: var(--color-text-faint);
+}
+
+.mercury-legend li {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.mercury-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.mercury-dot.is-sun {
+    background: var(--color-rose);
+}
+
+.mercury-dot.is-earth {
+    background: var(--color-text);
+}
+
+.mercury-dot.is-mercury {
+    background: var(--accent);
+}
+
+.mercury-dash {
+    display: inline-block;
+    width: 18px;
+    height: 0;
+    border-top: 1px dashed var(--color-text-faint);
+}

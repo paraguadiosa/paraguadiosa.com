@@ -6,6 +6,9 @@
         "test": "node --test 'tests/**/*.test.mjs'",
         "build:mercury": "python3 scripts/build_mercury.py",
         "check:mercury": "python3 scripts/build_mercury.py --check",
+        "build:ephemeris": "python3 scripts/build_ephemeris.py",
+        "check:ephemeris": "python3 scripts/build_ephemeris.py --check",
+        "verify:mercury": "node tools/verify-mercury.mjs",
         "verify:reader": "node tools/verify-reader.mjs",
         "verify:reader:browser": "node tools/verify-reader-browser.mjs"
     }

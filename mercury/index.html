@@ -65,6 +65,33 @@
         </div>
 
         <div class="overlay">
+            <h2 class="mercury-section-title">Otra fecha</h2>
+            <p class="mercury-hint">Elegí un día y te digo cómo estaba el cielo ese día.</p>
+
+            <form class="mercury-date-form" id="mercury-date-form">
+                <label class="mercury-date-label" for="mercury-date">Fecha</label>
+                <input class="mercury-date-input" id="mercury-date" name="date" type="date"
+                       min="1926-01-01" max="2075-12-31" required>
+                <button class="mercury-more" type="submit">Ver</button>
+                <button class="mercury-more is-quiet" id="mercury-date-today" type="button">Hoy</button>
+            </form>
+
+            <p class="mercury-date-answer" id="mercury-date-answer" aria-live="polite"></p>
+
+            <figure class="mercury-sky">
+                <div class="mercury-sky-frame" id="mercury-sky"></div>
+                <figcaption class="mercury-sky-caption" id="mercury-sky-caption"></figcaption>
+            </figure>
+
+            <ul class="mercury-legend">
+                <li><span class="mercury-dot is-sun"></span>Sol</li>
+                <li><span class="mercury-dot is-earth"></span>Tierra</li>
+                <li><span class="mercury-dot is-mercury"></span>Mercurio</li>
+                <li><span class="mercury-dash"></span>por dónde se ve Mercurio desde la Tierra</li>
+            </ul>
+        </div>
+
+        <div class="overlay">
             <h2 class="mercury-section-title">Cómo se calcula</h2>
             <p class="mercury-method">
                 Longitud eclíptica geocéntrica aparente de Mercurio (PyMeeus, serie VSOP87 con tiempo-luz y aberración), muestreada cada medio día entre

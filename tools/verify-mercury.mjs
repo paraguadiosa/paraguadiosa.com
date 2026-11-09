@@ -113,6 +113,48 @@ async function inspect(width, height, label) {
     assert.match(buttonText, /vienen/i, `${label}: the toggle did not flip its label`);
     await page.screenshot({ path: `/tmp/mercury-${width}-past.png`, fullPage: true });
 
+    // The date picker: the answer has to agree with the table, the sky has to
+    // redraw, and a date outside the table has to say so.
+    const skyBefore = await page.locator("#mercury-sky svg").innerHTML();
+    await page.fill("#mercury-date", "2027-07-01");
+    await page.press("#mercury-date", "Enter");
+    await page.waitForTimeout(150);
+    const retroAnswer = (await page.locator("#mercury-date-answer").textContent()).trim();
+    assert.match(retroAnswer, /Retrógrado/, `${label}: 2027-07-01 should be retrograde, said: ${retroAnswer}`);
+    const skyAfter = await page.locator("#mercury-sky svg").innerHTML();
+    assert.notEqual(skyAfter, skyBefore, `${label}: the sky did not redraw for a new date`);
+    const caption = (await page.locator("#mercury-sky-caption").textContent()).trim();
+    assert.match(caption, /2027/, `${label}: the caption lost the date`);
+
+    await page.fill("#mercury-date", "2027-07-20");
+    await page.press("#mercury-date", "Enter");
+    await page.waitForTimeout(150);
+    const directAnswer = (await page.locator("#mercury-date-answer").textContent()).trim();
+    assert.match(directAnswer, /Directo/, `${label}: 2027-07-20 should be direct, said: ${directAnswer}`);
+
+    await page.fill("#mercury-date", "2055-01-15");
+    await page.press("#mercury-date", "Enter");
+    await page.waitForTimeout(250);
+    const farAnswer = (await page.locator("#mercury-date-answer").textContent()).trim();
+    assert.match(farAnswer, /Fuera de la tabla/, `${label}: 2055 was not flagged: ${farAnswer}`);
+    assert.match(farAnswer, /Retrógrado|Directo/, `${label}: 2055 has no state: ${farAnswer}`);
+
+    await page.click("#mercury-date-today");
+    await page.waitForTimeout(150);
+    const todayValue = await page.inputValue("#mercury-date");
+    // Local date, not UTC: the picker in the page uses the reader's day.
+    const now = new Date();
+    const expectedToday = [
+        now.getFullYear(),
+        String(now.getMonth() + 1).padStart(2, "0"),
+        String(now.getDate()).padStart(2, "0"),
+    ].join("-");
+    assert.equal(todayValue, expectedToday, `${label}: the today button set ${todayValue}`);
+
+    const skyNodes = await page.locator("#mercury-sky svg *").count();
+    assert.equal(skyNodes > 25, true, `${label}: the sky has ${skyNodes} nodes`);
+    await page.screenshot({ path: `/tmp/mercury-${width}-sky.png`, fullPage: false });
+
     await page.close();
     return measured;
 }

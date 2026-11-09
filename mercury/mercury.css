@@ -513,3 +513,32 @@ body.mercury {
     width: 100%;
     height: auto;
 }
+
+.mercury-play {
+    display: block;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 10px;
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent-soft);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.mercury-play:hover,
+.mercury-play:focus-visible {
+    background: var(--color-surface-hover);
+}
+
+.mercury-play[aria-pressed="true"] {
+    color: var(--color-text);
+    border-color: var(--color-line);
+}

@@ -57,6 +57,7 @@ const scrubStartNode = document.getElementById("mercury-scrub-start");
 const scrubEndNode = document.getElementById("mercury-scrub-end");
 const skyNode = document.getElementById("mercury-sky");
 const skyCaptionNode = document.getElementById("mercury-sky-caption");
+const playNode = document.getElementById("mercury-play");
 const chartNode = document.getElementById("mercury-chart");
 const chartCaptionNode = document.getElementById("mercury-chart-caption");
 
@@ -444,8 +445,9 @@ function skyMarkup(when, answer, ephemeris) {
         .sky-aries { stroke: var(--color-rose); stroke-width: 1; stroke-dasharray: 2 4; opacity: 0.75; }
         .sky-aries-label { fill: var(--color-rose); font-family: var(--font-mono); font-size: 9px; }
         .sky-arc { fill: none; stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
-        .sky-sight { stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 4 3; opacity: 0.8; }
-        .sky-seen { fill: none; stroke: var(--accent); stroke-width: 1.6; }
+        .sky-trail { fill: none; stroke: var(--accent); stroke-width: 2; opacity: 0.5; stroke-linecap: round; }
+        .sky-arrow { fill: var(--accent); }
+        .sky-seen { fill: var(--page-bg); stroke: var(--accent); stroke-width: 2; }
         .sky-limb { stroke: var(--color-text-faint); stroke-width: 0.8; opacity: 0.5; }
         .sky-sun { fill: var(--color-rose); }
         .sky-earth { fill: var(--color-text); }
@@ -490,20 +492,33 @@ function skyMarkup(when, answer, ephemeris) {
         pieces.push(`<polyline class="sky-arc" points="${points.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" ")}"/>`);
     }
 
-    // Where Mercury looks like it is from Earth: the line leaves the Earth dot
-    // in the direction of the geocentric longitude and stops at the ring.
-    const [earthX, earthY] = pointAt(earth.longitude, SKY.earthOrbit);
-    const directionX = Math.cos(seen * RAD);
-    const directionY = -Math.sin(seen * RAD);
-    const fromCenter = (earthX - SKY.center) * directionX + (earthY - SKY.center) * directionY;
-    const inside = SKY.earthOrbit * SKY.earthOrbit - SKY.ring * SKY.ring;
-    const reach = -fromCenter + Math.sqrt(Math.max(0, fromCenter * fromCenter - inside));
-    const sightX = earthX + directionX * reach;
-    const sightY = earthY + directionY * reach;
+    // The apparent path of the last two weeks, just outside the ring, and an
+    // arrowhead pointing the way Mercury is moving right now: forward, stopped,
+    // or backwards. Off the ring so it does not sit on top of the arc.
+    const trailRadius = SKY.ring + 8;
+    const trail = [];
+    for (let back = 14; back >= 0; back -= 1) {
+        const moment = new Date(when.getTime() - back * DAY_MS);
+        trail.push(pointAt(ephemeris.geocentric(moment).longitude, trailRadius));
+    }
+    pieces.push(`<polyline class="sky-trail" points="${trail
+        .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" ")}"/>`);
 
-    pieces.push(`<line class="sky-sight" x1="${earthX.toFixed(1)}" y1="${earthY.toFixed(1)}" `
-        + `x2="${sightX.toFixed(1)}" y2="${sightY.toFixed(1)}"/>`);
-    pieces.push(`<circle class="sky-seen" cx="${sightX.toFixed(1)}" cy="${sightY.toFixed(1)}" r="3.2"/>`);
+    const forward = ephemeris.motion(when) > 0 ? 1 : -1;
+    const tipAngle = seen + forward * 3.6;
+    const [tipX, tipY] = pointAt(tipAngle, trailRadius);
+    const [baseAX, baseAY] = pointAt(tipAngle - forward * 4.4, trailRadius - 3.8);
+    const [baseBX, baseBY] = pointAt(tipAngle - forward * 4.4, trailRadius + 3.8);
+    pieces.push(`<polygon class="sky-arrow" points="${[
+        [tipX, tipY], [baseAX, baseAY], [baseBX, baseBY],
+    ].map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" ")}"/>`);
+
+    // Where Mercury is seen from Earth: on the ring at its geocentric longitude,
+    // which is the degree the text quotes. The straight line joins Earth and
+    // Mercury, the planet sitting between us and the Sun.
+    const [earthX, earthY] = pointAt(earth.longitude, SKY.earthOrbit);
+    const [seenX, seenY] = pointAt(seen, SKY.ring);
+    pieces.push(`<circle class="sky-seen" cx="${seenX.toFixed(1)}" cy="${seenY.toFixed(1)}" r="3.6"/>`);
 
     // Sun, Earth, Mercury.
     pieces.push(`<circle class="sky-sun" cx="${SKY.center}" cy="${SKY.center}" r="6.5"/>`);
@@ -535,6 +550,9 @@ function renderSky(when, answer, ephemeris) {
     if (answer.start && answer.end) {
         parts.push("El arco violeta sobre el borde es la retrogradación entera.");
     }
+    parts.push("El círculo del borde es dónde se ve Mercurio, en su grado del zodíaco; "
+        + "la estela y la flecha, por dónde anduvo y para dónde va ahora. Dale a Reproducir: "
+        + "el punto avanza, se frena y vuelve para atrás.");
     skyCaptionNode.textContent = parts.join(" ");
 }
 
@@ -768,18 +786,69 @@ async function boot() {
 
     dateForm.addEventListener("submit", (event) => {
         event.preventDefault();
+        stopPlayback();
         setAnchor(dateInput.value);
     });
-    dateInput.addEventListener("change", () => setAnchor(dateInput.value));
+    dateInput.addEventListener("change", () => {
+        stopPlayback();
+        setAnchor(dateInput.value);
+    });
     dateTodayButton.addEventListener("click", () => {
+        stopPlayback();
         const today = new Date();
         const local = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 12, 0, 0);
         dateInput.value = localDateValue(local);
         setAnchor(dateInput.value);
     });
     scrubNode.addEventListener("input", () => {
+        stopPlayback();
         offset = Number(scrubNode.value) || 0;
         render();
+    });
+
+    // Playback: the marker walks the month one day at a time, which is the only
+    // way the reversal reads as a movement instead of as a shape.
+    let frame = null;
+    let playing = false;
+    let lastTick = 0;
+    const STEP_MS = 170;
+
+    function stopPlayback() {
+        if (!playing && !frame) return;
+        playing = false;
+        if (frame) cancelAnimationFrame(frame);
+        frame = null;
+        playNode.setAttribute("aria-pressed", "false");
+        playNode.textContent = "Reproducir el mes";
+    }
+
+    function tick(timestamp) {
+        if (!playing) return;
+        if (!lastTick) lastTick = timestamp;
+        if (timestamp - lastTick >= STEP_MS) {
+            lastTick = timestamp;
+            offset = Math.min(CHART.days, offset + 1);
+            scrubNode.value = String(offset);
+            render();
+            if (offset >= CHART.days) {
+                stopPlayback();
+                return;
+            }
+        }
+        frame = requestAnimationFrame(tick);
+    }
+
+    playNode.addEventListener("click", () => {
+        if (playing) {
+            stopPlayback();
+            return;
+        }
+        if (offset >= CHART.days) offset = -CHART.days;
+        playing = true;
+        lastTick = 0;
+        playNode.setAttribute("aria-pressed", "true");
+        playNode.textContent = "Pausa";
+        frame = requestAnimationFrame(tick);
     });
 }
 

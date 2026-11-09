@@ -192,6 +192,73 @@ async function inspect(width, height, label) {
     assert.equal(await page.inputValue("#mercury-scrub"), "0",
         `${label}: the scrubber did not recentre on a new date`);
 
+    // The ring marker has to sit at the degree the text quotes, and it has to
+    // walk backwards while Mercury is retrograde. This is the check that the
+    // picture and the number are the same number.
+    const signs = ["Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo",
+        "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis"];
+    const markerAngle = async () => {
+        const [x, y] = await page.locator(".sky-seen").evaluate((node) => [
+            Number(node.getAttribute("cx")), Number(node.getAttribute("cy")),
+        ]);
+        return (((Math.atan2(180 - y, x - 180) * 180) / Math.PI) + 360) % 360;
+    };
+    const quotedLongitude = async () => {
+        const text = (await page.locator("#mercury-date-answer").textContent()).trim();
+        const found = text.match(/Mercurio está en (\d+)°(\d+)′ de (\w+)/);
+        if (!found) return null;
+        return signs.indexOf(found[3]) * 30 + Number(found[1]) + Number(found[2]) / 60;
+    };
+    const scrubTo = async (value) => {
+        await page.evaluate((offset) => {
+            const node = document.getElementById("mercury-scrub");
+            node.value = String(offset);
+            node.dispatchEvent(new Event("input", { bubbles: true }));
+        }, value);
+        await page.waitForTimeout(120);
+    };
+
+    // Anchor on the middle of the next window, so this check does not depend on
+    // the day the suite happens to run.
+    const nextWindow = windows.find((window) => window.start > Date.now());
+    assert.notEqual(nextWindow, undefined, `${label}: the table has no future window`);
+    const middleOfWindow = new Date((nextWindow.start + nextWindow.end) / 2);
+    const middleValue = [
+        middleOfWindow.getFullYear(),
+        String(middleOfWindow.getMonth() + 1).padStart(2, "0"),
+        String(middleOfWindow.getDate()).padStart(2, "0"),
+    ].join("-");
+    await page.fill("#mercury-date", middleValue);
+    await page.press("#mercury-date", "Enter");
+    await page.waitForTimeout(150);
+
+    const angles = [];
+    for (const offset of [-20, 0, 20]) {
+        await scrubTo(offset);
+        const quoted = await quotedLongitude();
+        assert.notEqual(quoted, null, `${label}: no degree in the answer at ${offset}`);
+        const drawn = await markerAngle();
+        assert.ok(Math.abs(drawn - quoted) < 0.6,
+            `${label}: ring marker at ${drawn.toFixed(1)} while the text says ${quoted.toFixed(1)}`);
+        angles.push(drawn);
+    }
+    // Today falls inside a retrograde, so the middle reading has to be lower
+    // than the one twenty days earlier.
+    assert.ok(angles[1] < angles[0], `${label}: the marker did not walk backwards: ${angles}`);
+
+    // Playback: it starts, moves the day and stops on its own at the end.
+    await scrubTo(-30);
+    await page.click("#mercury-play");
+    assert.equal(await page.locator("#mercury-play").getAttribute("aria-pressed"), "true",
+        `${label}: play did not latch`);
+    const playedFrom = (await page.locator("#mercury-scrub-value").textContent()).trim();
+    await page.waitForTimeout(900);
+    const playedTo = (await page.locator("#mercury-scrub-value").textContent()).trim();
+    assert.notEqual(playedTo, playedFrom, `${label}: play did not advance the day`);
+    await page.click("#mercury-play");
+    assert.equal(await page.locator("#mercury-play").getAttribute("aria-pressed"), "false",
+        `${label}: pause did not release`);
+
     await page.close();
     return measured;
 }
